@@ -1,0 +1,69 @@
+{
+  "suppressImplicitAnyIndexErrors": true,
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true, // js/ts 混用时设为false
+    "jsx": "preserve",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "noImplicitThis": true, // js/ts 混用时设为false
+    "skipLibCheck": true,
+    // "suppressImplicitAnyIndexErrors": true,  //元素具有隐式 any 的报错
+    "baseUrl": "./",
+    "types": [
+      "webpack-env",
+      "node",
+    ],
+    "lib": [
+      "ESNext",
+      "DOM",
+      "es6"
+    ],
+    "paths": {
+      "/": [
+        "public/*"
+      ],
+      "@/*": [
+        "src/*"
+      ],
+      "@*": [
+        "src/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@style/*": [
+        "src/style/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
+      "@router/*": [
+        "src/router/*"
+      ],
+      "@store/*": [
+        "src/store/*"
+      ],
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "config/*.d.ts",
+    "@**/*.ts",
+    "**/*.tsx"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
+}

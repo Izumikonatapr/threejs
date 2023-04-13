@@ -51,7 +51,10 @@ const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
 // 渲染器
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({
+  // 抗锯齿
+  antialias: true,
+});
 // 设置渲染大小
 renderer.setSize(window.innerWidth, window.innerHeight);
 

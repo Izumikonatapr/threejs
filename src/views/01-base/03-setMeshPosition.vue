@@ -15,9 +15,13 @@ onMounted(() => {
   // 修改物体的属性 比如位置
   cube.position.set(1, 1, 1);
   cube.position.x = 5;
+  // 再比如缩放
+  cube.scale.x = 2;
+
   // 你也可以在帧中修改他
   const animate2 = () => {
     cube.position.y += 0.005;
+    cube.scale.x += 0.005;
     requestAnimationFrame(animate2);
   };
   animate2();
@@ -42,7 +46,9 @@ const camera = new THREE.PerspectiveCamera(
 camera.position.set(0, 0, 10);
 scene.add(camera);
 
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({
+  antialias: true,
+});
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 const controls = new OrbitControls(camera, renderer.domElement);

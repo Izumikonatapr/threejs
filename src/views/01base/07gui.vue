@@ -2,7 +2,9 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { onBeforeUnmount, onMounted, ref } from "vue";
+import * as dat from "dat.gui";
 import gsap from "gsap";
+const GUI = new dat.GUI();
 onMounted(() => {
   container.value.appendChild(renderer.domElement);
   window.addEventListener("resize", () => {
@@ -13,48 +15,44 @@ onMounted(() => {
   });
   tick();
   cube.scale.x = 2;
-  // 设置动画
-  //    cube.position对象 中的x移动到5  用时5秒
-  gsap.to(cube.rotation, { z: Math.PI, duration: 3, ease: "power2.inOut" });
-  //ease 用于设置动画过渡方式 渐入渐出  power2.in 先快后慢 power2.out相反 power2.inOut 慢->快->慢
-  // 全部属性文档网址   https://greensock.com/get-started/#easing
-  gsap.to(cube.rotation, { y: Math.PI, duration: 3, ease: "power2.inOut" });
-  // 回调函数
-  gsap.to(cube.position, {
-    x: 5,
-    ease: "power2.inOut",
-    duration: 3,
-    // 重复次数 如果写2 开始执行一次 然后重复两次 总计三次 无限循环 -1 无限循环不会执行结束回调
-    repeat: -1,
-    // 往返运动 yoyo
-    yoyo: true,
-    //延迟开始（秒）
-    delay: 2,
-    onStart: () => {
-      console.log("动画开始");
+  //     修改哪个对象   属性
+  GUI.add(cube.position as any, "x")
+    // 最小值
+    .min(0)
+    // 最大值
+    .max(5)
+    // change事件
+    .onChange((val) => {
+      console.log(val);
+    })
+    .onFinishChange((val) => {
+      console.log("修改完成", val);
+    });
+  // 修改颜色
+  // mesh的颜色直接修改不会生效 需要使用set方法
+  const params = {
+    color: "#ffff00",
+    fn: () => {
+      gsap.to(cube.position, {
+        x: 5,
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+      });
     },
-    onComplete: () => {
-      console.log("动画结束");
-    },
+  };
+  GUI.addColor(params, "color").onChange((val) => {
+    cube.material.color.set(val);
   });
-  // 我们可以用一个变量接收gsap 用于控制开始暂停结束
-  const cubeAnimateY = gsap.to(cube.position, {
-    y: 5,
-    duration: 3,
-    repeat: -1,
-    yoyo: true,
-    ease: "power2.inOute",
-  });
-  window.addEventListener("click", () => {
-    // 暂停动画
-    cubeAnimateY.pause();
-  });
-  window.addEventListener("dblclick", () => {
-    // 恢复;
-    cubeAnimateY.resume();
-  });
+  // 自定义事件
+  GUI.add(params, "fn").name("点击让立方体运动");
+  // 新建文件夹
+  let folder = GUI.addFolder("folder");
+  // 文件夹中add
+  folder.add(cube.material as any, "wireframe").name("线框");
 });
 onBeforeUnmount(() => {
+  if (GUI) GUI.destroy();
   cancelAnimationFrame(renderFrame);
   if (renderer) {
     renderer.forceContextLoss();
@@ -62,7 +60,6 @@ onBeforeUnmount(() => {
   }
   scene.clear();
 });
-
 const container = ref();
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -78,8 +75,8 @@ const renderer = new THREE.WebGLRenderer({
   antialias: true,
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
-    // 设置渲染器像素比
-    renderer.setPixelRatio(window.devicePixelRatio);
+// 设置渲染器像素比
+renderer.setPixelRatio(window.devicePixelRatio);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;

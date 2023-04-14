@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-import base01 from "./01-base/01-初始场景.vue";
-import controls from "./01-base/02-controls.vue";
-import setMeshPosition from "./01-base/03-setMeshPosition.vue";
-import clock from "./01-base/04clock.vue";
-import gsap from "./01-base/05gsap.vue";
-import screenfull from "./01-base/06screenfull.vue";
+import base01 from "./01base/01-初始场景.vue";
+import controls from "./01base/02-controls.vue";
+import setMeshPosition from "./01base/03-setMeshPosition.vue";
+import clock from "./01base/04clock.vue";
+import gsap from "./01base/05gsap.vue";
+import screenfull from "./01base/06screenfull.vue";
+import gui from "./01base/07gui.vue";
+import BoxGeometry from "./02geometry/boxGeometry.vue";
 </script>
 <template>
   <!-- 基础 -->
@@ -18,6 +20,11 @@ import screenfull from "./01-base/06screenfull.vue";
   <!-- 使用第三方gsap库实现补间动画 -->
   <!-- <gsap></gsap> -->
   <!-- js接口控制全屏 -->
-  <screenfull></screenfull>
+  <!-- <screenfull></screenfull> -->
+  <!-- 浏览器变量调试 gui库 -->
+  <!-- <gui></gui> -->
+
+  <!-- 认识几何体 -->
+  <BoxGeometry></BoxGeometry>
 </template>
 <style scoped lang="scss"></style>

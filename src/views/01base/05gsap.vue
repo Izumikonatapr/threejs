@@ -2,7 +2,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { onBeforeUnmount, onMounted, ref } from "vue";
-
+import gsap from "gsap";
 onMounted(() => {
   container.value.appendChild(renderer.domElement);
   window.addEventListener("resize", () => {
@@ -12,25 +12,47 @@ onMounted(() => {
     camera.updateProjectionMatrix();
   });
   tick();
-
-  // 设置时钟  时钟默认autoStart属性 为true 自动开始
-  const clock = new THREE.Clock();
-  const animate = () => {
-    // 获取时钟运行的总时长
-    const time = clock.getElapsedTime();
-    /* 
-      两帧之间的间隔 这里得到的是0 
-      因为 getElapsedTime 已经更新了一次oldTime 
-      getDelta顺序继续获取得到0 start、getDelta、getElspsedTime都会更新oldTime属性
-    */
-    // const delta = clock.getDelta();
-    // 接下来我们来实现一下之前的简单动画
-    // getElapsedTime得到的值已经是秒不需要/1000
-    let t = time % 5;
-    cube.position.x = t * 1;
-    requestAnimationFrame(animate);
-  };
-  animate();
+  cube.scale.x = 2;
+  // 设置动画
+  //    cube.position对象 中的x移动到5  用时5秒
+  gsap.to(cube.rotation, { z: Math.PI, duration: 3, ease: "power2.inOut" });
+  //ease 用于设置动画过渡方式 渐入渐出  power2.in 先快后慢 power2.out相反 power2.inOut 慢->快->慢
+  // 全部属性文档网址   https://greensock.com/get-started/#easing
+  gsap.to(cube.rotation, { y: Math.PI, duration: 3, ease: "power2.inOut" });
+  // 回调函数
+  gsap.to(cube.position, {
+    x: 5,
+    ease: "power2.inOut",
+    duration: 3,
+    // 重复次数 如果写2 开始执行一次 然后重复两次 总计三次 无限循环 -1 无限循环不会执行结束回调
+    repeat: -1,
+    // 往返运动 yoyo
+    yoyo: true,
+    //延迟开始（秒）
+    delay: 2,
+    onStart: () => {
+      console.log("动画开始");
+    },
+    onComplete: () => {
+      console.log("动画结束");
+    },
+  });
+  // 我们可以用一个变量接收gsap 用于控制开始暂停结束
+  const cubeAnimateY = gsap.to(cube.position, {
+    y: 5,
+    duration: 3,
+    repeat: -1,
+    yoyo: true,
+    ease: "power2.inOute",
+  });
+  window.addEventListener("click", () => {
+    // 暂停动画
+    cubeAnimateY.pause();
+  });
+  window.addEventListener("dblclick", () => {
+    // 恢复;
+    cubeAnimateY.resume();
+  });
 });
 onBeforeUnmount(() => {
   cancelAnimationFrame(renderFrame);
@@ -56,8 +78,8 @@ const renderer = new THREE.WebGLRenderer({
   antialias: true,
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
-    // 设置渲染器像素比
-    renderer.setPixelRatio(window.devicePixelRatio);
+// 设置渲染器像素比
+renderer.setPixelRatio(window.devicePixelRatio);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;

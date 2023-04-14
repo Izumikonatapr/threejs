@@ -1,24 +1,34 @@
 <script lang="ts" setup>
 import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { onBeforeUnmount, onMounted, ref } from "vue";
-
+import gsap from "gsap";
 onMounted(() => {
-  // 让渲染器将dom元素注入这个dom元素中
   container.value.appendChild(renderer.domElement);
-  // 页面大小改变修改渲染宽高 和相机比例
   window.addEventListener("resize", () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
-    // 设置渲染器像素比
     renderer.setPixelRatio(window.devicePixelRatio);
-    // 更新相机投影矩阵
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
   });
   tick();
+  cube.scale.x = 2;
+
+  window.addEventListener("dblclick", () => {
+    // 判断全屏
+    const screenfull = document.fullscreenElement;
+    if (!screenfull) {
+      // 没全屏则全屏
+      renderer.domElement.requestFullscreen();
+    } else {
+      // 如果全屏了 那么退出
+      // 注意 全屏 是用画布请求全屏 退出时应该让dom退出全屏
+      document.exitFullscreen();
+    }
+  });
 });
-// 销毁
 onBeforeUnmount(() => {
-  cancelAnimationFrame(render);
+  cancelAnimationFrame(renderFrame);
   if (renderer) {
     renderer.forceContextLoss();
     renderer.dispose();
@@ -26,56 +36,47 @@ onBeforeUnmount(() => {
   scene.clear();
 });
 
-// 挂载场景的元素
 const container = ref();
 const scene = new THREE.Scene();
-// 正交摄像机
 const camera = new THREE.PerspectiveCamera(
-  // fov
   75,
-  // 画布的宽高比
   window.innerWidth / window.innerHeight,
-  // 最小渲染距离
   0.1,
-  // 最大渲染距离
   1000
 );
 camera.position.set(0, 0, 10);
 scene.add(camera);
 
-//向场景添加物体
-const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial({
-  color: 0xffff00,
-});
-// 将几何体和材质组合为 物体
-const cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
-
-// 渲染器
 const renderer = new THREE.WebGLRenderer({
-  // 抗锯齿
   antialias: true,
 });
-// 设置渲染大小
 renderer.setSize(window.innerWidth, window.innerHeight);
 // 设置渲染器像素比
 renderer.setPixelRatio(window.devicePixelRatio);
 
-const clock = new THREE.Clock();
-// 时钟 将会计算出两帧之间的间隔 用于解决高帧数后动画加速的问题
-const tick = () => {
-  const dt = clock.getDelta();
-  // 开始执行渲染 将帧之间的差值传给渲染函数
-  animate(dt);
-};
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+const axes = new THREE.AxesHelper(10);
+scene.add(axes);
 
-let render: any;
-const animate = (dt) => {
-  cube.position.x += 0.1;
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshBasicMaterial({
+  color: 0xffff00,
+});
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+
+const renderClock = new THREE.Clock();
+const tick = () => {
+  const dt = renderClock.getDelta();
+  render(dt);
+};
+let renderFrame: any;
+const render = (dt) => {
   renderer.render(scene, camera);
+  controls.update();
   // 请求下一帧
-  render = requestAnimationFrame(tick);
+  renderFrame = requestAnimationFrame(tick);
 };
 </script>
 <template>

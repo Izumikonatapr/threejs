@@ -8,6 +8,7 @@ onMounted(() => {
   container.value.appendChild(renderer.domElement);
   window.addEventListener("resize", () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
   });
@@ -38,10 +39,13 @@ const renderer = new THREE.WebGLRenderer({
   antialias: true,
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
+    // 设置渲染器像素比
+    renderer.setPixelRatio(window.devicePixelRatio);
 
 // 创建控制器 无需添加
 const controls = new OrbitControls(camera, renderer.domElement);
-
+// 设置控制器的阻尼 必须在render循环中调用update
+controls.enableDamping = true;
 // 创建坐标辅助线
 // 蓝色 z轴 红色 x轴 绿色 y轴
 const axes = new THREE.AxesHelper(10);
@@ -63,6 +67,7 @@ const tick = () => {
 let render: any;
 const animate = (dt) => {
   renderer.render(scene, camera);
+  controls.update();
   // 请求下一帧
   render = requestAnimationFrame(tick);
 };

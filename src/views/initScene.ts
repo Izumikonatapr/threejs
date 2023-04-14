@@ -2,9 +2,9 @@ import * as THREE from 'three'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 export class app {
     /**
-     * 这个类用来简单初始化一个threejs基础场景
+     * 这个类用来简单初始化一个threejs基础场景 不需要在一个文件写太多的代码 只需要关注需要学习的内容
      * @param scene three场景对象
-     * @param controls 控件 默认OrbitControls 如果你需要更换 那么调用销毁后替换
+     * @param controls 控件 默认OrbitControls 如果你需要更换 那么调用销毁后替换 或者在类中写一个替换方法 或添加构造器配置项
      * @param renderer 渲染器 默认webGl渲染器
      * @param clock 时钟同步动画时间等
      * @param camera 相机 默认正交摄像机

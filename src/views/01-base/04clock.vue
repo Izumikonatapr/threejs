@@ -12,37 +12,27 @@ onMounted(() => {
   });
   tick();
 
-  // 修改物体的属性 比如位置
-  // vec3 向量 都有set方法
-  cube.position.set(1, 1, 1);
-  cube.position.x = 5;
-  // 再比如缩放
-  cube.scale.y = 2;
-  // 旋转 90度
-  cube.rotation.y = Math.PI * 0.5;
-
-  // 你也可以在帧中修改他
-  const animate2 = (time?) => {
-    // cube.position.y += 0.005;
-    // cube.scale.x += 0.005;
-    // cube.rotation.y += 0.01;
-    // 这样计算动画并不合适  因为每个用户的帧数可能不一样 动画速度会不一样
-    // requestAnimationFrame 会给函数传递一个time 为开始运行的毫秒数
-    let t = time / 1000;
-    // 如果不取余 那么动画只会走一次 因为t*1已经永远>5了
-    // 动画会变得平滑
-    // 更好的方式  THREE自带的Clock对象
-    cube.position.x = (t * 1) % 5;
-    if (cube.position.x > 5) {
-      cube.position.x = 0;
-    }
-
-    requestAnimationFrame(animate2);
+  // 设置时钟  时钟默认autoStart属性 为true 自动开始
+  const clock = new THREE.Clock();
+  const animate = () => {
+    // 获取时钟运行的总时长
+    const time = clock.getElapsedTime();
+    /* 
+      两帧之间的间隔 这里得到的是0 
+      因为 getElapsedTime 已经更新了一次oldTime 
+      getDelta顺序继续获取得到0 start、getDelta、getElspsedTime都会更新oldTime属性
+    */
+    // const delta = clock.getDelta();
+    // 接下来我们来实现一下之前的简单动画
+    // getElapsedTime得到的值已经是秒不需要/1000
+    let t = time % 5;
+    cube.position.x = t * 1;
+    requestAnimationFrame(animate);
   };
-  animate2();
+  animate();
 });
 onBeforeUnmount(() => {
-  cancelAnimationFrame(render);
+  cancelAnimationFrame(renderFrame);
   if (renderer) {
     renderer.forceContextLoss();
     renderer.dispose();
@@ -77,17 +67,16 @@ const material = new THREE.MeshBasicMaterial({
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
-const clock = new THREE.Clock();
+const renderClock = new THREE.Clock();
 const tick = () => {
-  const dt = clock.getDelta();
-  animate(dt);
+  const dt = renderClock.getDelta();
+  render(dt);
 };
-
-let render: any;
-const animate = (dt) => {
+let renderFrame: any;
+const render = (dt) => {
   renderer.render(scene, camera);
   // 请求下一帧
-  render = requestAnimationFrame(tick);
+  renderFrame = requestAnimationFrame(tick);
 };
 </script>
 <template>

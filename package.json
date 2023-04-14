@@ -17,6 +17,7 @@
         "axios": "^1.2.0",
         "echarts": "^5.2.2",
         "element-plus": "^2.2.26",
+        "gsap": "^3.11.5",
         "nprogress": "^0.2.0",
         "screenfull": "^6.0.2",
         "three": "^0.150.1",

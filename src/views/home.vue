@@ -7,6 +7,7 @@ import gsap from "./01base/05gsap.vue";
 import screenfull from "./01base/06screenfull.vue";
 import gui from "./01base/07gui.vue";
 import BoxGeometry from "./02geometry/boxGeometry.vue";
+import material from "./03material/01material.vue";
 </script>
 <template>
   <!-- 基础 -->
@@ -25,6 +26,8 @@ import BoxGeometry from "./02geometry/boxGeometry.vue";
   <!-- <gui></gui> -->
 
   <!-- 认识几何体 -->
-  <BoxGeometry></BoxGeometry>
+  <!-- <BoxGeometry></BoxGeometry> -->
+  <!-- 认识材质 -->
+  <material></material>
 </template>
 <style scoped lang="scss"></style>

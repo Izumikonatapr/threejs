@@ -69,7 +69,7 @@ export class app {
         }
         if (this.scene) this.scene.clear();
     }
-    pushDom(domId: domId) {
+    injectDom(domId: domId) {
         /**
          * 渲染器将canvas注入这个元素
          */

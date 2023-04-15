@@ -3,8 +3,6 @@ import * as THREE from "three";
 import { app as initApp } from "@/views/initScene";
 import { onBeforeUnmount, onMounted } from "vue";
 onMounted(() => {
-  app.injectDom("container");
-
   /**
    * @param attributes 存有几何体相关的数据 存有法向 normal 顶点位置  position  uv 一个立方体有6个面 一个面有四个顶点  因此一个立方体最少有二十四个点组成 count 24 可以添加更多点
    * 可以看public中的uv.jpg理解uv展开
@@ -63,7 +61,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
   app.dispose();
 });
-const app = new initApp();
+const app = new initApp("container");
 const { scene, controls, camera, clock } = app;
 </script>
 <template>

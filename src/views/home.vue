@@ -8,6 +8,7 @@ import screenfull from "./01base/06screenfull.vue";
 import gui from "./01base/07gui.vue";
 import BoxGeometry from "./02geometry/boxGeometry.vue";
 import material from "./03material/01material.vue";
+import opacityMaterial from "./03material/03opacity.vue";
 </script>
 <template>
   <!-- 基础 -->
@@ -28,6 +29,10 @@ import material from "./03material/01material.vue";
   <!-- 认识几何体 -->
   <!-- <BoxGeometry></BoxGeometry> -->
   <!-- 认识材质 -->
-  <material></material>
+  <!-- <material></material> -->
+  <!-- 纹理缩放方式 -->
+  <!-- <mipmap></mipmap> -->
+  <!-- 纹理透明和渲染多面 -->
+  <opacityMaterial></opacityMaterial>
 </template>
 <style scoped lang="scss"></style>

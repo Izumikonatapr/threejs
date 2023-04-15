@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { onMounted } from 'vue';
 export class app {
     /**
      * 这个类用来简单初始化一个threejs基础场景 不需要在一个文件写太多的代码 只需要关注需要学习的内容
@@ -18,7 +19,7 @@ export class app {
     axes: THREE.AxesHelper;
     clock: THREE.Clock
     renderFrame: any;
-    constructor() {
+    constructor(domId: domId) {
         this.scene = new THREE.Scene()
         this.camera = new THREE.PerspectiveCamera(
             75,
@@ -45,6 +46,10 @@ export class app {
             this.camera.updateProjectionMatrix();
         });
         this.tick()
+
+        onMounted(() => {
+            this.injectDom(domId)
+        })
     }
     render = (dt: number) => {
         /**
@@ -78,6 +83,6 @@ export class app {
     }
 }
 /**
-  * dom元素的id 渲染器将canvas注入这个元素
-  */
+ * dom元素的id 渲染器将canvas注入这个元素
+ */
 type domId = string 

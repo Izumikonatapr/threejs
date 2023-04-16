@@ -13,7 +13,8 @@ onMounted(() => {
   /**
    * 纹理属性
    * @param {Texture} aoMap ao环境光遮蔽贴图原理与透明贴图类似 白色到黑色 光对纹理的影响程度 aoMap需要第二组uv 物体本身自带一组uv 你需要添加第二组
-   *
+   * @param {number} aoMapIntensity 环境光遮蔽贴图效果的强度
+   * 有环境光遮蔽贴图看起来效果就会真实不少
    */
   const aoMap = textureLoader.load(
     "/02material/textures/door/ambientOcclusion.jpg"
@@ -22,6 +23,8 @@ onMounted(() => {
   const baseMaterial = new THREE.MeshBasicMaterial({
     // 设置环境光遮蔽贴图
     aoMap: aoMap,
+    // 环境光遮蔽强度
+    aoMapIntensity: 0.5,
     map: colorTexture,
     color: "#ffff00",
     side: THREE.DoubleSide,

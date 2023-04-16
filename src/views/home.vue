@@ -9,6 +9,7 @@ import gui from "./01base/07gui.vue";
 import BoxGeometry from "./02geometry/boxGeometry.vue";
 import material from "./03material/01material.vue";
 import opacityMaterial from "./03material/03opacity.vue";
+import aomap from "./03material/04aomap.vue";
 </script>
 <template>
   <!-- 基础 -->
@@ -33,6 +34,8 @@ import opacityMaterial from "./03material/03opacity.vue";
   <!-- 纹理缩放方式 -->
   <!-- <mipmap></mipmap> -->
   <!-- 纹理透明和渲染多面 -->
-  <opacityMaterial></opacityMaterial>
+  <!-- <opacityMaterial></opacityMaterial> -->
+  <!-- 环境光遮蔽贴图 -->
+  <aomap></aomap>
 </template>
 <style scoped lang="scss"></style>

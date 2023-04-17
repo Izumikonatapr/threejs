@@ -4,12 +4,6 @@ import * as THREE from "three";
 import { app as initApp } from "@/views/initScene";
 import { onBeforeUnmount, onMounted } from "vue";
 onMounted(() => {
-  const geometry = new THREE.BoxGeometry(1, 1, 1);
-  const textureLoader = new THREE.TextureLoader();
-  const colorTexture = textureLoader.load(
-    "/02material/textures/door/color.jpg"
-  );
-
   /**
    * 概念
    * pbr物理渲染
@@ -42,40 +36,99 @@ onMounted(() => {
    *
    * 如果启用了金属感 那么镜面贴图无效
    * 如果粗糙度设置为1 高光度为1 那么为0
+   *
+   * 粗糙度贴图
+   * 同理 改变每个位置粗糙度的贴图
+   *
+   * 金属度贴图
+   * 同理  改变每个位置金属度
+   *
+   * 置换贴图（高度贴图）
+   * 真实世界不可能什么东西都只有一个面 高低没变化 因此 想让一个面上的不同位置凹凸起伏 就需要置换贴图
+   * 置换贴图和凹凸贴图不同 他会实际改变模型的顶点位置 因此 每一个面的顶点数量一定要足够
+   * 如果只是一个矩形 四个点  那就没有中间的点可以移动了 也就不会有凹凸效果
+   * 凸出的默认值是1
    */
   /**
-   * 纹理属性
+   总结
+    1.PBR是基于物理渲染的着色模型，PBR着色模型分为材质和灯光两个属性。
+    2.材质部分由：基础色、法线、高光、粗糙度、金属度来定义材质表面属性的。
+    3.灯光部分是由：直接照明、间接照明、直接高光、间接高光、阴影、环境光闭塞来定义照明属性的。
+    4.通常我们写材质的时候只需要关注材质部分的属性即可，灯光属性都是引擎定义好的直接使用即可。
+    5.PBR渲染模型不但指的是PBR材质，还有灯光，两者缺一不可。
+    */
+  /**
+   * 实践
+   * 使用pbr标准材质 MeshStandardMaterial 他本身不发光 如果没有光照那么他就是黑的
    * @param {Texture} aoMap ao环境光遮蔽贴图原理与透明贴图类似 白色到黑色 光对纹理的影响程度 aoMap需要第二组uv 物体本身自带一组uv 你需要添加第二组
    */
+
+  //想让材质响应光线  首先要有光线
+  //创建灯光
+  //环境光
+  const aLight = new THREE.AmbientLight();
+  aLight.intensity = 0.5;
+  scene.add(aLight);
+  //平行光
+  const sun = new THREE.DirectionalLight(0xffffff, 0.5);
+  //平行光需要一个方向 从哪里射出的位置  到哪个方向的位置
+  sun.position.set(10, 10, 10);
+  scene.add(sun);
+
+  const textureLoader = new THREE.TextureLoader();
+  const colorTexture = textureLoader.load(
+    "/02material/textures/door/color.jpg"
+  );
+  const alphaTexture = textureLoader.load(
+    "/02material/textures/door/alpha.jpg"
+  );
   const aoMap = textureLoader.load(
     "/02material/textures/door/ambientOcclusion.jpg"
   );
-
-  const baseMaterial = new THREE.MeshBasicMaterial({
-    aoMap: aoMap,
-    aoMapIntensity: 0.8,
-    map: colorTexture,
-    color: "#ffff00",
-    side: THREE.DoubleSide,
-  });
-  // 平面
-
-  const planeGeometry: any = new THREE.PlaneGeometry(1, 1);
-  planeGeometry.setAttribute(
-    "uv2",
-    new THREE.BufferAttribute(planeGeometry.attributes.uv.array, 2)
+  const displacementMap = textureLoader.load(
+    "/02material/textures/door/height.jpg"
   );
-
-  const plane = new THREE.Mesh(planeGeometry, baseMaterial);
-
-  plane.position.set(3, 0, 0);
+  const roughnessMap = textureLoader.load(
+    "/02material/textures/door/roughness.jpg"
+  );
+  const metalnessMap = textureLoader.load(
+    "/02material/textures/door/metalness.jpg"
+  );
+  const normalMap = textureLoader.load("/02material/textures/door/normal.jpg");
+  //使用pbr材质
+  const baseMaterial = new THREE.MeshStandardMaterial({
+    side: THREE.DoubleSide,
+    transparent: true,
+    aoMapIntensity: 0.8,
+    // 颜色贴图
+    map: colorTexture,
+    // 透明贴图
+    alphaMap: alphaTexture,
+    // 环境光遮蔽贴图
+    aoMap: aoMap,
+    // 置换贴图
+    displacementMap: displacementMap,
+    // 置换贴图影响程度
+    displacementScale: 0.04,
+    // 粗糙度
+    // roughness: 0,
+    // 或者使用粗糙贴图
+    roughnessMap: roughnessMap,
+    // 金属度
+    // metalness: 0.5,
+    // 或者使用金属贴图
+    metalnessMap: metalnessMap,
+    // 法线贴图
+    normalMap: normalMap,
+  });
+  //设置100个顶点 顶点太少否则置换贴图无效
+  const geometry: any = new THREE.BoxGeometry(1, 1, 1, 200, 200, 200);
+  geometry.setAttribute(
+    "uv2",
+    new THREE.BufferAttribute(geometry.attributes.uv.array, 2)
+  );
+  const plane = new THREE.Mesh(geometry, baseMaterial);
   scene.add(plane);
-
-  const uv: any = geometry.attributes.uv;
-  geometry.setAttribute("uv2", new THREE.BufferAttribute(uv.array, 2));
-  baseMaterial.aoMap = aoMap;
-  const cube = new THREE.Mesh(geometry, baseMaterial);
-  scene.add(cube);
 });
 onBeforeUnmount(() => {
   app.dispose();

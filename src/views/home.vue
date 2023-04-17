@@ -11,6 +11,8 @@ import material from "./03material/01material.vue";
 import opacityMaterial from "./03material/03opacity.vue";
 import aomap from "./03material/04aomap.vue";
 import pbr from "./03material/05pbr.vue";
+import textureProgress from "./03material/06textureProgress.vue";
+import envmap from "./03material/07envmap.vue";
 </script>
 <template>
   <!-- 基础 -->
@@ -38,7 +40,18 @@ import pbr from "./03material/05pbr.vue";
   <!-- <opacityMaterial></opacityMaterial> -->
   <!-- 环境光遮蔽贴图 -->
   <!-- <aomap></aomap> -->
-  <!-- pbr物理渲染 -->
-  <pbr></pbr>
+  <!-- pbr物理渲染 概念 实践-->
+  <!-- <pbr></pbr> -->
+  <!-- 纹理加载进度 -->
+  <!-- <textureProgress></textureProgress> -->
+  <!-- 环境贴图 -->
+  <envmap></envmap>
+
+  <!-- 免费的材质素材网址 -->
+  <!-- 
+    https://www.poliigon.com
+    https://www.arroway-textures.ch
+    Quixel Bridge
+   -->
 </template>
 <style scoped lang="scss"></style>

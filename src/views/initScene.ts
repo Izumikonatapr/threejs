@@ -10,7 +10,7 @@ export class app {
      * @param clock 时钟同步动画时间等
      * @param camera 相机 默认正交摄像机
      * @param axex 坐标辅助线
-     * @param renderFrame 帧请求 用于销毁
+     * @param renderVar 请求动画帧的指向 用于销毁
      */
     scene: THREE.Scene;
     camera: THREE.PerspectiveCamera
@@ -18,7 +18,7 @@ export class app {
     controls: OrbitControls;
     axes: THREE.AxesHelper;
     clock: THREE.Clock
-    renderFrame: any;
+    renderVar: any;
     constructor(domId: domId) {
         this.scene = new THREE.Scene()
         this.camera = new THREE.PerspectiveCamera(
@@ -51,30 +51,30 @@ export class app {
             this.injectDom(domId)
         })
     }
-    render = (dt: number) => {
+    render = (dt: number): void => {
         /**
          * 开始渲染
-         * @param dt 两帧之间的间隔时间
+         * @param {number} dt 两帧之间的间隔时间
          */
         this.controls.update()
         this.renderer.render(this.scene, this.camera)
-        this.renderFrame = requestAnimationFrame(this.tick)
+        this.renderVar = requestAnimationFrame(this.tick)
     }
-    tick = () => {
+    tick = (): void => {
         this.render(this.clock.getDelta())
     }
     dispose = (): void => {
         /**
-         * 用于销毁场景
+         * 销毁场景
          */
-        cancelAnimationFrame(this.renderFrame);
+        cancelAnimationFrame(this.renderVar);
         if (this.renderer) {
             this.renderer.forceContextLoss();
             this.renderer.dispose();
         }
         if (this.scene) this.scene.clear();
     }
-    injectDom(domId: domId) {
+    injectDom = (domId: domId): void => {
         /**
          * 渲染器将canvas注入这个元素
          */
@@ -85,4 +85,4 @@ export class app {
 /**
  * dom元素的id 渲染器将canvas注入这个元素
  */
-type domId = string 
+type domId = string

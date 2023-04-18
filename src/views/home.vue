@@ -13,9 +13,13 @@ import aomap from "./03material/04aomap.vue";
 import pbr from "./03material/05pbr.vue";
 import textureProgress from "./03material/06textureProgress.vue";
 import envmap from "./03material/07envmap.vue";
+import memory from "./03material/08memory.vue";
+import light from "./04light/01light.vue";
+import shadowAttr from "./04light/02shadowAttr.vue";
 </script>
 <template>
   <!-- 基础 -->
+
   <!-- <base01 /> -->
   <!-- 控制器 -->
   <!-- <controls></controls> -->
@@ -30,8 +34,10 @@ import envmap from "./03material/07envmap.vue";
   <!-- 浏览器变量调试 gui库 -->
   <!-- <gui></gui> -->
 
-  <!-- 认识几何体 -->
+  <!-- 认识几何体  -->
+
   <!-- <BoxGeometry></BoxGeometry> -->
+
   <!-- 认识材质 -->
   <!-- <material></material> -->
   <!-- 纹理缩放方式 -->
@@ -44,8 +50,10 @@ import envmap from "./03material/07envmap.vue";
   <!-- <pbr></pbr> -->
   <!-- 纹理加载进度 -->
   <!-- <textureProgress></textureProgress> -->
-  <!-- 环境贴图 -->
-  <envmap></envmap>
+  <!-- 环境贴图 hdr贴图 球面环境贴图贴图 -->
+  <!-- <envmap></envmap> -->
+  <!-- 正确的销毁物体和材质 防止内存溢出 -->
+  <!-- <memory></memory> -->
 
   <!-- 免费的材质素材网址 -->
   <!-- 
@@ -53,5 +61,12 @@ import envmap from "./03material/07envmap.vue";
     https://www.arroway-textures.ch
     Quixel Bridge
    -->
+
+  <!-- 光照和阴影 -->
+
+  <!-- 如何开启光照和阴影 -->
+  <!-- <light></light> -->
+  <!-- 阴影的属性 -->
+  <shadow-attr></shadow-attr>
 </template>
 <style scoped lang="scss"></style>

@@ -10,7 +10,7 @@ import dat from "dat.gui";
  * @param {float} radius 模糊度
  * @param {vec2} mapSize 阴影分辨率
  * @param {object} camera 阴影的相机相关设置
- * camera子属性 用于平行光 相机计算阴影的的范围 不可能所有区域都计算 性能消耗太大 所以有一个范围
+ * camera子属性 用于平行光  相机计算阴影的的范围 不可能所有区域都计算 性能消耗太大 所以有一个范围 类似透视相机
  * 只有在灯光距离 near 和 far 之间的内容会被计算阴影 超出则不计算
  * @param {number} near 允许投射阴影的距离灯光最近距离
  * @param {number} far 允许投射阴影的距离灯光最远距离

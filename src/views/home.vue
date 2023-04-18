@@ -16,6 +16,7 @@ import envmap from "./03material/07envmap.vue";
 import memory from "./03material/08memory.vue";
 import light from "./04light/01light.vue";
 import shadowAttr from "./04light/02shadowAttr.vue";
+import pointLight from "./04light/03pointLightandSpotLight.vue";
 </script>
 <template>
   <!-- 基础 -->
@@ -67,6 +68,8 @@ import shadowAttr from "./04light/02shadowAttr.vue";
   <!-- 如何开启光照和阴影 -->
   <!-- <light></light> -->
   <!-- 阴影的属性 -->
-  <shadow-attr></shadow-attr>
+  <!-- <shadow-attr></shadow-attr> -->
+  <!-- 点光源和聚光灯 -->
+  <pointLight></pointLight>
 </template>
 <style scoped lang="scss"></style>

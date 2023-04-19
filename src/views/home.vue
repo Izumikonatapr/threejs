@@ -18,6 +18,9 @@ import light from "./04light/01light.vue";
 import shadowAttr from "./04light/02shadowAttr.vue";
 import pointLight from "./04light/03pointLightandSpotLight.vue";
 import point from "./05point/01point.vue";
+import star from "./05point/02star.vue";
+import snow from "./05point/03snow.vue";
+import galaxy from "./05point/04galaxy.vue";
 </script>
 <template>
   <!-- 基础 -->
@@ -75,6 +78,12 @@ import point from "./05point/01point.vue";
 
   <!-- 点精灵 -->
   <!-- 认识点 -->
-  <point></point>
+  <!-- <point></point> -->
+  <!-- 使用点精灵打造星空 -->
+  <!-- <star></star> -->
+  <!-- 使用点精灵制作下落雪花 -->
+  <!-- <snow></snow> -->
+  <!-- 数学计算制作旋转星系 -->
+  <galaxy></galaxy>
 </template>
 <style scoped lang="scss"></style>

@@ -10,6 +10,7 @@ onMounted(() => {
    * @param {number} size 每个点精灵的大小
    * @param {boolean} sizeAttenuation 是否因相机透视而改变点的大小  进大远小
    * @param {texture} map 每个点的纹理贴图
+   * @param {boolean} vertexColors 顶点数据中  可以新增一项color 数据 和position uv 同级 开启这个属性 便会将所有顶点的颜色修改为对应的color
    */
   // 载入纹理
   const textureLoader = new THREE.TextureLoader();

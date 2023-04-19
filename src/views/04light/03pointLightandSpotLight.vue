@@ -5,7 +5,11 @@ import { onBeforeUnmount, onMounted } from "vue";
 import dat from "dat.gui";
 
 onMounted(() => {
+  // 开启阴影
   app.renderer.shadowMap.enabled = true;
+  // 这个属性的类型没有声明 这里防止ts报红
+  // 开启物理渲染 光线衰减 decay生效
+  app.renderer["physicallyCorrectLights"] = true;
 
   const aLight = new THREE.AmbientLight();
   aLight.intensity = 0.5;
@@ -21,13 +25,14 @@ onMounted(() => {
    * 其他
    * @param color
    * @param intensity
-   * @param distance 最大距离
+   * @param distance  聚光灯照射距离 如果非0 那么光强度会从最大值当前灯光位置处按照距离线性衰减至0 默认0.0 在gui查看效果
    * @param angle 光线最大的散射角度 最大值为Math.PI/2
-   * @param penumbra 聚光锥的半影衰减百分比 0到1 默认0
-   * @param decay 见着光照距离的衰减量
+   * @param penumbra 聚光锥的半影衰减百分比 0到1 默认0 边缘变暗 可以用来做边缘模糊效果
+   * @param decay 计算量较大 需要修改renderer 才能生效 光照距离的衰减量 现实世界为的衰减大概为2 默认为1
+   * renderer.physicallyCorrectLight=true
    */
 
-  const spotLight = new THREE.SpotLight(0xffffff, 0.5);
+  const spotLight = new THREE.SpotLight(0xffffff, 10);
   spotLight.position.set(5, 5, 5);
   spotLight.castShadow = true;
   scene.add(spotLight);
@@ -46,6 +51,12 @@ onMounted(() => {
     .min(0)
     .max(Math.PI / 2)
     .step(0.01);
+  GUI.add(spotLight, "distance").min(0).max(200).step(0.1);
+  GUI.add(spotLight, "decay")
+    .min(0)
+    .max(5)
+    .step(0.1)
+    .onChange(() => {});
   scene.add(sphere);
 
   const planeGeometry = new THREE.PlaneGeometry(50, 50);
@@ -53,7 +64,6 @@ onMounted(() => {
   const plane = new THREE.Mesh(planeGeometry, planeMaterial);
   plane.position.set(0, -1, 0);
   plane.rotation.set(-Math.PI / 2, 0, 0);
-
   plane.receiveShadow = true;
   scene.add(plane);
 });

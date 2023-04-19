@@ -17,6 +17,7 @@ import memory from "./03material/08memory.vue";
 import light from "./04light/01light.vue";
 import shadowAttr from "./04light/02shadowAttr.vue";
 import pointLight from "./04light/03pointLightandSpotLight.vue";
+import point from "./05point/01point.vue";
 </script>
 <template>
   <!-- 基础 -->
@@ -70,6 +71,10 @@ import pointLight from "./04light/03pointLightandSpotLight.vue";
   <!-- 阴影的属性 -->
   <!-- <shadow-attr></shadow-attr> -->
   <!-- 点光源和聚光灯 -->
-  <pointLight></pointLight>
+  <!-- <pointLight></pointLight> -->
+
+  <!-- 点精灵 -->
+  <!-- 认识点 -->
+  <point></point>
 </template>
 <style scoped lang="scss"></style>

@@ -51,9 +51,7 @@ onMounted(() => {
   const points = new THREE.Points(particlesGeometry, pointMaterial);
   scene.add(points);
 });
-onBeforeUnmount(() => {
-  app.dispose();
-});
+
 
 const app = new initApp("container");
 const { scene, controls, camera, clock } = app;

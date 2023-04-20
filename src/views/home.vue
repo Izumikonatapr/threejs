@@ -1,27 +1,3 @@
-<script lang="ts" setup>
-import base01 from "./01base/01-初始场景.vue";
-import controls from "./01base/02-controls.vue";
-import setMeshPosition from "./01base/03-setMeshPosition.vue";
-import clock from "./01base/04clock.vue";
-import gsap from "./01base/05gsap.vue";
-import screenfull from "./01base/06screenfull.vue";
-import gui from "./01base/07gui.vue";
-import BoxGeometry from "./02geometry/boxGeometry.vue";
-import material from "./03material/01material.vue";
-import opacityMaterial from "./03material/03opacity.vue";
-import aomap from "./03material/04aomap.vue";
-import pbr from "./03material/05pbr.vue";
-import textureProgress from "./03material/06textureProgress.vue";
-import envmap from "./03material/07envmap.vue";
-import memory from "./03material/08memory.vue";
-import light from "./04light/01light.vue";
-import shadowAttr from "./04light/02shadowAttr.vue";
-import pointLight from "./04light/03pointLightandSpotLight.vue";
-import point from "./05point/01point.vue";
-import star from "./05point/02star.vue";
-import snow from "./05point/03snow.vue";
-import galaxy from "./05point/04galaxy.vue";
-</script>
 <template>
   <!-- 基础 -->
 
@@ -84,6 +60,33 @@ import galaxy from "./05point/04galaxy.vue";
   <!-- 使用点精灵制作下落雪花 -->
   <!-- <snow></snow> -->
   <!-- 数学计算制作旋转星系 -->
-  <galaxy></galaxy>
+  <!-- <galaxy></galaxy> -->
+
+  <!-- 射线拾取 交互 -->
+  <!-- <raycaster></raycaster> -->
 </template>
-<style scoped lang="scss"></style>
+<script lang="ts" setup>
+import base01 from "./01base/01-初始场景.vue";
+import controls from "./01base/02-controls.vue";
+import setMeshPosition from "./01base/03-setMeshPosition.vue";
+import clock from "./01base/04clock.vue";
+import gsap from "./01base/05gsap.vue";
+import screenfull from "./01base/06screenfull.vue";
+import gui from "./01base/07gui.vue";
+import BoxGeometry from "./02geometry/boxGeometry.vue";
+import material from "./03material/01material.vue";
+import opacityMaterial from "./03material/03opacity.vue";
+import aomap from "./03material/04aomap.vue";
+import pbr from "./03material/05pbr.vue";
+import textureProgress from "./03material/06textureProgress.vue";
+import envmap from "./03material/07envmap.vue";
+import memory from "./03material/08memory.vue";
+import light from "./04light/01light.vue";
+import shadowAttr from "./04light/02shadowAttr.vue";
+import pointLight from "./04light/03pointLightandSpotLight.vue";
+import point from "./05point/01point.vue";
+import star from "./05point/02star.vue";
+import snow from "./05point/03snow.vue";
+import galaxy from "./05point/04galaxy.vue";
+import raycaster from "./06raycaster/01raycaster.vue";
+</script>

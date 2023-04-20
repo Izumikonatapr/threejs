@@ -58,9 +58,7 @@ onMounted(() => {
     // threejs还提供了非常多类型的几何体 比如圆锥 心形 圆 扭结 等形状 可以查看文档 geometry 部分
   }
 });
-onBeforeUnmount(() => {
-  app.dispose();
-});
+
 const app = new initApp("container");
 const { scene, controls, camera, clock } = app;
 </script>

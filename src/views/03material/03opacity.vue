@@ -38,9 +38,7 @@ onMounted(() => {
   plane.position.set(3, 0, 0);
   scene.add(plane);
 });
-onBeforeUnmount(() => {
-  app.dispose();
-});
+
 const app = new initApp("container");
 const { scene, controls, camera, clock } = app;
 </script>

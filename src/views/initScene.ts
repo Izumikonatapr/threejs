@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { onMounted } from 'vue';
+import { onBeforeUnmount, onMounted } from 'vue';
 export class app {
     /**
      * 构造于 new {@link app}.
@@ -12,6 +12,7 @@ export class app {
      * @param camera 相机 默认正交摄像机
      * @param axex 坐标辅助线
      * @param renderVar 请求动画帧的指向 用于销毁
+     * @example const app = new initApp("container");
      */
     scene: THREE.Scene;
     camera: THREE.PerspectiveCamera
@@ -50,6 +51,9 @@ export class app {
 
         onMounted(() => {
             this.injectDom(domId)
+        })
+        onBeforeUnmount(() => {
+            this.dispose()
         })
     }
     render = (dt: number): void => {

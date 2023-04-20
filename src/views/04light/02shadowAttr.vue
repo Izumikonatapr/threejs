@@ -97,9 +97,7 @@ onMounted(() => {
   plane.receiveShadow = true;
   scene.add(plane);
 });
-onBeforeUnmount(() => {
-  app.dispose();
-});
+
 
 const app = new initApp("container");
 const { scene, controls, camera, clock } = app;

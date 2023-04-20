@@ -77,9 +77,7 @@ onMounted(() => {
   const plane = new THREE.Mesh(geometry, baseMaterial);
   scene.add(plane);
 });
-onBeforeUnmount(() => {
-  app.dispose();
-});
+
 const app = new initApp("container");
 const { scene, controls, camera, clock } = app;
 </script>

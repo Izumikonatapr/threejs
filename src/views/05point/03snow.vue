@@ -27,9 +27,7 @@ onMounted(() => {
   };
   animate();
 });
-onBeforeUnmount(() => {
-  app.dispose();
-});
+
 const createPoints = (url: string, size: number = 0.5) => {
   const particlesGeometry = new THREE.BufferGeometry();
   const count = 10000;

@@ -7,9 +7,7 @@ import { color } from "echarts";
 onMounted(() => {
   generateGalaxy();
 });
-onBeforeUnmount(() => {
-  app.dispose();
-});
+
 const app = new initApp("container");
 const { scene, controls, camera, clock } = app;
 const textureLoader = new THREE.TextureLoader();
@@ -59,11 +57,11 @@ const generateGalaxy = () => {
     const current = i * 3;
     //                  x =  Math.cos(∠ + （距离 弯曲程度）) * 距离 +随机值X
     positions[current] =
-      Math.cos(branchAngel + distance * 0.1) * distance + randomX;
+      Math.cos(branchAngel + distance * 0.5) * distance + randomX;
     positions[current + 1] = 0 + randomY;
     //                  z =  Math.sin(∠ + （距离 弯曲程度）) * 距离
     positions[current + 2] =
-      Math.sin(branchAngel + distance * 0.1) * distance + randomZ;
+      Math.sin(branchAngel + distance * 0.5) * distance + randomZ;
 
     // 混合颜色 形成渐变
     const mixColor = centerColor.clone();

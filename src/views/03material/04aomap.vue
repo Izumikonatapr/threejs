@@ -56,9 +56,7 @@ onMounted(() => {
   const cube = new THREE.Mesh(geometry, baseMaterial);
   scene.add(cube);
 });
-onBeforeUnmount(() => {
-  app.dispose();
-});
+
 const app = new initApp("container");
 const { scene, controls, camera, clock } = app;
 </script>

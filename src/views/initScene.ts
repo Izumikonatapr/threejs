@@ -32,6 +32,7 @@ export class app {
         this.camera.position.set(0, 0, 10);
         this.renderer = new THREE.WebGLRenderer({
             antialias: true,
+
         });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.renderer.setPixelRatio(window.devicePixelRatio);
@@ -61,7 +62,7 @@ export class app {
          * 开始渲染
          * @param {number} dt 两帧之间的间隔时间
          */
-        this.controls.update()
+        if (this.controls) this.controls.update();
         this.renderer.render(this.scene, this.camera)
         this.renderVar = requestAnimationFrame(this.tick)
     }

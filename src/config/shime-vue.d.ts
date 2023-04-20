@@ -4,4 +4,3 @@ declare module 'EZUIKit'
 declare const AMapLoader: any;
 declare const EZUIKit: any;
 
-

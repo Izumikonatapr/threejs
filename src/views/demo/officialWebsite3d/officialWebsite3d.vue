@@ -3,15 +3,14 @@ a
 import * as THREE from "three";
 import { app as initApp } from "@/views/initScene";
 import { onBeforeUnmount, onMounted } from "vue";
-import { app1 as initScene1 } from "./scene1";
-const app1 = new initApp("container");
-// const app2 = new initApp("container");
+import { app as initScene } from "./scene";
+const app = new initApp("container", {
+  controls: false,
+});
 // const app3 = new initApp("container");
-
-(window as any).window.app1 = app1;
-// (window as any).window.app2 = app2;
 // (window as any).window.app2 = app3;
-initScene1();
+initScene(app);
+// 相机滚动时向下移动镜头
 </script>
 <template>
   <main>
@@ -28,6 +27,7 @@ initScene1();
       <h3>xxx</h3>
     </div>
     <div id="container"></div>
+    <div id="container2"></div>
   </main>
 </template>
 <style scoped lang="scss">
@@ -36,6 +36,12 @@ initScene1();
   left: 0;
   top: 0;
 }
+#container2 {
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
 main {
   color: #fff;
   background-color: #022e18;
@@ -46,6 +52,8 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    z-index: 10;
   }
   .page h1 {
     margin: 60px;

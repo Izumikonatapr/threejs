@@ -17,11 +17,11 @@ export class app {
     scene: THREE.Scene;
     camera: THREE.PerspectiveCamera
     renderer: THREE.WebGLRenderer;
-    controls: OrbitControls;
+    controls?: OrbitControls;
     axes: THREE.AxesHelper;
     clock: THREE.Clock
     renderVar: any;
-    constructor(domId: domId) {
+    constructor(domId: domId, options: options = { controls: true }) {
         this.scene = new THREE.Scene()
         this.camera = new THREE.PerspectiveCamera(
             75,
@@ -29,15 +29,17 @@ export class app {
             0.1,
             1000
         );
+
         this.camera.position.set(0, 0, 10);
         this.renderer = new THREE.WebGLRenderer({
             antialias: true,
-
         });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.renderer.setPixelRatio(window.devicePixelRatio);
-        this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-        this.controls.enableDamping = true;
+        if (options?.controls) {
+            this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+            this.controls.enableDamping = true;
+        }
         this.axes = new THREE.AxesHelper(10);
         this.clock = new THREE.Clock()
         this.scene.add(this.axes);
@@ -92,3 +94,7 @@ export class app {
  * dom元素的id 渲染器将canvas注入这个元素
  */
 type domId = string
+// 配置项 是否开启某些控件
+interface options {
+    controls?: boolean
+}

@@ -60,7 +60,7 @@
     "config/*.d.ts",
     "@**/*.ts",
     "**/*.tsx"
-  ],
+, "utils/face.ts", "utils/face.ts"  ],
   "references": [
     {
       "path": "./tsconfig.node.json"

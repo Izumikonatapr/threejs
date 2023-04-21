@@ -1,4 +1,5 @@
 <script lang="ts">
+//@ts-nocheck
 import { ElConfigProvider } from "element-plus";
 import zhCn from "element-plus/lib/locale/lang/zh-cn";
 export default {

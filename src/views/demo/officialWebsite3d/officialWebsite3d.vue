@@ -14,20 +14,19 @@ initScene(app);
 </script>
 <template>
   <main>
-    <div class="page page1">
+    <div class="page page0">
       <h1>光线投射</h1>
       <h3>实现交互</h3>
     </div>
-    <div class="page page2">
+    <div class="page page1">
       <h1>THREE.BufferGeometry</h1>
       <h3>三角</h3>
     </div>
-    <div class="page page3">
+    <div class="page page2">
       <h1>点光源围绕</h1>
       <h3>xxx</h3>
     </div>
     <div id="container"></div>
-    <div id="container2"></div>
   </main>
 </template>
 <style scoped lang="scss">
@@ -41,7 +40,6 @@ initScene(app);
   left: 0;
   top: 0;
 }
-
 main {
   color: #fff;
   background-color: #022e18;

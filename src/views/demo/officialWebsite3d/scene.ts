@@ -1,6 +1,9 @@
 import * as THREE from 'three'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { onBeforeUnmount } from 'vue';
+import gasp from 'gsap';
+
+let cubeGroup, sjxGroup, sphereGroup;
 
 export const app = (app) => {
     const { scene, camera, clock, renderer }
@@ -10,20 +13,58 @@ export const app = (app) => {
     camera.position.set(0, 0, 18)
     renderer.setClearAlpha(0)
     renderer.shadowMap.enabled = true
+
     // 设置当前页
     let currentPage = 0;
     // 监听屏幕滚动 三维场景向下滚动
     window.onscroll = (e) => {
-        console.log(window.scrollY);
         const newPage = Math.round(window.scrollY / window.innerHeight)
+        let arrGroup = [cubeGroup, sjxGroup, sphereGroup]
         if (newPage != currentPage) {
             currentPage = newPage
+            gasp.to(arrGroup[currentPage].rotation, {
+                z: "+=" + (2 * Math.PI),
+                y: "+=" + (2 * Math.PI),
+                ease: 'power2.inOut',
+                duration: 5
+            })
+
+            // gasp控制css
+            gasp.to(`.page${currentPage} h1`, {
+                rotate: "+=360deg",
+                duration: 1,
+            })
+            // 移动补间 飞入
+            gasp.fromTo(`.page${currentPage} h1`, {
+                x: -1300
+            }, {
+                x: 0
+            })
         }
     }
+
+    // 鼠标移动摇晃物体
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+    window.onmousemove = (e) => {
+        let px = renderer.domElement.getBoundingClientRect().left;
+        let py = renderer.domElement.getBoundingClientRect().top;
+        // 鼠标点位的坐标
+        mouse.x = ((e.clientX - px) / renderer.domElement.offsetWidth) * 2 - 1;
+        mouse.y = -((e.clientY - py) / renderer.domElement.offsetHeight) * 2 + 1;
+        raycaster.setFromCamera(mouse, camera);
+        const results: any = raycaster.intersectObject(scene);
+        results.forEach((element) => {
+        });
+    };
+
     // 根据scrollY设置相机位置
     let renderVar;
     const render = () => {
         camera.position.y = -(window.scrollY / window.innerHeight) * 30
+        // 摇晃相机
+        const dt = clock.getDelta()
+        camera.position.x += (mouse.x * 10 - camera.position.x) * dt * 5
         renderVar = requestAnimationFrame(render)
     }
     render()
@@ -44,24 +85,23 @@ const createBox = (scene: THREE.Scene, clock: THREE.Clock, camera: THREE.Perspec
         color: "red",
     });
     // 创建组
-    const group = new THREE.Group()
+    cubeGroup = new THREE.Group()
     for (let i = 0; i < 5; i++) {
         for (let j = 0; j < 5; j++) {
             for (let k = 0; k < 5; k++) {
                 const box = new THREE.Mesh(geometry, material);
-                box.position.set(i * 2 - 5, j * 2 - 5, k * 2 - 5);
-                group.add(box)
-
+                box.position.set(i * 2 - 4, j * 2 - 4, k * 2 - 4);
+                cubeGroup.add(box)
             }
         }
     }
-    scene.add(group);
+    scene.add(cubeGroup);
 
     let renderVar;
     const render = () => {
         let time = clock.getElapsedTime()
-        group.rotation.x = time * 0.3
-        group.rotation.y = time * 0.3
+        cubeGroup.rotation.x = time * 0.3
+        cubeGroup.rotation.y = time * 0.3
         renderVar = requestAnimationFrame(render)
     }
     render()
@@ -83,7 +123,7 @@ const createBox = (scene: THREE.Scene, clock: THREE.Clock, camera: THREE.Perspec
 }
 
 const createSjx = (scene: THREE.Scene, clock: THREE.Clock, camera: THREE.PerspectiveCamera) => {
-    const sjxGroup = new THREE.Group()
+    sjxGroup = new THREE.Group()
     for (let i = 0; i < 50; i++) {
         const newGeometry = new THREE.BufferGeometry();
         const positionArray = new Float32Array(9);
@@ -127,7 +167,7 @@ const createSjx = (scene: THREE.Scene, clock: THREE.Clock, camera: THREE.Perspec
 
 const createSphere = (scene: THREE.Scene, clock: THREE.Clock, camera: THREE.PerspectiveCamera) => {
 
-    const sphereGroup = new THREE.Group()
+    sphereGroup = new THREE.Group()
 
     // 添加默认光源
     const aLight = new THREE.AmbientLight();
@@ -140,7 +180,9 @@ const createSphere = (scene: THREE.Scene, clock: THREE.Clock, camera: THREE.Pers
     sphere.castShadow = true;
     // 创建plane
     const planeGeometry = new THREE.PlaneGeometry(100, 40);
-    const planeMaterial = new THREE.MeshStandardMaterial();
+    const planeMaterial = new THREE.MeshStandardMaterial({
+        side: THREE.DoubleSide
+    });
     const plane = new THREE.Mesh(planeGeometry, planeMaterial);
     plane.position.set(0, -1, 0);
     plane.rotation.set(-Math.PI / 2, 0, 0);

@@ -2,7 +2,7 @@ import { createWebHistory, createRouter } from 'vue-router'
 const routes: any = [
   {
     path: '/',
-    redirect: '/officialWebsite3d',
+    redirect: '/home',
   },
   {
     path: '/home',

@@ -64,6 +64,9 @@
 
   <!-- 射线拾取 交互 -->
   <!-- <raycaster></raycaster> -->
+
+  <!-- 物理引擎 -->
+  <cannon></cannon>
 </template>
 <script lang="ts" setup>
 import base01 from "./01base/01-初始场景.vue";
@@ -89,4 +92,5 @@ import star from "./05point/02star.vue";
 import snow from "./05point/03snow.vue";
 import galaxy from "./05point/04galaxy.vue";
 import raycaster from "./06raycaster/01raycaster.vue";
+import cannon from "./07physics/01cannon.vue";
 </script>

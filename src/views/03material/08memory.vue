@@ -1,4 +1,3 @@
-a
 <script lang="ts" setup>
 import * as THREE from "three";
 import { app as initApp } from "@/views/initScene";

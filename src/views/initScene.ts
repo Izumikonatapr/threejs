@@ -7,7 +7,7 @@ export class app {
      * 这个类用来简单初始化一个threejs基础场景 不需要在一个文件写太多的代码 只需要关注需要学习的内容
      * @param scene three场景对象
      * @param controls 控件 默认OrbitControls 如果你需要更换 那么调用销毁后替换 或者在类中写一个替换方法 或添加构造器配置项
-     * @param renderer 渲染器 默认webGl渲染器
+     * @param renderer 渲染器 默认webGl渲染器 开启阴影贴图
      * @param clock 时钟同步动画时间等
      * @param camera 相机 默认正交摄像机
      * @param axex 坐标辅助线
@@ -36,6 +36,7 @@ export class app {
         });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.renderer.setPixelRatio(window.devicePixelRatio);
+        this.renderer.shadowMap.enabled = true
         if (options?.controls) {
             this.controls = new OrbitControls(this.camera, this.renderer.domElement);
             this.controls.enableDamping = true;
@@ -59,7 +60,7 @@ export class app {
             this.dispose()
         })
     }
-    render = (dt: number): void => {
+    render = (): void => {
         /**
          * 开始渲染
          * @param {number} dt 两帧之间的间隔时间
@@ -69,7 +70,7 @@ export class app {
         this.renderVar = requestAnimationFrame(this.tick)
     }
     tick = (): void => {
-        this.render(this.clock.getDelta())
+        this.render()
     }
     dispose = (): void => {
         /**

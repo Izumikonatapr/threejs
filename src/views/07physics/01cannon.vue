@@ -1,0 +1,72 @@
+<script lang="ts" setup>
+import * as THREE from "three";
+import { app as initApp } from "@/views/initScene";
+import { onBeforeUnmount, onMounted } from "vue";
+import * as cannon from "cannon-es";
+import { dir } from "console";
+// 导入cannon引擎
+
+const app = new initApp("container");
+const { scene, controls, camera, clock, renderer } = app;
+const textureLoader = new THREE.TextureLoader();
+camera.position.set(0, 0, 10);
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+const dirLight = new THREE.DirectionalLight(0xffffff, 0.6);
+dirLight.position.set(10, 10, 10);
+dirLight.castShadow = true;
+
+const sphereGeometry = new THREE.SphereGeometry(1, 20, 20);
+const sphereMaterial = new THREE.MeshStandardMaterial();
+const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+sphere.castShadow = true;
+const planeGeometry = new THREE.PlaneGeometry(10, 10, 10, 10);
+const planeMaterial = new THREE.MeshStandardMaterial();
+const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+plane.position.set(0, -3, 0);
+plane.rotation.set(-Math.PI / 2, 0, 0);
+plane.receiveShadow = true;
+
+scene.add(ambientLight, dirLight, sphere, plane);
+
+// 创建物理世界
+const world = new cannon.World({
+  // 重力                   引力垂直向下-y
+  gravity: new cannon.Vec3(0, -9.8, 0),
+});
+
+// 创建物理世界中的球体
+const sphereShape = new cannon.Sphere(1);
+// 创建物理世界物体的材质
+const sphereWroldMaterial = new cannon.Material();
+// 创建物理世界中的物体
+const sphereBody = new cannon.Body({
+  // 物体的形状
+  shape: sphereShape,
+  // 物体的质量
+  mass: 1,
+  position: new cannon.Vec3(0, 0, 0),
+  // 物体的材质
+  material: sphereWroldMaterial,
+});
+world.addBody(sphereBody);
+
+const renderWorld = () => {
+  // 注意点 clock.getDelta调用后会将dt重置为0 再次顺序调用为0 一个clock 每一帧 只能调用一次getDelta
+  const dt = clock.getDelta();
+  // 更新物理引擎世界
+  world.step(1 / 75, dt);
+  sphere.position.copy(sphereBody.position as any);
+  requestAnimationFrame(renderWorld);
+};
+renderWorld();
+</script>
+<template>
+  <div id="container"></div>
+</template>
+<style scoped lang="scss">
+#container {
+  width: 100vw;
+  height: 100vh;
+}
+</style>

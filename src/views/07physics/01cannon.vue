@@ -51,6 +51,18 @@ const sphereBody = new cannon.Body({
 });
 world.addBody(sphereBody);
 
+// 创建地面
+const planeShape = new cannon.Plane();
+const planeBody = new cannon.Body({
+  shape: planeShape,
+  position: new cannon.Vec3(0, -3, 0),
+  // 质量为0 固定 保持不动
+  mass: 0,
+});
+// 旋转地面                            旋转方向vec3 1,0,0表示x轴 ,角度
+planeBody.quaternion.setFromAxisAngle(new cannon.Vec3(1, 0, 0), -Math.PI / 2);
+world.addBody(planeBody);
+
 const renderWorld = () => {
   // 注意点 clock.getDelta调用后会将dt重置为0 再次顺序调用为0 一个clock 每一帧 只能调用一次getDelta
   const dt = clock.getDelta();

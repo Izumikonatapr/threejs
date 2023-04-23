@@ -1,6 +1,9 @@
 <template>
   <!-- webgl理论 -->
   <!-- https://www.yuque.com/yun41s/bbsl9p/kgir0b -->
+  <!-- webgl实战 -->
+  <webgl></webgl>
+  <!-- 绘制一个三角形 -->
 
   <!-- 基础 -->
 
@@ -73,9 +76,10 @@
   <!-- 立方体随机掉落 -->
   <!-- <boxfall></boxfall> -->
   <!-- 给物体施加力 -->
-  <force></force>
+  <!-- <force></force> -->
 </template>
 <script lang="ts" setup>
+import webgl from "./webgl/webgl.vue";
 import base01 from "./01base/01-初始场景.vue";
 import controls from "./01base/02-controls.vue";
 import setMeshPosition from "./01base/03-setMeshPosition.vue";

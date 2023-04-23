@@ -3,11 +3,7 @@
 export default {
   name: "app",
   components: {},
-  setup() {
-    return {
-      locale: zhCn,
-    };
-  },
+  setup() {},
 };
 </script>
 <template>

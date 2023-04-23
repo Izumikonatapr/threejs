@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { onMounted } from "vue";
+// 着色器代码 学习 glsl语言规范写在里面
 import vertexCode from "./vertex.glsl?raw";
 import fragmentShaderCode from "./fragmentShader.glsl?raw";
 onMounted(() => {

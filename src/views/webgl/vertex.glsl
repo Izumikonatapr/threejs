@@ -1,3 +1,9 @@
+ /**
+  * glsl是一种类c语言
+  * 浮点数变量不要写整数！
+  * 一行结束加分号
+  */
+
 // 什么变量 类型 命名空间
 attribute vec4 a_Position;
 uniform mat4 u_Mat;

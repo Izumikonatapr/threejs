@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path';
+import viteCompression from 'vite-plugin-compression'
+
 export default defineConfig({
   // 别名 在引用资源时，可以用‘@/资源路径’直接访问
   resolve: {
@@ -24,6 +26,20 @@ export default defineConfig({
         additionalData: `@import '@style/style.scss';`,
       },
     },
+  },
+  build: {
+    //打包 代码块大小警告阈值
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        //将依赖从index.js中分离打包
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return id.toString().split('node_modules/')[1].split('/')[0].toString()
+          }
+        }
+      }
+    }
   },
   plugins: [
     vue(),

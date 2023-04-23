@@ -1,4 +1,7 @@
 <template>
+  <!-- webgl理论 -->
+  <!-- https://www.yuque.com/yun41s/bbsl9p/kgir0b -->
+
   <!-- 基础 -->
 
   <!-- <base01 /> -->
@@ -66,7 +69,11 @@
   <!-- <raycaster></raycaster> -->
 
   <!-- 物理引擎 -->
-  <cannon></cannon>
+  <!-- <cannon></cannon> -->
+  <!-- 立方体随机掉落 -->
+  <!-- <boxfall></boxfall> -->
+  <!-- 给物体施加力 -->
+  <force></force>
 </template>
 <script lang="ts" setup>
 import base01 from "./01base/01-初始场景.vue";
@@ -93,4 +100,6 @@ import snow from "./05point/03snow.vue";
 import galaxy from "./05point/04galaxy.vue";
 import raycaster from "./06raycaster/01raycaster.vue";
 import cannon from "./07physics/01cannon.vue";
+import boxfall from "./07physics/02box.vue";
+import force from "./07physics/03force.vue";
 </script>

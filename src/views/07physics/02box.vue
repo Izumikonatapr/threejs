@@ -3,8 +3,6 @@ import * as THREE from "three";
 import { app as initApp } from "@/views/initScene";
 import { onBeforeUnmount, onMounted } from "vue";
 import * as cannon from "cannon-es";
-import { dir } from "console";
-// 导入cannon引擎
 
 const app = new initApp("container");
 const { scene, controls, camera, clock, renderer } = app;
@@ -16,10 +14,6 @@ const dirLight = new THREE.DirectionalLight(0xffffff, 0.6);
 dirLight.position.set(10, 10, 10);
 dirLight.castShadow = true;
 
-const sphereGeometry = new THREE.SphereGeometry(1, 20, 20);
-const sphereMaterial = new THREE.MeshStandardMaterial();
-const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-sphere.castShadow = true;
 const planeGeometry = new THREE.PlaneGeometry(10, 10, 10, 10);
 const planeMaterial = new THREE.MeshStandardMaterial();
 const plane = new THREE.Mesh(planeGeometry, planeMaterial);
@@ -27,87 +21,93 @@ plane.position.set(0, -3, 0);
 plane.rotation.set(-Math.PI / 2, 0, 0);
 plane.receiveShadow = true;
 
-scene.add(ambientLight, dirLight, sphere, plane);
+scene.add(ambientLight, dirLight, plane);
 
-// 创建物理世界
 const world = new cannon.World({
-  // 重力                   引力垂直向下-y
   gravity: new cannon.Vec3(0, -9.8, 0),
 });
 
-// 创建物理世界中的球体
-const sphereShape = new cannon.Sphere(1);
-// 创建物理世界物体的材质
-const sphereWroldMaterial = new cannon.Material("sphere");
-
-// 创建物理世界中的物体
-const sphereBody = new cannon.Body({
-  // 物体的形状
-  shape: sphereShape,
-  // 物体的质量
-  mass: 1,
-  position: new cannon.Vec3(0, 0, 0),
-  // 物体的材质
-  material: sphereWroldMaterial,
-});
-// 物体添加到物理世界
-world.addBody(sphereBody);
-
-// 创建地面
+const boxWroldMaterial = new cannon.Material("box");
 const planeShape = new cannon.Plane();
-// floor地面材质
 const planeWorldMaterial = new cannon.Material("floor");
 const planeBody = new cannon.Body({
   shape: planeShape,
   position: new cannon.Vec3(0, -3, 0),
-  // 质量为0 固定 保持不动
   mass: 0,
   material: planeWorldMaterial,
 });
-// 旋转地面                            旋转方向vec3 1,0,0表示x轴 ,角度
 planeBody.quaternion.setFromAxisAngle(new cannon.Vec3(1, 0, 0), -Math.PI / 2);
 world.addBody(planeBody);
 
-// 创建两种不同材质的碰撞参数
+const cubeArr: any = [];
+// 创建方块函数
+const createBox = () => {
+  const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
+  const boxMaterial = new THREE.MeshStandardMaterial();
+  const box = new THREE.Mesh(boxGeometry, boxMaterial);
+  box.castShadow = true;
+
+  // 在物理世界里大小写为three中的0.5
+  const boxSphape = new cannon.Box(new cannon.Vec3(0.5, 0.5, 0.5));
+  const boxBody = new cannon.Body({
+    shape: boxSphape,
+    mass: 1,
+    position: new cannon.Vec3(0, 0, 0),
+    material: boxWroldMaterial,
+  });
+  scene.add(box);
+  world.addBody(boxBody);
+  cubeArr.push({
+    mesh: box,
+    world: boxBody,
+  });
+  cubeArr.forEach((element) => {
+    element.world.addEventListener("collide", collide);
+  });
+};
+// 点击创建方块并添加碰撞声音事件
+window.onclick = () => {
+  createBox();
+};
+
+// 世界中可以将两个材料的碰撞关联
+// 也可以设置默认的碰撞材质 如果没有找到关联 那么使用默认碰撞材质
 const defaultWroldMaterial = new cannon.ContactMaterial(
-  // 关联材质1
-  sphereWroldMaterial,
-  // 关联材质2
+  boxWroldMaterial,
   planeWorldMaterial,
   {
-    //摩擦系数
     friction: 0.1,
-    // 弹性
     restitution: 0.7,
   }
 );
-// 将材质的关联添加到物理世界
-// 添加后 使用了这两种材质的物体碰撞会按照设定好的参数反应
+
+// 将碰撞关联材质设置为世界默认碰撞材质
+world.defaultContactMaterial = defaultWroldMaterial;
+
 world.addContactMaterial(defaultWroldMaterial);
 
-// 监听碰撞事件
-// 创建碰撞声音
 const voice = new Audio("/preview.mp3");
 const collide = (e) => {
-  console.log(e);
-  // 获取碰撞强度
   const impactStrength = e.contact.getImpactVelocityAlongNormal();
   if (impactStrength > 3) {
-    // 如果第一次播放还没结束就播放第二次 那么重新从0开始播放
+    // 按强度设置声音
     voice.currentTime = 0;
+    // 声音强度应该是0到1
     voice.volume = impactStrength / 20 > 1 ? 1 : impactStrength / 20;
     voice.play();
   }
 };
 
-sphereBody.addEventListener("collide", collide);
-
 const renderWorld = () => {
-  // 注意点 clock.getDelta调用后会将dt重置为0 再次顺序调用为0 一个clock 每一帧 只能调用一次getDelta
   const dt = clock.getDelta();
-  // 更新物理引擎世界
   world.step(1 / 75, dt);
-  sphere.position.copy(sphereBody.position as any);
+
+  cubeArr.forEach((element) => {
+    element.mesh.position.copy(element.world.position as any);
+    // 设置物体跟随物理世界的物体旋转
+    element.mesh.quaternion.copy(element.world.quaternion as any);
+  });
+
   requestAnimationFrame(renderWorld);
 };
 renderWorld();

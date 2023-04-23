@@ -2,7 +2,6 @@
 import * as THREE from "three";
 import { app as initApp } from "@/views/initScene";
 import { onBeforeUnmount, onMounted } from "vue";
-import { color } from "echarts";
 onMounted(() => {
   generateGalaxy();
 });

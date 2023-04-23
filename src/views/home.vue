@@ -2,7 +2,7 @@
   <!-- webgl理论 -->
   <!-- https://www.yuque.com/yun41s/bbsl9p/kgir0b -->
   <!-- webgl实战 -->
-  <webgl></webgl>
+  <!-- <webgl></webgl> -->
   <!-- 绘制一个三角形 -->
 
   <!-- 基础 -->

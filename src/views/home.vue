@@ -74,7 +74,7 @@
   <!-- 物理引擎 -->
   <!-- <cannon></cannon> -->
   <!-- 立方体随机掉落 -->
-  <!-- <boxfall></boxfall> -->
+  <boxfall></boxfall>
   <!-- 给物体施加力 -->
   <!-- <force></force> -->
 </template>

@@ -74,9 +74,13 @@
   <!-- 物理引擎 -->
   <!-- <cannon></cannon> -->
   <!-- 立方体随机掉落 -->
-  <boxfall></boxfall>
+  <!-- <boxfall></boxfall> -->
   <!-- 给物体施加力 -->
   <!-- <force></force> -->
+
+  <!-- 着色器 -->
+  <!-- glsl基础  如何创建一个波浪效果的面 -->
+  <shader></shader>
 </template>
 <script lang="ts" setup>
 import webgl from "./webgl/webgl.vue";
@@ -106,4 +110,5 @@ import raycaster from "./06raycaster/01raycaster.vue";
 import cannon from "./07physics/01cannon.vue";
 import boxfall from "./07physics/02box.vue";
 import force from "./07physics/03force.vue";
+import shader from "./08shader/01shader/01shader.vue";
 </script>

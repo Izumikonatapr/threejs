@@ -12,6 +12,6 @@ varying vec4 v_Color;
 
 void main() {
     // 使用缩放矩阵和顶点矩阵相乘 达到缩放目的
-    gl_Position = u_Mat * a_Position;
-    v_Color = gl_Position;
+  gl_Position = u_Mat * a_Position;
+  v_Color = gl_Position;
 }

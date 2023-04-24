@@ -80,9 +80,9 @@
 
   <!-- 着色器 -->
   <!-- glsl基础  如何创建一个波浪效果的面 旗帜 纹理取样 -->
-  <shader></shader>
+  <!-- <shader></shader> -->
   <!-- glsl中的常用函数 他们都可以用来做什么样的图形 -->
-  <!-- <shader-function></shader-function> -->
+  <shader-function></shader-function>
 </template>
 <script lang="ts" setup>
 import webgl from "./webgl/webgl.vue";

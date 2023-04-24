@@ -1,6 +1,6 @@
 // 内置函数 参考 https://www.yuque.com/yun41s/bbsl9p/et1ock
 // 在shaderMaterial中 position是内建变量 three已经自动传入了顶点位置 无需定义
-// uniforms 传入的全局变量
+// uniforms 传入的全局变量 顶点着色器和片元着色器都可以调用
 // attributes 每一个顶点属于自己的变量  比如位置 颜色 uv
 // varying 你要传递给片元的变量
 void main() {

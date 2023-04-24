@@ -19,6 +19,10 @@ const shaderMaterial = new THREE.ShaderMaterial({
   fragmentShader: baseFragmentShader,
 });
 
+// 导入旗帜的图片
+const textureLoader = new THREE.TextureLoader();
+const texture = textureLoader.load("/02material/textures/minecraft.png");
+
 // 原始着色器材质 你需要自己在shader代码中写一些传入的固定属性
 const rawShaderMaterial = new THREE.RawShaderMaterial({
   vertexShader: rawVertexShader,
@@ -30,6 +34,10 @@ const rawShaderMaterial = new THREE.RawShaderMaterial({
     // 写法
     uTime: {
       value: 0,
+    },
+    // 纹理图片通过uniforms传递
+    uTexture: {
+      value: texture,
     },
   },
 });

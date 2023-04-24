@@ -79,8 +79,10 @@
   <!-- <force></force> -->
 
   <!-- 着色器 -->
-  <!-- glsl基础  如何创建一个波浪效果的面 -->
+  <!-- glsl基础  如何创建一个波浪效果的面 旗帜 纹理取样 -->
   <shader></shader>
+  <!-- glsl中的常用函数 他们都可以用来做什么样的图形 -->
+  <!-- <shader-function></shader-function> -->
 </template>
 <script lang="ts" setup>
 import webgl from "./webgl/webgl.vue";
@@ -111,4 +113,5 @@ import cannon from "./07physics/01cannon.vue";
 import boxfall from "./07physics/02box.vue";
 import force from "./07physics/03force.vue";
 import shader from "./08shader/01shader/01shader.vue";
+import shaderFunction from "./08shader/02function/02function.vue";
 </script>

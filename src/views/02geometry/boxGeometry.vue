@@ -6,7 +6,7 @@ onMounted(() => {
   /**
    * @param attributes 存有几何体相关的数据 存有法向 normal 顶点位置  position  uv 一个立方体有6个面 一个面有四个顶点  因此一个立方体最少有二十四个点组成 count 24 可以添加更多点
    * 可以看public中的uv.jpg理解uv展开
-   * uv概念 一个立方体有六个面  将六个面展开为一个平面  左上到左下分为x》y uv位置就代表这个点在展开的平面的位置  count 也为24
+   * uv概念 一个立方体有六个面  将六个面展开为一个平面  左下到右上分为x,y轴0到1的位置 uv位置就代表这个点在展开的平面的位置  count 也为24
    * 法向概念 当前面的朝向 光照射过来 需要计算光反射的方向
    */
   const geometry = new THREE.BufferGeometry();

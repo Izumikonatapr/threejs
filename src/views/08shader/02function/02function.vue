@@ -2,17 +2,17 @@
 import { onBeforeUnmount } from "vue";
 import * as THREE from "three";
 import { app as initApp } from "@/views/initScene";
-import rawVertexShader from "./02rawShaderV.glsl?raw";
-import rawFragmentShader from "./02rawShaderF.glsl?raw";
+import vertexShader from "./02shaderV.glsl?raw";
+import fragmentShader from "./02shaderF.glsl?raw";
 const app = new initApp("container");
 const { scene, controls, camera } = app;
 camera.position.set(0, 0, 3);
 const planeGeometry = new THREE.PlaneGeometry(1, 1, 64, 64);
 const textureLoader = new THREE.TextureLoader();
 const texture = textureLoader.load("/02material/textures/minecraft.png");
-const rawShaderMaterial = new THREE.RawShaderMaterial({
-  vertexShader: rawVertexShader,
-  fragmentShader: rawFragmentShader,
+const rawShaderMaterial = new THREE.ShaderMaterial({
+  vertexShader: vertexShader,
+  fragmentShader: fragmentShader,
   side: THREE.DoubleSide,
   uniforms: {
     uTime: {

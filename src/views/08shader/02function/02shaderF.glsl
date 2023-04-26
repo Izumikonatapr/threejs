@@ -64,8 +64,30 @@ void main() {
     // gl_FragColor = vec4(strength, strength, strength, 1.0);
 
     // 将纹路应用到透明度上 
-    float barX = step(0.4, mod(vUv.x * 10.0, 1.0)) * step(0.8, mod(vUv.y * 10.0, 1.0));
-    float barY = step(0.4, mod(vUv.y * 10.0, 1.0)) * step(0.8, mod(vUv.x * 10.0, 1.0));
-    float strength = barX + barY;
-    gl_FragColor = vec4(vUv, 1.0, strength);
+    // float barX = step(0.4, mod(vUv.x * 10.0, 1.0)) * step(0.8, mod(vUv.y * 10.0, 1.0));
+    // float barY = step(0.4, mod(vUv.y * 10.0, 1.0)) * step(0.8, mod(vUv.x * 10.0, 1.0));
+    // float strength = barX + barY;
+    // gl_FragColor = vec4(vUv, 1.0, strength);
+
+    // T字图
+    // float barX = step(0.4, mod(vUv.x * 10.0 - 0.2, 1.0)) * step(0.8, mod(vUv.y * 10.0, 1.0));
+    // float barY = step(0.4, mod(vUv.y * 10.0, 1.0)) * step(0.8, mod(vUv.x * 10.0, 1.0));
+    // float strength = barX + barY;
+    // gl_FragColor = vec4(vUv, 1.0, strength);
+
+    // 利用绝对值  abs    0.5->0->0.5 就得到了一个中心黑色 两边渐变的效果
+    // float strength = abs(vUv.x - 0.5);
+    // gl_FragColor = vec4(strength, strength, strength, 1.0);
+
+    // 取最小值    min 混合两个颜色 做到了上方绝对值的渐变图xy十字交叉的效果
+    // float min = min(abs(vUv.x - 0.5), abs(vUv.y - 0.5));
+    // gl_FragColor = vec4(min, min, min, 1.0);
+
+    // 取最大值  给max取反 乘以几倍 就得到了高亮闪光的效果
+    float maxcolor = 1.0 - max(abs(vUv.x - 0.5), abs(vUv.y - 0.5)) * 2.0;
+
+    float alp = max(abs(vUv.x - 0.5), abs(vUv.y - 0.5));
+
+    // gl_FragColor = vec4(maxcolor, maxcolor, maxcolor, alp);
+    gl_FragColor = vec4(maxcolor, maxcolor, maxcolor, maxcolor);
 }

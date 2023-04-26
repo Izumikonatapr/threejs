@@ -83,8 +83,10 @@
   <!-- <shader></shader> -->
   <!-- glsl中的常用函数 他们都可以用来做什么样的图形 -->
   <shader-function></shader-function>
+  <!-- <demo></demo> -->
 </template>
 <script lang="ts" setup>
+import demo from "./demo.vue";
 import webgl from "./webgl/webgl.vue";
 import base01 from "./01base/01-初始场景.vue";
 import controls from "./01base/02-controls.vue";

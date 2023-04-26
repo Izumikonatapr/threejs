@@ -14,6 +14,8 @@ const rawShaderMaterial = new THREE.ShaderMaterial({
   vertexShader: vertexShader,
   fragmentShader: fragmentShader,
   side: THREE.DoubleSide,
+  // 记得开透明  否则着色器的面写了vec4(x,x,x,0.0)也会无法透明 透明部分是白色
+  transparent: true,
   uniforms: {
     uTime: {
       value: 0,

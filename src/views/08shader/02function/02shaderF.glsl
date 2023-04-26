@@ -1,5 +1,6 @@
 precision lowp float;
 varying vec2 vUv;
+uniform float uTime;
 void main() {
     // 1通过每顶点对应的uv,决定每一个像素在uv图像的位置，通过位置xy得到颜色
     // gl_FragColor = vec4(vUv, 0.0, 1.0);
@@ -57,9 +58,14 @@ void main() {
     // gl_FragColor = vec4(strength, strength, strength, 1.0);
 
     // 竖向斑马纹路  乘以横向斑马纹路 得出了 虚线 然后虚线加上横向的虚线 得到了类似三角箭头的形状
+    // float barX = step(0.4, mod(vUv.x * 10.0, 1.0)) * step(0.8, mod(vUv.y * 10.0, 1.0));
+    // float barY = step(0.4, mod(vUv.y * 10.0, 1.0)) * step(0.8, mod(vUv.x * 10.0, 1.0));
+    // float strength = barX + barY;
+    // gl_FragColor = vec4(strength, strength, strength, 1.0);
+
+    // 将纹路应用到透明度上 
     float barX = step(0.4, mod(vUv.x * 10.0, 1.0)) * step(0.8, mod(vUv.y * 10.0, 1.0));
     float barY = step(0.4, mod(vUv.y * 10.0, 1.0)) * step(0.8, mod(vUv.x * 10.0, 1.0));
     float strength = barX + barY;
-    gl_FragColor = vec4(strength, strength, strength, 1.0);
-
+    gl_FragColor = vec4(vUv, 1.0, strength);
 }

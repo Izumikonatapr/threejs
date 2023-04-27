@@ -6,6 +6,8 @@ import vertexShader from "./02shaderV.glsl?raw";
 import fragmentShader from "./02shaderF.glsl?raw";
 const app = new initApp("container");
 const { scene, controls, camera } = app;
+scene.background = new THREE.Color("#424242");
+
 camera.position.set(0, 0, 3);
 const planeGeometry = new THREE.PlaneGeometry(1, 1, 64, 64);
 const textureLoader = new THREE.TextureLoader();

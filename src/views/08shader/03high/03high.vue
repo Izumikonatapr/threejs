@@ -32,9 +32,6 @@ const rawShaderMaterial = new THREE.ShaderMaterial({
   },
 });
 const plane = new THREE.Mesh(planeGeometry, rawShaderMaterial);
-console.log("====================================");
-console.log(plane);
-console.log("====================================");
 scene.add(plane);
 
 const clock = new THREE.Clock();

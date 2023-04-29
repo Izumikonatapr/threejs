@@ -1,9 +1,12 @@
+// 宏定义 注意 宏定义不需要;
+#define PI 3.1415926
+
 precision lowp float;
 varying vec2 vUv;
 uniform float uTime;
-
 // 光圈扩散速度的值
 uniform float uSpeed;
+
 float random(vec2 st) {
     return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123);
 }
@@ -57,10 +60,37 @@ void main() {
     // float strength = 1.0 - step(0.01, abs(distance(waveUv, vec2(0.5)) - 0.25));
     // gl_FragColor = vec4(strength, strength, strength, 1.0);
 
-    // 反正切
-    float angle = atan(vUv.x, vUv.y);
+    // 7 反正切 根据角度显示视图
+    // float angle = step(1.0, 1.0 - atan(vUv.x, vUv.y));
+    // float strength = angle;
+    // gl_FragColor = vec4(strength, strength, strength, 1.0);
 
-    float strength = angle;
-    gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+    // 8 根据角度实现螺旋渐变 一条线在旋转扫描的感觉 可以用来做雷达图的扫描线
+    // float angle = atan(vUv.x - 0.5, vUv.y - 0.5);
+    // float strength = (angle + 3.14) / 6.28;
+    // gl_FragColor = vec4(strength, strength, strength, 1.0);
+
+    // 9 实现雷达扫射
+    // 想要做到旋转操作 第一时间想到去旋转uv坐标
+    // vec2 rotateUv = rotate(vUv, uTime * 3.0, vec2(0.5));
+    // float alpha = 1.0 - step(0.5, abs(distance(rotateUv, vec2(0.5, 0.5))));
+    // float angle = atan(rotateUv.x - 0.5, rotateUv.y - 0.5);
+    // float strength = ((angle) + 3.14) / 6.28;
+    // gl_FragColor = vec4(strength, strength, strength, alpha);
+
+    // 10万花筒
+    // float angle = atan(vUv.x - 0.5, vUv.y - 0.5) / (2.0 * PI);
+    // float strength = mod(angle * 10.0, 1.0);
+    // gl_FragColor = vec4(strength, strength, strength, 1.0);
+
+    // 11 万花筒向外发光的感觉
+    float angle = atan(vUv.x - 0.5, vUv.y - 0.5) / (2.0 * PI);
+    float strength = sin(angle * 100.0);
+    gl_FragColor = vec4(strength, strength, strength, 1.0);
+
+    // 12 另一种形式   和canvas提供的圆锥渐变相同
+    // float angle = abs(atan(vUv.x - 0.5, vUv.y - 0.5) / 3.14);
+    // float strength = angle;
+    // gl_FragColor = vec4(strength, strength, strength, 1.0);
 
 }

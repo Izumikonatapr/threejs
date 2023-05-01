@@ -85,8 +85,10 @@
   <!-- <shader-function></shader-function> -->
   <!-- shader高级图形 -->
   <!-- <high></high> -->
-  <!-- 噪声制作云雾等效果 -->
+  <!-- 噪声 -->
   <noise></noise>
+  <!-- shader制作孔明灯 -->
+  
   <!-- <demo></demo> -->
 </template>
 <script lang="ts" setup>

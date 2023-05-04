@@ -86,9 +86,20 @@
   <!-- shader高级图形 -->
   <!-- <high></high> -->
   <!-- 噪声 -->
-  <noise></noise>
-  <!-- shader制作孔明灯 -->
-  
+  <!-- <noise></noise> -->
+
+  <!-- 效果合成器 -->
+  <!-- 基本的效果合成器 -->
+  <!-- <composer></composer> -->
+  <!-- 其他效果 抗锯齿等 -->
+  <!-- <xaa></xaa> -->
+  <!-- 使用着色器自定义效果  佩戴科技风眼镜视觉效果-->
+  <!-- <shaderPass></shaderPass> -->
+
+  <!-- css混合渲染器 -->
+  <!-- css2d渲染器 可以将div等元素渲染到页面上  不能变换 -->
+  <Css2drenderer></Css2drenderer>
+  <!-- css3d渲染器 可以将div等元素渲染到页面上  可以变换 -->
   <!-- <demo></demo> -->
 </template>
 <script lang="ts" setup>
@@ -124,4 +135,8 @@ import shader from "./08shader/01shader/01shader.vue";
 import shaderFunction from "./08shader/02function/02function.vue";
 import high from "./08shader/03high/03high.vue";
 import noise from "./08shader/04noise/04noise.vue";
+import composer from "./09composer/01effectComponser.vue";
+import xaa from "./09composer/02xaa.vue";
+import shaderPass from "./09composer/03shaderPass.vue";
+import Css2drenderer from "./10cssrenderer/css2drenderer.vue";
 </script>

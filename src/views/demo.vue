@@ -23,11 +23,10 @@ onMounted(() => {
   WebSocketTest();
 });
 const createCube = (list) => {
-  meshGroup.children.forEach(function (mesh: any) {
-    meshGroup.remove(mesh);
-    mesh.geometry.dispose();
-    mesh.material.dispose();
-  });
+  for (let i = 0; i < meshGroup.children.length; i++) {
+    meshGroup.remove(meshGroup.children[i]);
+    (meshGroup.children[i] as THREE.Mesh).geometry.dispose();
+  }
   for (let i = 0; i < list.length; i++) {
     const newMesh = mesh.clone();
     newMesh.name = list[i].name;

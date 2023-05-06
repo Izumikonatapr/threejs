@@ -98,8 +98,13 @@
 
   <!-- css混合渲染器 -->
   <!-- css2d渲染器  可以将div等元素渲染到页面上  不能变换 \ 射线交互判断是否遮盖 -->
-  <Css2drenderer></Css2drenderer>
+  <!-- <Css2drenderer></Css2drenderer> -->
   <!-- css3d渲染器 可以将div等元素渲染到页面上  可以变换 -->
+
+  <!-- 曲线 -->
+  <!-- <Arctrack></Arctrack> -->
+  <!-- 轨迹移动 -->
+  <tracks></tracks>
   <!-- <demo></demo> -->
 </template>
 <script lang="ts" setup>
@@ -139,4 +144,6 @@ import composer from "./09composer/01effectComponser.vue";
 import xaa from "./09composer/02xaa.vue";
 import shaderPass from "./09composer/03shaderPass.vue";
 import Css2drenderer from "./10cssrenderer/css2drenderer.vue";
+import Arctrack from "./11arc/arctrack.vue";
+import tracks from "./11arc/track.vue";
 </script>

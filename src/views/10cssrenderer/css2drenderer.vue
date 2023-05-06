@@ -5,6 +5,13 @@ import {
   CSS2DObject,
 } from "three/examples/jsm/renderers/CSS2DRenderer";
 import { app as initApp } from "@/views/initScene";
+import { onMounted } from "vue";
+
+// 页面挂载前销毁掉之前的标签
+if (document.querySelector(".label")) {
+  document.querySelector(".label")?.parentElement?.remove();
+}
+
 const app = new initApp("container");
 const { scene, controls, camera, clock } = app;
 scene.remove(app.axes);
@@ -63,7 +70,7 @@ chinaDiv.className = "label";
 chinaDiv.textContent = "china";
 chinaDiv.style.pointerEvents = "auto";
 const china = new CSS2DObject(chinaDiv);
-china.position.set(EARTH_BADIUS + 0.1, 0, 0);
+china.position.set(0, 0, EARTH_BADIUS + 0.1);
 earth.add(china);
 //给地球追加文字标签
 
@@ -105,7 +112,6 @@ const render = () => {
   } else {
     // 地球会被射线检测到  所以长度为0很少见  我们需要计算相机到标签的距离  和相机到离相机最近距离的物体的距离  如果标签在第一个物体后面 那么隐藏
     const minDistance = intersects[0].distance;
-
     if (labelDistance > minDistance) {
       china.element.style.visibility = "hidden";
     } else {

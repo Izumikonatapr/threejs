@@ -97,7 +97,7 @@
   <!-- <shaderPass></shaderPass> -->
 
   <!-- css混合渲染器 -->
-  <!-- css2d渲染器 可以将div等元素渲染到页面上  不能变换 -->
+  <!-- css2d渲染器  可以将div等元素渲染到页面上  不能变换 \ 射线交互判断是否遮盖 -->
   <Css2drenderer></Css2drenderer>
   <!-- css3d渲染器 可以将div等元素渲染到页面上  可以变换 -->
   <!-- <demo></demo> -->

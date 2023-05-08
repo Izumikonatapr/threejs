@@ -104,8 +104,8 @@
   <!-- 曲线 -->
   <!-- <Arctrack></Arctrack> -->
   <!-- 轨迹移动 -->
-  <tracks></tracks>
-  <!-- <demo></demo> -->
+  <!-- <tracks></tracks> -->
+  <demo></demo>
 </template>
 <script lang="ts" setup>
 import demo from "./demo.vue";

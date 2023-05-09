@@ -23,6 +23,32 @@ const mesh = new THREE.Mesh(geometry, material);
 onMounted(() => {
   // 已经过测试 场景中模型随数据增删改 可以跑通
   WebSocketTest();
+  // let list = [
+  //   {
+  //     id: 1,
+  //     x: 1,
+  //     y: 1,
+  //     z: 0,
+  //   },
+  //   {
+  //     id: 10,
+  //     x: 10,
+  //     y: 10,
+  //     z: 10,
+  //   },
+  //   {
+  //     id: 21,
+  //     x: 21,
+  //     y: 21,
+  //     z: 20,
+  //   },
+  // ];
+  // setInterval(() => {
+  //   createCube(list);
+  // }, 100);
+  // setTimeout(() => {
+  //   list.pop();
+  // }, 3000);
 });
 interface newMesh extends THREE.Object3D {
   meshId?: string | number;
@@ -32,12 +58,12 @@ const createCube = (list) => {
   // 循环场景中的人车物体 找到在场景中消失的id和索引 然后删除他们 如果没有消失 那么更新位置
   // 在场景中依然存在的id数组
   let exist: Array<string | number> = [];
-  for (let i = 0; i < meshGroup.children.length; i++) {
-    const mesh: newMesh = meshGroup.children[i];
-    for (let j = 0; j < list.length; j++) {
-      const item = list[j];
-      if (mesh.meshId == item.id) {
-        gasp.to(mesh.position, {
+
+  // 物体是一个引用 因此forEach可以改变他的源对象
+  meshGroup.children.forEach((groupChildren: newMesh) => {
+    list.forEach((item) => {
+      if (groupChildren.meshId == item.id) {
+        gasp.to(groupChildren.position, {
           x: item.x / 10,
           y: item.y / 10,
           z: 0,
@@ -46,29 +72,28 @@ const createCube = (list) => {
         exist.push(item.id);
         // 如果他已存在 更新位置后不在计算他
       }
-    }
-  }
+    });
+  });
 
   // 场景中模型还在但是数据已经消失的模型删除它
-  for (let i = 0; i < meshGroup.children.length; i++) {
-    const mesh: newMesh = meshGroup.children[i];
-    if (!exist.includes(mesh.meshId!)) {
-      (meshGroup.children[i] as THREE.Mesh).geometry.dispose();
-      meshGroup.remove(meshGroup.children[i]);
+  meshGroup.children.forEach((groupChildren: newMesh) => {
+    if (!exist.includes(groupChildren.meshId!)) {
+      (groupChildren as THREE.Mesh).geometry.dispose();
+      meshGroup.remove(groupChildren);
     }
-  }
+  });
 
   // 不存在则重新创建他
   const createArr = list.filter((item) => {
     return !exist.includes(item.id);
   });
-  for (let i = 0; i < createArr.length; i++) {
+  createArr.forEach((element) => {
     const newMesh: newMesh = mesh.clone();
-    newMesh.name = createArr[i].name;
-    newMesh.meshId = createArr[i].id;
-    newMesh.position.set(createArr[i].x / 10, createArr[i].y / 10, 0);
+    newMesh.name = element.name;
+    newMesh.meshId = element.id;
+    newMesh.position.set(element.x / 10, element.y / 10, 0);
     meshGroup.add(newMesh);
-  }
+  });
 };
 
 let timer;
@@ -77,9 +102,7 @@ const WebSocketTest = () => {
     var ws = new WebSocket("ws://192.168.124.24:8080/websocket");
     ws.onopen = function () {
       console.log("ws已连接");
-      if (timer) {
-        clearInterval(timer);
-      }
+      timer ? clearInterval(timer) : "";
       timer = setInterval(() => {
         ws.send("websocket心跳");
       }, 30000);
@@ -87,7 +110,9 @@ const WebSocketTest = () => {
     ws.onmessage = function (evt) {
       createCube(JSON.parse(evt.data).list);
     };
-    ws.onclose = function () {};
+    ws.onclose = function (e) {
+      WebSocketTest();
+    };
   } else {
     alert("您的浏览器不支持 WebSocket!");
   }

@@ -100,17 +100,17 @@ let timer;
 const WebSocketTest = () => {
   if ("WebSocket" in window) {
     var ws = new WebSocket("ws://192.168.124.24:8080/websocket");
-    ws.onopen = function () {
+    ws.onopen = () => {
       console.log("ws已连接");
       timer ? clearInterval(timer) : "";
       timer = setInterval(() => {
         ws.send("websocket心跳");
       }, 30000);
     };
-    ws.onmessage = function (evt) {
+    ws.onmessage = (evt) => {
       createCube(JSON.parse(evt.data).list);
     };
-    ws.onclose = function (e) {
+    ws.onclose = (e) => {
       WebSocketTest();
     };
   } else {

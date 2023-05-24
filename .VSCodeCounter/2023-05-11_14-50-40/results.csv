@@ -1,0 +1,16 @@
+"filename", "language", "vue", "GLSL", "comment", "blank", "total"
+"d:\learn\threejs-system-course\src\views\08shader\01shader\01rawShaderF.glsl", "GLSL", 0, 10, 9, 4, 23
+"d:\learn\threejs-system-course\src\views\08shader\01shader\01rawShaderV.glsl", "GLSL", 0, 17, 19, 5, 41
+"d:\learn\threejs-system-course\src\views\08shader\01shader\01shader.vue", "vue", 64, 0, 0, 4, 68
+"d:\learn\threejs-system-course\src\views\08shader\01shader\01shaderF.glsl", "GLSL", 0, 3, 4, 0, 7
+"d:\learn\threejs-system-course\src\views\08shader\01shader\01shaderV.glsl", "GLSL", 0, 3, 7, 1, 11
+"d:\learn\threejs-system-course\src\views\08shader\02function\02function.vue", "vue", 50, 0, 0, 3, 53
+"d:\learn\threejs-system-course\src\views\08shader\02function\02shaderF.glsl", "GLSL", 0, 15, 128, 32, 175
+"d:\learn\threejs-system-course\src\views\08shader\02function\02shaderV.glsl", "GLSL", 0, 14, 2, 5, 21
+"d:\learn\threejs-system-course\src\views\08shader\03high\03high.vue", "vue", 53, 0, 0, 4, 57
+"d:\learn\threejs-system-course\src\views\08shader\03high\shaderF.glsl", "GLSL", 0, 23, 56, 17, 96
+"d:\learn\threejs-system-course\src\views\08shader\03high\shaderV.glsl", "GLSL", 0, 14, 2, 5, 21
+"d:\learn\threejs-system-course\src\views\08shader\04noise\04noise.vue", "vue", 53, 0, 0, 4, 57
+"d:\learn\threejs-system-course\src\views\08shader\04noise\shaderF.glsl", "GLSL", 0, 65, 25, 16, 106
+"d:\learn\threejs-system-course\src\views\08shader\04noise\shaderV.glsl", "GLSL", 0, 14, 2, 5, 21
+"Total", "-", 220, 178, 254, 105, 757

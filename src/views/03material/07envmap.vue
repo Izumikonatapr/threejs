@@ -57,6 +57,7 @@ onMounted(() => {
     // 设置mapping
     textures.mapping = THREE.EquirectangularReflectionMapping;
     scene.background = textures;
+    // 设置environment后  贴图上的高光区域真的会发光 映射到物体上
     scene.environment = textures;
   });
 

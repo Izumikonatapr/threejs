@@ -6,7 +6,7 @@ import vertexShader from "./shaderV.glsl?raw";
 import fragmentShader from "./shaderF.glsl?raw";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
-
+import { gsap } from "gsap";
 const app = new initApp("container");
 const { scene, controls, camera, renderer } = app;
 scene.background = new THREE.Color("#424242");
@@ -17,6 +17,14 @@ loadingManager.onLoad = () => {
   console.log("加载完成");
   console.log("====================================");
 };
+controls!.autoRotate = true;
+controls!.rotateSpeed = 2;
+// 固定控制器垂直角度
+// 控制器垂直最大角度
+controls!.maxPolarAngle = Math.PI / 1.5;
+// 控制器垂直最小角度
+controls!.minPolarAngle = Math.PI / 1.5;
+
 const rgbLoader = new RGBELoader(loadingManager);
 // 直接导入这张图片你会发现 曝光程度实在太高了 我们需要降低曝光 修改渲染器设置
 // 切换srgb色域
@@ -54,7 +62,6 @@ interface object3d extends THREE.Object3D {
 }
 let lightBox: object3d;
 gltfloader.load("/models/kongming/kongming.glb", (mesh) => {
-  scene.add(mesh.scene);
   lightBox = mesh.scene.children[0];
   // blander导出模型时记得选中 精确灯光 可见物体 并且设置点光源的有效距离 防止点光源散发到其他孔明灯上
   lightBox.material = ShaderMaterial;
@@ -62,9 +69,23 @@ gltfloader.load("/models/kongming/kongming.glb", (mesh) => {
     let kongming = mesh.scene.clone();
     let x = (Math.random() - 0.5) * 200;
     let z = (Math.random() - 0.5) * 200;
-    let y = (Math.random() - 0.5) * 100 + 25;
+    let y = Math.random() * 100 + 25;
     kongming.position.set(x, y, z);
     scene.add(kongming);
+
+    gsap.to(kongming.rotation, {
+      y: 2 * Math.PI,
+      duration: 25 + Math.random() * 10,
+      yoyo: true,
+      repeat: -1,
+    });
+    gsap.to(kongming.position, {
+      y: "+=" + Math.random() * 30,
+      x: "+=" + Math.random() * 30,
+      duration: 25 + Math.random() * 10,
+      yoyo: true,
+      repeat: -1,
+    });
   }
 });
 

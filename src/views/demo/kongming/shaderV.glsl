@@ -2,13 +2,14 @@ precision lowp float;
 
 varying vec2 vUv;
 varying vec3 vPosition;
+varying vec4 vModelPosition;
 uniform float uTime;
 
 void main() {
     vUv = uv;
     vPosition = position;
     vec4 modelPosition = modelMatrix * vec4(position, 1.0);
-
+    vModelPosition = modelPosition;
     // m4旋转矩阵 旋转着色器xy轴角度 用法 viewMatrix * 旋转矩阵
     float angle = radians(0.);
     mat4 m4 = mat4(cos(angle), sin(angle), 0.0, 0.0, -sin(angle), cos(angle), 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0);

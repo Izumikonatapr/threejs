@@ -109,7 +109,10 @@
   <!-- <tracks></tracks> -->
 
   <!-- 着色器加工默认材质 -->
-  <processShader></processShader>
+  <!-- <processShader></processShader> -->
+
+  <!-- 变形动画 -->
+  <transitionAnimate></transitionAnimate>
 
   <!-- <demo></demo> -->
 </template>
@@ -154,4 +157,5 @@ import Arctrack from "./11arc/arctrack.vue";
 import tracks from "./11arc/track.vue";
 import Kongmingdeng from "./demo/kongming/kongmingdeng.vue";
 import processShader from "./12processShader/processShader.vue";
+import transitionAnimate from "./13transition/transition.vue";
 </script>

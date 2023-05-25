@@ -88,7 +88,7 @@
   <!-- 噪声 -->
   <!-- <noise></noise> -->
   <!-- 着色器孔明灯 -->
-  <Kongmingdeng></Kongmingdeng>
+  <!-- <Kongmingdeng></Kongmingdeng> -->
 
   <!-- 效果合成器 -->
   <!-- 基本的效果合成器 -->
@@ -107,6 +107,10 @@
   <!-- <Arctrack></Arctrack> -->
   <!-- 轨迹移动 -->
   <!-- <tracks></tracks> -->
+
+  <!-- 着色器加工默认材质 -->
+  <processShader></processShader>
+
   <!-- <demo></demo> -->
 </template>
 <script lang="ts" setup>
@@ -149,4 +153,5 @@ import Css2drenderer from "./10cssrenderer/css2drenderer.vue";
 import Arctrack from "./11arc/arctrack.vue";
 import tracks from "./11arc/track.vue";
 import Kongmingdeng from "./demo/kongming/kongmingdeng.vue";
+import processShader from "./12processShader/processShader.vue";
 </script>

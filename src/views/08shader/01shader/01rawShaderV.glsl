@@ -13,6 +13,7 @@ uniform mat4 modelMatrix;
 uniform mat4 viewMatrix;
 uniform mat4 projectionMatrix;
 // 将uv传递给片元 命名方式建议 传递给片元的变量 前面加v 然后后面驼峰命名
+// (如果你使用了点材质 点材质没有uv 我想要0到1的值 怎么办呢  可以用gl_PointCoord 像素位置来替代uv 像素位置00点在左上 1,1点在右下和uv有点区别)
 varying vec2 vUv;
 
 // 获取传入的全局变量

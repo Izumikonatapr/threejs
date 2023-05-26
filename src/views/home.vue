@@ -112,7 +112,10 @@
   <!-- <processShader></processShader> -->
 
   <!-- 变形动画 -->
-  <transitionAnimate></transitionAnimate>
+  <!-- <transitionAnimate></transitionAnimate> -->
+
+  <!-- 全景看房 -->
+  <room></room>
 
   <!-- <demo></demo> -->
 </template>
@@ -158,4 +161,5 @@ import tracks from "./11arc/track.vue";
 import Kongmingdeng from "./demo/kongming/kongmingdeng.vue";
 import processShader from "./12processShader/processShader.vue";
 import transitionAnimate from "./13transition/transition.vue";
+import room from "./demo/room/room.vue";
 </script>

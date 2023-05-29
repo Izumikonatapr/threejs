@@ -18,10 +18,10 @@ export class app {
     camera: THREE.PerspectiveCamera
     renderer: THREE.WebGLRenderer;
     controls?: OrbitControls;
-    axes: THREE.AxesHelper;
+    axes?: THREE.AxesHelper;
     clock: THREE.Clock
     renderVar: any;
-    constructor(domId: domId, options: options = { controls: true }) {
+    constructor(domId: domId, options: options = { controls: true, axes: true }) {
         this.scene = new THREE.Scene()
         this.camera = new THREE.PerspectiveCamera(
             75,
@@ -29,22 +29,24 @@ export class app {
             0.1,
             1000
         );
-
         this.camera.position.set(0, 0, 10);
+
         this.renderer = new THREE.WebGLRenderer({
             antialias: true,
         });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.renderer.setPixelRatio(window.devicePixelRatio);
         this.renderer.shadowMap.enabled = true
+
         if (options?.controls) {
             this.controls = new OrbitControls(this.camera, this.renderer.domElement);
             this.controls.enableDamping = true;
         }
-        this.axes = new THREE.AxesHelper(10);
+        if (options.axes) {
+            this.axes = new THREE.AxesHelper(10);
+            this.scene.add(this.axes);
+        }
         this.clock = new THREE.Clock()
-        this.scene.add(this.axes);
-
         window.addEventListener("resize", () => {
             this.renderer.setSize(window.innerWidth, window.innerHeight);
             this.renderer.setPixelRatio(window.devicePixelRatio);
@@ -70,7 +72,11 @@ export class app {
         this.renderVar = requestAnimationFrame(this.tick)
     }
     tick = (): void => {
-        this.render()
+        try {
+            this.render()
+        } catch (err) {
+            console.error(err)
+        }
     }
     dispose = (): void => {
         /**
@@ -98,4 +104,5 @@ type domId = string
 // 配置项 是否开启某些控件
 interface options {
     controls?: boolean
+    axes?: boolean
 }

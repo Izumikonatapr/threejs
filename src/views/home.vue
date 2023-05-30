@@ -35,7 +35,7 @@
   <!-- <aomap></aomap> -->
   <!-- pbr物理渲染 概念 实践-->
   <!-- <pbr></pbr> -->
-  <!-- 纹理加载进度 -->
+  <!-- 纹理加载进度LoadingManager three有一个默认的全局加载管理器 THREE.DefaultLoadingManager -->
   <!-- <textureProgress></textureProgress> -->
   <!-- 环境贴图 hdr贴图 球面环境贴图贴图 -->
   <!-- <envmap></envmap> -->

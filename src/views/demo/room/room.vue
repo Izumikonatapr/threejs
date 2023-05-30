@@ -20,6 +20,13 @@ class Room {
     nameArr.forEach((item) => {
       //纹理加载
       const texture = loader.load(imgUrl + item + ".jpg");
+      if (item.includes("_d") || item.includes("_u")) {
+        // 图片旋转方向有问题
+        // 设置旋转中心
+        texture.center = new THREE.Vector2(0.5, 0.5);
+        // 旋转180°
+        texture.rotation = Math.PI;
+      }
       boxMaterial.push(
         new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide })
       );
@@ -162,6 +169,18 @@ const camera2Ref = ref();
 onMounted(() => {
   if (camera2Ref.value) camera2Ref.value.appendChild(renderer2.domElement);
 });
+
+// 全局加载进度管理器
+THREE.DefaultLoadingManager.onLoad = function () {
+  console.log("====================================");
+  console.log("loading complete");
+  console.log("====================================");
+};
+THREE.DefaultLoadingManager.onProgress = function (item, loaded, total) {
+  console.log(
+    "progress:" + new Number((loaded / total) * 100).toFixed(2) + "%"
+  );
+};
 </script>
 <template>
   <div id="container" ref="containerRef"></div>

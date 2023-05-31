@@ -4,7 +4,7 @@ import {
   CSS2DRenderer,
   CSS2DObject,
 } from "three/examples/jsm/renderers/CSS2DRenderer";
-import { app as initApp } from "@/views/initScene";
+import { createApp } from "@/views/initScene";
 import { onMounted } from "vue";
 
 // 页面挂载前销毁掉之前的标签
@@ -12,7 +12,7 @@ if (document.querySelector(".label")) {
   document.querySelector(".label")?.parentElement?.remove();
 }
 
-const app = new initApp("container");
+const app = createApp("container");
 const { scene, controls, camera, clock } = app;
 scene.remove(app.axes);
 app.axes.dispose();

@@ -1,10 +1,20 @@
 import * as THREE from 'three'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { onBeforeUnmount, onMounted } from 'vue';
-export class app {
+/**
+ * dom元素的id 渲染器将canvas注入这个元素
+ */
+type domId = string
+// 配置项 是否开启某些控件
+interface options {
+    controls?: boolean
+    axes?: boolean
+}
+class app {
     /**
      * 构造于 new {@link app}.
      * 这个类用来简单初始化一个threejs基础场景 不需要在一个文件写太多的代码 只需要关注需要学习的内容
+     * @example const app = createApp("container");
      * @param scene three场景对象
      * @param controls 控件 默认OrbitControls 如果你需要更换 那么调用销毁后替换 或者在类中写一个替换方法 或添加构造器配置项
      * @param renderer 渲染器 默认webGl渲染器 开启阴影贴图
@@ -12,7 +22,6 @@ export class app {
      * @param camera 相机 默认正交摄像机
      * @param axex 坐标辅助线
      * @param renderVar 请求动画帧的指向 用于销毁
-     * @example const app = new initApp("container");
      */
     scene: THREE.Scene;
     camera: THREE.PerspectiveCamera
@@ -21,7 +30,7 @@ export class app {
     axes?: THREE.AxesHelper;
     clock: THREE.Clock
     renderVar: any;
-    constructor(domId: domId, options: options = { controls: true, axes: true }) {
+    constructor(domId: domId, options: options) {
         this.scene = new THREE.Scene()
         this.camera = new THREE.PerspectiveCamera(
             75,
@@ -93,16 +102,18 @@ export class app {
         /**
          * 渲染器将canvas注入这个元素
          */
-        const dom = document.querySelector("#" + domId)
-        if (dom) dom.appendChild(this.renderer.domElement);
+        try {
+            const dom = document.querySelector("#" + domId)
+            if (dom) {
+                dom.appendChild(this.renderer.domElement)
+            } else {
+                throw new Error('dom元素不存在!')
+            };
+        } catch (err) {
+            console.error(err)
+        }
     }
 }
-/**
- * dom元素的id 渲染器将canvas注入这个元素
- */
-type domId = string
-// 配置项 是否开启某些控件
-interface options {
-    controls?: boolean
-    axes?: boolean
+export function createApp(domId: domId, options: options = { controls: true, axes: true }): app {
+    return new app(domId, options)
 }

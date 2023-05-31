@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { onBeforeUnmount } from "vue";
 import * as THREE from "three";
-import { app as initApp } from "@/views/initScene";
+import { createApp } from "@/views/initScene";
 import vertexShader from "./shaderV.glsl?raw";
 import fragmentShader from "./shaderF.glsl?raw";
-const app = new initApp("container");
+const app = createApp("container");
 const { scene, controls, camera } = app;
 scene.background = new THREE.Color("#424242");
 

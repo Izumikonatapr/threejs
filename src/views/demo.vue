@@ -6,7 +6,7 @@ import Stats from "three/examples/jsm/libs/stats.module";
 import gasp from "gsap";
 
 import * as THREE from "three";
-const app = new initApp("container");
+const app = createApp("container");
 const { scene, controls, camera, clock } = app;
 camera.position.set(10, 20, 50);
 const stats = new Stats();

@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import * as THREE from "three";
-import { app as initApp } from "@/views/initScene";
+import { createApp } from "@/views/initScene";
 import { onBeforeUnmount, onMounted } from "vue";
 import { app as initScene } from "./scene";
-const app = new initApp("container", {
+const app = createApp("container", {
   controls: false,
 });
-// const app3 = new initApp("container");
+// const app3 = createApp("container");
 // (window as any).window.app2 = app3;
 initScene(app);
 // 相机滚动时向下移动镜头

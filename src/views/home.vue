@@ -117,6 +117,9 @@
   <!-- 全景看房 -->
   <!-- <room></room> -->
 
+  <!-- 智慧城市 -->
+  <smartCities></smartCities>
+
   <!-- <demo></demo> -->
 </template>
 <script lang="ts" setup>
@@ -162,4 +165,5 @@ import Kongmingdeng from "./demo/kongming/kongmingdeng.vue";
 import processShader from "./12processShader/processShader.vue";
 import transitionAnimate from "./13transition/transition.vue";
 import room from "./demo/room/room.vue";
+import smartCities from "./smartCities/index.vue";
 </script>

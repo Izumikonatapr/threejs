@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import * as THREE from "three";
-import { app as initApp } from "@/views/initScene";
+import { createApp } from "@/views/initScene";
 
-const app = new initApp("container");
+const app = createApp("container");
 const { scene, controls, camera, clock } = app;
 camera.position.set(0, 0, 10);
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import * as THREE from "three";
-import { app as initApp } from "@/views/initScene";
+import { createApp } from "@/views/initScene";
 import { onBeforeUnmount, onMounted } from "vue";
 onMounted(() => {
   const geometry = new THREE.BoxGeometry(1, 1, 1);
@@ -38,7 +38,7 @@ onMounted(() => {
   scene.add(plane);
 });
 
-const app = new initApp("container");
+const app = createApp("container");
 const { scene, controls, camera, clock } = app;
 </script>
 <template>

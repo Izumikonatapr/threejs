@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import * as THREE from "three";
-import { app as initApp } from "@/views/initScene";
+import { createApp } from "@/views/initScene";
 import { onBeforeUnmount, onMounted } from "vue";
 let animateVar;
 onMounted(() => {
@@ -11,7 +11,7 @@ onBeforeUnmount(() => {
   if (animateVar) cancelAnimationFrame(animateVar);
 });
 
-const app = new initApp("container");
+const app = createApp("container");
 const { scene, controls, camera, clock } = app;
 
 // 不断新增和销毁物体

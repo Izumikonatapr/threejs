@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import * as THREE from "three";
-import { app as initApp } from "@/views/initScene";
+import { createApp } from "@/views/initScene";
 // 为了语法高亮和提示 把glsl文件放外面导入 vite导入原始类型文件需要加 ?raw
 import baseVertexShader from "./01shaderV.glsl?raw";
 import baseFragmentShader from "./01shaderF.glsl?raw";
 import rawVertexShader from "./01rawShaderV.glsl?raw";
 import rawFragmentShader from "./01rawShaderF.glsl?raw";
 import { onBeforeUnmount } from "vue";
-const app = new initApp("container");
+const app = createApp("container");
 const { scene, controls, camera } = app;
 camera.position.set(0, 0, 3);
 const planeGeometry = new THREE.PlaneGeometry(1, 1, 64, 64);

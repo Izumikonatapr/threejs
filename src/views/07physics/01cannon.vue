@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import * as THREE from "three";
-import { app as initApp } from "@/views/initScene";
+import { createApp } from "@/views/initScene";
 import { onBeforeUnmount, onMounted } from "vue";
 import * as cannon from "cannon-es";
 import { dir } from "console";
 // 导入cannon引擎
 
-const app = new initApp("container");
+const app = createApp("container");
 const { scene, controls, camera, clock, renderer } = app;
 const textureLoader = new THREE.TextureLoader();
 camera.position.set(0, 0, 10);

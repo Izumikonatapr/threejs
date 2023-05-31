@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import * as THREE from "three";
-import { app as initApp } from "@/views/initScene";
+import { createApp } from "@/views/initScene";
 import { onBeforeUnmount, onMounted } from "vue";
 import dat from "dat.gui";
 /**
@@ -99,7 +99,7 @@ onMounted(() => {
 });
 
 
-const app = new initApp("container");
+const app = createApp("container");
 const { scene, controls, camera, clock } = app;
 const GUI: any = new dat.GUI();
 </script>

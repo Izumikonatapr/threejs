@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import * as THREE from "three";
-import { app as initApp } from "@/views/initScene";
+import { createApp } from "@/views/initScene";
 import * as cannon from "cannon-es";
 
-const app = new initApp("container");
+const app = createApp("container");
 const { scene, controls, camera, clock, renderer } = app;
 const textureLoader = new THREE.TextureLoader();
 

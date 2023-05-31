@@ -115,7 +115,7 @@
   <!-- <transitionAnimate></transitionAnimate> -->
 
   <!-- 全景看房 -->
-  <room></room>
+  <!-- <room></room> -->
 
   <!-- <demo></demo> -->
 </template>

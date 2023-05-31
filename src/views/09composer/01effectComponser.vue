@@ -60,16 +60,12 @@ const envMapTexture = cubeTextureLoader.load([
 ]);
 scene.background = envMapTexture;
 scene.environment = envMapTexture;
-
 // 模型加载
 const gltfLoader = new GLTFLoader();
-gltfLoader.load(
-  "/models/DamagedHelmet/DamagedHelmet.gltf",
-  (gltf) => {
-    const mesh = gltf.scene.children[0];
-    scene.add(mesh);
-  }
-);
+gltfLoader.load("/models/DamagedHelmet/DamagedHelmet.gltf", (gltf) => {
+  const mesh = gltf.scene.children[0];
+  scene.add(mesh);
+});
 
 window.addEventListener("resize", () => {
   renderer.setSize(window.innerWidth, window.innerHeight);

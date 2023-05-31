@@ -21,7 +21,7 @@ class app {
      * @param clock 时钟同步动画时间等
      * @param camera 相机 默认正交摄像机
      * @param axex 坐标辅助线
-     * @param renderVar 请求动画帧的指向 用于销毁
+     * @param renderVar 请求动画帧的指向 用于停止请求动画帧
      */
     scene: THREE.Scene;
     camera: THREE.PerspectiveCamera

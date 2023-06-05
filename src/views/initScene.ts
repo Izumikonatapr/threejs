@@ -12,9 +12,7 @@ interface options {
 }
 class app {
     /**
-     * 构造于 new {@link app}.
      * 这个类用来简单初始化一个threejs基础场景 不需要在一个文件写太多的代码 只需要关注需要学习的内容
-     * @example const app = createApp("container");
      * @param scene three场景对象
      * @param controls 控件 默认OrbitControls 如果你需要更换 那么调用销毁后替换 或者在类中写一个替换方法 或添加构造器配置项
      * @param renderer 渲染器 默认webGl渲染器 开启阴影贴图
@@ -115,5 +113,9 @@ class app {
     }
 }
 export function createApp(domId: domId, options: options = { controls: true, axes: true }): app {
+    /**
+     * 构造于 new {@link app}.
+     * @example const app = createApp("container");
+     */
     return new app(domId, options)
 }

@@ -117,7 +117,7 @@
   <!-- 全景看房 -->
   <!-- <room></room> -->
 
-  <!-- 智慧城市 -->
+  <!-- 智慧城市 地图三维模型图纸生成网站 https://cadmapper.com/ dxf 需要导入3ds转出-->
   <smartCities></smartCities>
 
   <!-- <demo></demo> -->

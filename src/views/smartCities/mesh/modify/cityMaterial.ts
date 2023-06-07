@@ -2,6 +2,7 @@ import * as THREE from 'three'
 export function modifyCityMaterial(mesh, material) {
     material.onBeforeCompile = (shader) => {
         addColor(shader, mesh)
+        addRipple(shader, mesh)
     }
 }
 // 从高到低模型渐变色效果
@@ -54,4 +55,8 @@ function addColor(shader, mesh) {
         gl_FragColor = vec4(gradMixColor,1);
         `
     )
+}
+
+function addRipple(shader, mesh) {
+
 }

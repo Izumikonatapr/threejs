@@ -8,19 +8,23 @@ import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as dat from "dat.gui";
 import { onMounted } from "vue";
+import { city } from "./mesh/city";
 const gui = new dat.GUI();
 const { scene, renderer, clock, camera, controls } = createApp("container");
+window.app = {
+  scene,
+  renderer,
+  clock,
+  camera,
+  controls,
+};
 const materialUniform = {
   uTime: {
     value: 0,
   },
 };
-
-const planeGeometry = new THREE.PlaneGeometry(10, 10, 10, 10);
-const material = new THREE.MeshBasicMaterial();
-const plane = new THREE.Mesh(planeGeometry, material);
-plane.receiveShadow = true;
-scene.add(plane);
+// 导入城市模型
+city();
 
 const animate = () => {
   const time = clock.getElapsedTime();

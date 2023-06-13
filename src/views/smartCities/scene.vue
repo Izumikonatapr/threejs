@@ -9,6 +9,9 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as dat from "dat.gui";
 import { onMounted } from "vue";
 import { city } from "./mesh/city";
+import { FlyLine } from "./mesh/FlyLine";
+import { ShaderFlyLine } from "./mesh/FlyLineShader";
+import { LightWall } from "./mesh/LightWall";
 const gui = new dat.GUI();
 const { scene, renderer, clock, camera, controls } = createApp("container");
 window.app = {
@@ -25,7 +28,15 @@ const materialUniform = {
 };
 // 导入城市模型
 city();
-
+// 飞线
+const { mesh: flyLineMesh } = new FlyLine();
+scene.add(flyLineMesh);
+// shader飞线
+const { mesh: shaderFlyLine } = new ShaderFlyLine();
+scene.add(shaderFlyLine);
+// 光墙
+const { mesh: lightWall } = new LightWall();
+scene.add(lightWall);
 const animate = () => {
   const time = clock.getElapsedTime();
   materialUniform.uTime.value = time;

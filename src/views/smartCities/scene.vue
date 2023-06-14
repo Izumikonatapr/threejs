@@ -3,9 +3,7 @@
 import { createApp } from "@/views/initScene";
 import { gsap } from "gsap";
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+
 import * as dat from "dat.gui";
 import { onMounted } from "vue";
 import { city } from "./mesh/city";
@@ -13,8 +11,10 @@ import { FlyLine } from "./mesh/FlyLine";
 import { ShaderFlyLine } from "./mesh/FlyLineShader";
 import { LightWall } from "./mesh/LightWall";
 import { LightRader } from "./mesh/LightRader";
+import { AlarmSprite } from "./mesh/AlarmSprite";
 const gui = new dat.GUI();
 const { scene, renderer, clock, camera, controls } = createApp("container");
+camera.position.set(5, 10, 15);
 window.app = {
   scene,
   renderer,
@@ -41,6 +41,13 @@ scene.add(lightWall);
 // 雷达扫描
 const { mesh: lightRader } = new LightRader();
 scene.add(lightRader);
+// 添加警告标识
+const alarmSprite = new AlarmSprite();
+alarmSprite.sprite.position.set(-4.2, 3.5, -1);
+alarmSprite.onClick(() => {
+  console.log("error");
+});
+scene.add(alarmSprite.sprite);
 const animate = () => {
   const time = clock.getElapsedTime();
   materialUniform.uTime.value = time;

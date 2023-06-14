@@ -22,11 +22,16 @@ window.app = {
   camera,
   controls,
 };
-const materialUniform = {
-  uTime: {
-    value: 0,
-  },
-};
+const texture = new THREE.CubeTextureLoader().load([
+  "/smartCities/1.jpg",
+  "/smartCities/2.jpg",
+  "/smartCities/3.jpg",
+  "/smartCities/4.jpg",
+  "/smartCities/5.jpg",
+  "/smartCities/6.jpg",
+]);
+scene.background = texture;
+scene.environment = texture;
 // 导入城市模型
 city();
 // 飞线
@@ -48,14 +53,6 @@ alarmSprite.onClick(() => {
   console.log("error");
 });
 scene.add(alarmSprite.sprite);
-const animate = () => {
-  const time = clock.getElapsedTime();
-  materialUniform.uTime.value = time;
-  requestAnimationFrame(animate);
-};
-onMounted(() => {
-  animate();
-});
 </script>
 <template>
   <div id="container"></div>

@@ -1,47 +1,43 @@
 import * as THREE from 'three'
-import f from '../shader/lightWall/f.glsl?raw'
-import v from '../shader/lightWall/v.glsl?raw'
+import f from '../shader/lightRader/f.glsl?raw'
+import v from '../shader/lightRader/v.glsl?raw'
 import { gsap } from 'gsap'
-export class LightWall {
+export class LightRader {
     mesh
     material
-    geomtery: THREE.CylinderGeometry
+    geomtery: THREE.PlaneGeometry
     constructor(color?) {
-        // 根据源物体得到他的边框辅助线
-        this.geomtery = new THREE.CylinderGeometry(3, 3, 2, 32, 1, true);
-        // 材质
+        this.geomtery = new THREE.PlaneGeometry(2, 2);
         this.material = new THREE.ShaderMaterial({
-            side: THREE.DoubleSide,
             transparent: true,
             vertexShader: v,
             fragmentShader: f,
             uniforms: {
-                uHeight: {
+                uColor: {
+                    value: new THREE.Color("#ff0000")
+                },
+                uTime: {
                     value: 0
                 }
             }
         })
-        // 创建线
         const mesh = new THREE.Mesh(this.geomtery, this.material)
         this.mesh = mesh
-        this.mesh.position.set(0, 1.5, 0)
+        this.mesh.position.set(-10, 0.5, 8)
+        this.mesh.rotation.x = -Math.PI / 2
         this.mesh.geometry.computeBoundingBox()
-        // 获得包围盒 boundingBox 因此!
         const { min, max } = this.mesh.geometry.boundingBox!;
-        // 计算出光墙高度
         let uHeight = max.y - min.y
         this.material.uniforms.uHeight = {
             value: uHeight
         }
-
-        // 光墙动画
-        gsap.to(this.mesh.scale, {
-            x: 2,
-            z: 2,
+        gsap.to(this.material.uniforms.uTime, {
+            value: 1,
             repeat: -1,
-            duration: 2,
-            yoyo: true,
+            duration: 1,
             ease: 'none'
         })
+
+
     }
 }

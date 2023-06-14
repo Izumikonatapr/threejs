@@ -23,7 +23,7 @@ export class FlyLine {
         // 根据曲线生成管道几何体
         this.geometry = new THREE.TubeGeometry(this.lineCurve, 30, 0.15, 2, false)
 
-        this.material = new THREE.MeshBasicMaterial({ map: this.texture, transparent: true })
+        this.material = new THREE.MeshBasicMaterial({ map: this.texture, transparent: true, depthWrite: false })
         this.mesh = new THREE.Mesh(this.geometry, this.material)
 
         // 贴图偏移动画

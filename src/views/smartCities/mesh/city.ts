@@ -32,7 +32,6 @@ export function city() {
             }
         })
         scene.add(gltf.scene)
-
     })
 }
 

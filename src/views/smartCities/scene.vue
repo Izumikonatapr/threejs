@@ -12,6 +12,7 @@ import { city } from "./mesh/city";
 import { FlyLine } from "./mesh/FlyLine";
 import { ShaderFlyLine } from "./mesh/FlyLineShader";
 import { LightWall } from "./mesh/LightWall";
+import { LightRader } from "./mesh/LightRader";
 const gui = new dat.GUI();
 const { scene, renderer, clock, camera, controls } = createApp("container");
 window.app = {
@@ -37,6 +38,9 @@ scene.add(shaderFlyLine);
 // 光墙
 const { mesh: lightWall } = new LightWall();
 scene.add(lightWall);
+// 雷达扫描
+const { mesh: lightRader } = new LightRader();
+scene.add(lightRader);
 const animate = () => {
   const time = clock.getElapsedTime();
   materialUniform.uTime.value = time;

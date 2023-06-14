@@ -72,11 +72,11 @@ void main() {
 
     // 9 实现雷达扫射
     // 想要做到旋转操作 第一时间想到去旋转uv坐标
-    // vec2 rotateUv = rotate(vUv, uTime * 3.0, vec2(0.5));
-    // float alpha = 1.0 - step(0.5, abs(distance(rotateUv, vec2(0.5, 0.5))));
-    // float angle = atan(rotateUv.x - 0.5, rotateUv.y - 0.5);
-    // float strength = ((angle) + 3.14) / 6.28;
-    // gl_FragColor = vec4(strength, strength, strength, alpha);
+    vec2 rotateUv = rotate(vUv, uTime * 3.0, vec2(0.5));
+    float alpha = 1.0 - step(0.5, abs(distance(rotateUv, vec2(0.5, 0.5))));
+    float angle = atan(rotateUv.x - 0.5, rotateUv.y - 0.5);
+    float strength = ((angle) + 3.14) / 6.28;
+    gl_FragColor = vec4(strength, strength, strength, alpha);
 
     // 10万花筒
     // float angle = atan(vUv.x - 0.5, vUv.y - 0.5) / (2.0 * PI);
@@ -84,9 +84,9 @@ void main() {
     // gl_FragColor = vec4(strength, strength, strength, 1.0);
 
     // 11 万花筒向外发光的感觉
-    float angle = atan(vUv.x - 0.5, vUv.y - 0.5) / (2.0 * PI);
-    float strength = sin(angle * 100.0);
-    gl_FragColor = vec4(strength, strength, strength, 1.0);
+    // float angle = atan(vUv.x - 0.5, vUv.y - 0.5) / (2.0 * PI);
+    // float strength = sin(angle * 100.0);
+    // gl_FragColor = vec4(strength, strength, strength, 1.0);
 
     // 12 另一种形式   和canvas提供的圆锥渐变相同
     // float angle = abs(atan(vUv.x - 0.5, vUv.y - 0.5) / 3.14);

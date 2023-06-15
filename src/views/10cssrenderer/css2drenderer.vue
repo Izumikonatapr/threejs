@@ -14,8 +14,8 @@ if (document.querySelector(".label")) {
 
 const app = createApp("container");
 const { scene, controls, camera, clock } = app;
-scene.remove(app.axes);
-app.axes.dispose();
+scene.remove(app.axes as THREE.Object3D);
+app.axes!.dispose();
 const textureLoader = new THREE.TextureLoader();
 camera.position.set(0, 0, 10);
 
@@ -51,7 +51,7 @@ earthDiv.className = "label";
 earthDiv.textContent = "Earth";
 earthDiv.style.pointerEvents = "auto";
 const eartchLabel = new CSS2DObject(earthDiv);
-// +0.1为了防止两个物体的某个面重合导致的问题
+
 eartchLabel.position.set(0, EARTH_BADIUS + 0.1, 0);
 earth.add(eartchLabel);
 //给地球追加文字标签

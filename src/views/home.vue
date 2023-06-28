@@ -24,6 +24,8 @@
   <!-- 认识几何体  -->
 
   <!-- <BoxGeometry></BoxGeometry> -->
+  <!-- 几何体顶点索引公用顶点 顶点组设置几何体每个面不同的材质 BufferGeometry -->
+  <!-- <VertexGroup></VertexGroup> -->
 
   <!-- 认识材质 -->
   <!-- <material></material> -->
@@ -41,6 +43,11 @@
   <!-- <envmap></envmap> -->
   <!-- 正确的销毁物体和材质 防止内存溢出 -->
   <!-- <memory></memory> -->
+  <!-- 材质色彩空间 renderer也可以修改色彩空间 -->
+  <!-- <srgb></srgb> -->
+
+  <!-- 雾 -->
+  <fog></fog>
 
   <!-- 免费的材质素材网址 -->
   <!-- 
@@ -118,7 +125,7 @@
   <!-- <room></room> -->
 
   <!-- 智慧城市 地图三维模型图纸生成网站 https://cadmapper.com/ dxf 需要导入3ds转出-->
-  <smartCities></smartCities>
+  <!-- <smartCities></smartCities> -->
 
   <!-- <demo></demo> -->
 </template>
@@ -133,6 +140,7 @@ import gsap from "./01base/05gsap.vue";
 import screenfull from "./01base/06screenfull.vue";
 import gui from "./01base/07gui.vue";
 import BoxGeometry from "./02geometry/boxGeometry.vue";
+import VertexGroup from "./02geometry/vertexGroup.vue";
 import material from "./03material/01material.vue";
 import opacityMaterial from "./03material/03opacity.vue";
 import aomap from "./03material/04aomap.vue";
@@ -140,6 +148,8 @@ import pbr from "./03material/05pbr.vue";
 import textureProgress from "./03material/06textureProgress.vue";
 import envmap from "./03material/07envmap.vue";
 import memory from "./03material/08memory.vue";
+import srgb from "./03material/09srgb.vue";
+import fog from "./04.0fog/fog.vue";
 import light from "./04light/01light.vue";
 import shadowAttr from "./04light/02shadowAttr.vue";
 import pointLight from "./04light/03pointLightandSpotLight.vue";

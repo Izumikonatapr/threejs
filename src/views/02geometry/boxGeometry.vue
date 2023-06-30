@@ -7,7 +7,10 @@ onMounted(() => {
    * @param attributes 存有几何体相关的数据 存有法向 normal 顶点位置  position  uv 一个立方体有6个面 一个面有四个顶点  因此一个立方体最少有二十四个点组成 count 24 可以添加更多点
    * 可以看public中的uv.jpg理解uv展开
    * uv概念 一个立方体有六个面  将六个面展开为一个平面  左下到右上分为x,y轴0到1的位置 uv位置就代表这个点在展开的平面的位置  count 也为24
-   * 法向概念 当前面的朝向 光照射过来 需要计算光反射的方向
+   * 法向概念 当前面的朝向 光照射过来 需要计算光反射的方向 某些垃圾游戏地面上的水像镜子一样能反射就是因为有法向
+   * 计算出几何体的法向  geometry.computeVertexNormals()   normal会出现在几何体的attribute中 当然你也可以自己计算出法向 或者修改法向
+   * 你想看某个几何体的法向的话 可以用three的法向量辅助器 const helper = new VertexNormalsHelper(geometry,length,color)   /three/examples/jsm/helpers/VertexNormalsHelper
+   * 面的法向可以由顶点的法向平滑插值得到 详见public中的normal_examples图片 左侧标识没有平滑插值的 三角面法向
    */
   const geometry = new THREE.BufferGeometry();
   // 矩形最少有六个顶点 画一个坐标轴 更好联想点的位置 两个三角面连一个矩面

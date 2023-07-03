@@ -23,16 +23,30 @@ onMounted(() => {
       geometry?: THREE.BufferGeometry;
     }
     const duck: duck | undefined = gltf.scene.getObjectByName("LOD3spShape");
-    scene.add(gltf.scene!);
     const duckGeometry = duck!.geometry;
+
+    // 几何体居中 如果你要计算包围盒大小并重设世界矩阵 那么不要将center放在后面 放在代码顶部  因为center会改变一些属性
+    duckGeometry?.center();
+
     duckGeometry?.computeBoundingBox();
-    const duckBox: any = duckGeometry?.boundingBox;
+    // 获取duck包围盒
+    const duckBox = duckGeometry?.boundingBox;
     console.log(duckBox);
     console.log(duck);
+    // 此时  这个鸭子包围盒的大小明显过大了  和当前世界的缩放等级不一致 检查内部 发现鸭子的父级object缩放非常小
+    // 调用updateWorldMatrix 更新世界矩阵 还有有一个叫updateMatrixWorld的方法 注意别写反了
+    duck?.updateWorldMatrix(true, true);
+    // 包围盒应用世界矩阵
+    duckBox!.applyMatrix4(duck!.matrixWorld);
     // 创建包围盒辅助器
-    const boxHelper = new THREE.Box3Helper(duckBox, new THREE.Color(0xffff00));
+    const boxHelper = new THREE.Box3Helper(duckBox!, new THREE.Color(0xffff00));
+
+    // 包围盒居中
+    // 获取包围盒中心点
+    let center = duckBox!.getCenter(new THREE.Vector3());
+
+    scene.add(gltf.scene!);
     scene.add(boxHelper);
-    // 此时  这个鸭子的大小明显过大了  和当前世界的缩放等级不一致
   });
 });
 

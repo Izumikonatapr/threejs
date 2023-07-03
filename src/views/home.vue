@@ -10,7 +10,7 @@
   <!-- <base01 /> -->
   <!-- 控制器 -->
   <!-- <controls></controls> -->
-  <!-- 设置物体位置等属性  简单的动画-->
+  <!-- 设置物体位置等属性 平移旋转缩放  简单的动画-->
   <!-- <setMeshPosition></setMeshPosition> -->
   <!-- 时钟 Clock -->
   <!-- <clock></clock> -->
@@ -22,10 +22,13 @@
   <!-- <gui></gui> -->
 
   <!-- 认识几何体  -->
-
   <!-- <BoxGeometry></BoxGeometry> -->
+  <!-- 几何体保持position原位不动 顶点位移 -->
+  <!-- <geometryTranslate></geometryTranslate> -->
   <!-- 几何体顶点索引公用顶点 顶点组设置几何体每个面不同的材质 BufferGeometry -->
   <!-- <VertexGroup></VertexGroup> -->
+  <!-- 包围盒 世界矩阵转换 -->
+  <BoundingBox></BoundingBox>
 
   <!-- 认识材质 -->
   <!-- <material></material> -->
@@ -47,7 +50,7 @@
   <!-- <srgb></srgb> -->
 
   <!-- 雾 -->
-  <fog></fog>
+  <!-- <fog></fog> -->
 
   <!-- 免费的材质素材网址 -->
   <!-- 
@@ -140,7 +143,9 @@ import gsap from "./01base/05gsap.vue";
 import screenfull from "./01base/06screenfull.vue";
 import gui from "./01base/07gui.vue";
 import BoxGeometry from "./02geometry/boxGeometry.vue";
+import geometryTranslate from "./02geometry/geometryTranslate.vue";
 import VertexGroup from "./02geometry/vertexGroup.vue";
+import BoundingBox from "./02geometry/boundingBox.vue";
 import material from "./03material/01material.vue";
 import opacityMaterial from "./03material/03opacity.vue";
 import aomap from "./03material/04aomap.vue";

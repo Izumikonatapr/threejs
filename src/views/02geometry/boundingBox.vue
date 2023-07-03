@@ -41,9 +41,21 @@ onMounted(() => {
     // 创建包围盒辅助器
     const boxHelper = new THREE.Box3Helper(duckBox!, new THREE.Color(0xffff00));
 
-    // 包围盒居中
     // 获取包围盒中心点
     let center = duckBox!.getCenter(new THREE.Vector3());
+
+    // 获取包围球
+    const duckSphere = duckGeometry?.boundingSphere;
+    duckSphere?.applyMatrix4(duck!.matrixWorld);
+    // 创建包围球辅助器
+    const sphereGeometry = new THREE.SphereGeometry(duckSphere?.radius, 16, 16);
+    const sphereMaterial = new THREE.MeshBasicMaterial({
+      color: 0xff0000,
+      wireframe: true,
+    });
+    const sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
+    sphereMesh.position.copy(duckSphere!.center);
+    scene.add(sphereMesh);
 
     scene.add(gltf.scene!);
     scene.add(boxHelper);

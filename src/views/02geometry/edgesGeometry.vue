@@ -19,38 +19,71 @@ onMounted(() => {
   scene.add(ambientLight, dirLight);
   dracoLoader.setDecoderPath("/static/");
   loader.setDRACOLoader(dracoLoader);
-  loader.load("/models/geometry/building.glb", (gltf) => {
-    const building = gltf.scene.getObjectByName("Plane045");
-    const geometry = (<THREE.Mesh>building).geometry;
+  // loader.load("/models/geometry/building.glb", (gltf) => {
+  //   const building = gltf.scene.getObjectByName("Plane045");
+  //   const geometry = (<THREE.Mesh>building).geometry;
 
-    // 使用几何体 创建边缘几何体 边缘几何体只显示边缘 不显示组成面的三角面
-    // let edgesGeometry = new THREE.EdgesGeometry(geometry);
+  //   // 使用几何体 创建边缘几何体 边缘几何体只显示边缘 不显示组成面的三角面
+  //   // let edgesGeometry = new THREE.EdgesGeometry(geometry);
 
-    // 线框几何体 他会显示三角面
-    let edgesGeometry = new THREE.WireframeGeometry(geometry);
-    // 创建线段材质
+  //   // 线框几何体 他会显示三角面
+  //   let edgesGeometry = new THREE.WireframeGeometry(geometry);
+  //   // 创建线段材质
+  //   let edgesMaterial = new THREE.LineBasicMaterial({
+  //     color: new THREE.Color("#267ae0"),
+  //     linewidth: 1,
+  //   });
+  //   // 创建线段 LineSegments
+  //   const edges = new THREE.LineSegments(edgesGeometry, edgesMaterial);
+
+  //   // 更新到世界矩阵 因为现在创建了一个新的物体  但是各种属性没有被继承
+  //   building?.updateWorldMatrix(true, true);
+  //   edges.matrix.copy(building!.matrixWorld);
+  //   // 将参数中的属性  全部解构 到edges上  decompose 解构
+  //   edges.matrix.decompose(edges.position, edges.quaternion, edges.scale);
+  //   (<THREE.Mesh>building).material = new THREE.MeshBasicMaterial({
+  //     transparent: true,
+  //     color: new THREE.Color("#2f8ee0"),
+  //     opacity: 0.2,
+  //     // 混合模式 防止叠加
+  //     blending: THREE.AdditiveBlending,
+  //   });
+
+  //   scene.add(building!);
+  //   scene.add(edges);
+  // });
+
+  // 如果想将场景中所有建筑物变为线框模式  （科技风）
+  loader.load("/models/geometry/city.glb", (gltf) => {
     let edgesMaterial = new THREE.LineBasicMaterial({
       color: new THREE.Color("#267ae0"),
       linewidth: 1,
     });
-    // 创建线段 LineSegments
-    const edges = new THREE.LineSegments(edgesGeometry, edgesMaterial);
-
-    // 更新到世界矩阵 因为现在创建了一个新的物体  但是各种属性没有被继承
-    building?.updateWorldMatrix(true, true);
-    edges.matrix.copy(building!.matrixWorld);
-    // 将参数中的属性  全部解构 到edges上  decompose 解构
-    edges.matrix.decompose(edges.position, edges.quaternion, edges.scale);
-    (<THREE.Mesh>building).material = new THREE.MeshBasicMaterial({
+    let material = new THREE.MeshBasicMaterial({
       transparent: true,
       color: new THREE.Color("#2f8ee0"),
       opacity: 0.2,
-      // 混合模式 防止叠加
+      // 混合模式 叠加 叠加层会更亮
       blending: THREE.AdditiveBlending,
     });
+    gltf.scene.traverse((child) => {
+      // 注意 修改材质的代码要放isMesh外面
+      const building = child;
+      (<THREE.Mesh>building).material = material;
+      if ((<THREE.Mesh>child).isMesh) {
+        const geometry = (<THREE.Mesh>building).geometry;
+        let edgesGeometry = new THREE.EdgesGeometry(geometry);
 
-    scene.add(building!);
-    scene.add(edges);
+        const edges = new THREE.LineSegments(edgesGeometry, edgesMaterial);
+
+        building?.updateWorldMatrix(true, true);
+        edges.matrix.copy(building!.matrixWorld);
+        edges.matrix.decompose(edges.position, edges.quaternion, edges.scale);
+        scene.add(edges);
+      } else {
+        scene.add(child);
+      }
+    });
   });
 });
 

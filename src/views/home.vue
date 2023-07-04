@@ -28,7 +28,11 @@
   <!-- 几何体顶点索引公用顶点 顶点组设置几何体每个面不同的材质 BufferGeometry -->
   <!-- <VertexGroup></VertexGroup> -->
   <!-- 包围盒 世界矩阵转换 -->
-  <BoundingBox></BoundingBox>
+  <!-- <BoundingBox></BoundingBox> -->
+  <!-- 包围盒包围多个物体 -->
+  <!-- <BoundingBoxs></BoundingBoxs> -->
+  <!-- 边缘几何体 EdgesGeometry -->
+  <EdgesGeometry></EdgesGeometry>
 
   <!-- 认识材质 -->
   <!-- <material></material> -->
@@ -131,6 +135,10 @@
   <!-- <smartCities></smartCities> -->
 
   <!-- <demo></demo> -->
+
+  <!-- 常用工具 -->
+  <!-- gltf压缩工具 gltf-pipeline npm install gltf-pipeline -->
+  <!-- 补间动画 gsap  -->
 </template>
 <script lang="ts" setup>
 import demo from "./demo.vue";
@@ -146,6 +154,8 @@ import BoxGeometry from "./02geometry/boxGeometry.vue";
 import geometryTranslate from "./02geometry/geometryTranslate.vue";
 import VertexGroup from "./02geometry/vertexGroup.vue";
 import BoundingBox from "./02geometry/boundingBox.vue";
+import BoundingBoxs from "./02geometry/boundingBoxs.vue";
+import EdgesGeometry from "./02geometry/edgesGeometry.vue";
 import material from "./03material/01material.vue";
 import opacityMaterial from "./03material/03opacity.vue";
 import aomap from "./03material/04aomap.vue";

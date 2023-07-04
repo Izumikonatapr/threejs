@@ -20,7 +20,37 @@ onMounted(() => {
   dracoLoader.setDecoderPath("/static/");
   loader.setDRACOLoader(dracoLoader);
   loader.load("/models/geometry/building.glb", (gltf) => {
-    scene.add(gltf.scene);
+    const building = gltf.scene.getObjectByName("Plane045");
+    const geometry = (<THREE.Mesh>building).geometry;
+
+    // 使用几何体 创建边缘几何体 边缘几何体只显示边缘 不显示组成面的三角面
+    // let edgesGeometry = new THREE.EdgesGeometry(geometry);
+
+    // 线框几何体 他会显示三角面
+    let edgesGeometry = new THREE.WireframeGeometry(geometry);
+    // 创建线段材质
+    let edgesMaterial = new THREE.LineBasicMaterial({
+      color: new THREE.Color("#267ae0"),
+      linewidth: 1,
+    });
+    // 创建线段 LineSegments
+    const edges = new THREE.LineSegments(edgesGeometry, edgesMaterial);
+
+    // 更新到世界矩阵 因为现在创建了一个新的物体  但是各种属性没有被继承
+    building?.updateWorldMatrix(true, true);
+    edges.matrix.copy(building!.matrixWorld);
+    // 将参数中的属性  全部解构 到edges上  decompose 解构
+    edges.matrix.decompose(edges.position, edges.quaternion, edges.scale);
+    (<THREE.Mesh>building).material = new THREE.MeshBasicMaterial({
+      transparent: true,
+      color: new THREE.Color("#2f8ee0"),
+      opacity: 0.2,
+      // 混合模式 防止叠加
+      blending: THREE.AdditiveBlending,
+    });
+
+    scene.add(building!);
+    scene.add(edges);
   });
 });
 

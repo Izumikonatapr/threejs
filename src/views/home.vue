@@ -32,7 +32,7 @@
   <!-- 包围盒包围多个物体 -->
   <!-- <BoundingBoxs></BoundingBoxs> -->
   <!-- 边缘几何体 EdgesGeometry -->
-  <EdgesGeometry></EdgesGeometry>
+  <!-- <EdgesGeometry></EdgesGeometry> -->
 
   <!-- 认识材质 -->
   <!-- <material></material> -->
@@ -52,6 +52,12 @@
   <!-- <memory></memory> -->
   <!-- 材质色彩空间 renderer也可以修改色彩空间 -->
   <!-- <srgb></srgb> -->
+  <!-- 烘焙贴图材质 -->
+  <!-- <meshMatCapMaterial></meshMatCapMaterial> -->
+  <!-- 制作玻璃效果 -->
+  <!-- <glass></glass> -->
+  <!-- 高级物理材质 -->
+  <meshPhysicalMaterial></meshPhysicalMaterial>
 
   <!-- 雾 -->
   <!-- <fog></fog> -->
@@ -164,6 +170,9 @@ import textureProgress from "./03material/06textureProgress.vue";
 import envmap from "./03material/07envmap.vue";
 import memory from "./03material/08memory.vue";
 import srgb from "./03material/09srgb.vue";
+import meshMatCapMaterial from "./03material/10meshMatcapMaterial.vue";
+import glass from "./03material/11glass.vue";
+import meshPhysicalMaterial from "./03material/12MeshPhysicalMaterial.vue";
 import fog from "./04.0fog/fog.vue";
 import light from "./04light/01light.vue";
 import shadowAttr from "./04light/02shadowAttr.vue";

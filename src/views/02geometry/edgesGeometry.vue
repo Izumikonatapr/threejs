@@ -62,7 +62,8 @@ onMounted(() => {
     let material = new THREE.MeshBasicMaterial({
       transparent: true,
       color: new THREE.Color("#2f8ee0"),
-      opacity: 0.2,
+      // side: THREE.DoubleSide,
+      opacity: 0.3,
       // 混合模式 叠加 叠加层会更亮
       blending: THREE.AdditiveBlending,
     });
@@ -75,7 +76,6 @@ onMounted(() => {
         let edgesGeometry = new THREE.EdgesGeometry(geometry);
 
         const edges = new THREE.LineSegments(edgesGeometry, edgesMaterial);
-
         building?.updateWorldMatrix(true, true);
         edges.matrix.copy(building!.matrixWorld);
         edges.matrix.decompose(edges.position, edges.quaternion, edges.scale);

@@ -59,7 +59,8 @@
   <!-- 高级物理材质 -->
   <!-- <meshPhysicalMaterial></meshPhysicalMaterial> -->
   <!-- 高级物理材质 清漆效果 -->
-  <MeshPhysicalMateriallAcquer></MeshPhysicalMateriallAcquer>
+  <!-- <MeshPhysicalMateriallAcquer></MeshPhysicalMateriallAcquer> -->
+  <MeshPhysicalMateriallSheen></MeshPhysicalMateriallSheen>
 
   <!-- 雾 -->
   <!-- <fog></fog> -->
@@ -176,6 +177,7 @@ import meshMatCapMaterial from "./03material/10meshMatcapMaterial.vue";
 import glass from "./03material/11glass.vue";
 import meshPhysicalMaterial from "./03material/12MeshPhysicalMaterial.vue";
 import MeshPhysicalMateriallAcquer from "./03material/13MeshPhysicalMateriallAcquer.vue";
+import MeshPhysicalMateriallSheen from "./03material/14MeshPhysicalMaterialSheen.vue";
 import fog from "./04.0fog/fog.vue";
 import light from "./04light/01light.vue";
 import shadowAttr from "./04light/02shadowAttr.vue";

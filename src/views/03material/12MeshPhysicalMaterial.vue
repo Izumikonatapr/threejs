@@ -21,6 +21,9 @@ import * as dat from "dat.gui";
  *
  * @param attenuationColor 衰减颜色 光进入玻璃被吸收一部分 折射一部分 厚度由浅入深 光线衰减越严重 颜色越偏向什么颜色
  * @param attenuationDistance 衰减距离 需要多少的距离 完全衰减到衰减颜色
+ *
+ * @param ior 为非金属材质所设置的折射率 范围1.0到2.333  折射 光->|\
+ * @param reflectivity 反射率           反射     光<=>|           \>
  * 等...
  */
 const gui = new dat.GUI();
@@ -43,9 +46,12 @@ onMounted(() => {
     transparent: true,
     transmission: 1, //透光率 如果不设置粗糙度 无法计算漫反射
     roughness: 0, //粗糙度 粗糙度0 非常光滑 如果不设置粗糙度 那么看起来就像一层薄薄的透明胶带 几乎看不见
-    thickness: 2, //厚度
-    attenuationColor: new THREE.Color(0.5, 0.0, 0),
+    thickness: 1, //厚度
+    attenuationColor: new THREE.Color(0.5, 0.2, 0),
     attenuationDistance: 1,
+    reflectivity: 0.5,
+    ior: 1,
+    opacity: 0.8,
   });
   const cube = new THREE.Mesh(geometry, material);
 
@@ -53,6 +59,8 @@ onMounted(() => {
     .add(cube.material as any, "attenuationDistance", 0, 10)
     .name("颜色衰减距离");
   gui.add(cube.material as any, "thickness", 0, 2).name("厚度");
+  gui.add(cube.material as any, "ior", 0, 2).name("折射率");
+  gui.add(cube.material as any, "reflectivity", 0, 1).name("反射率");
   scene.add(cube);
 });
 

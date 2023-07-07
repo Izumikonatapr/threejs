@@ -9,7 +9,7 @@
 
   <!-- <base01 /> -->
   <!-- 控制器  限制相机位置-->
-  <controls></controls>
+  <!-- <controls></controls> -->
   <!-- 设置物体位置等属性 平移旋转缩放  简单的动画-->
   <!-- <setMeshPosition></setMeshPosition> -->
   <!-- 时钟 Clock -->
@@ -32,7 +32,7 @@
   <!-- 包围盒包围多个物体 -->
   <!-- <BoundingBoxs></BoundingBoxs> -->
   <!-- 边缘几何体 EdgesGeometry -->
-  <!-- <EdgesGeometry></EdgesGeometry> -->
+  <EdgesGeometry></EdgesGeometry>
 
   <!-- 认识材质 -->
   <!-- <material></material> -->
@@ -150,6 +150,9 @@
 
   <!-- 常用工具 -->
   <!-- gltf压缩工具 gltf-pipeline npm install gltf-pipeline -->
+  <!-- 压缩命令 gltf-pipeline -i (须要压缩的文件).glb -o (压缩后输出为文件名).glb -d --draco.compressionLevel=(等级1-10 默认7) -->
+  <!-- 下面是压缩效果比较好的一个配置的示范 -->
+  <!-- gltf-pipeline -i chang.glb -o yasuochang.glb -d --draco.compressionLevel=10 --draco.quantizePositionBits=14 --draco.quantizeNormalBits=10 --quantizeTexcoordBits=12 -->
   <!-- 补间动画 gsap  -->
 </template>
 <script lang="ts" setup>

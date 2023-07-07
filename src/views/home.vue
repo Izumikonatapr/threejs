@@ -32,7 +32,7 @@
   <!-- 包围盒包围多个物体 -->
   <!-- <BoundingBoxs></BoundingBoxs> -->
   <!-- 边缘几何体 EdgesGeometry -->
-  <EdgesGeometry></EdgesGeometry>
+  <!-- <EdgesGeometry></EdgesGeometry> -->
 
   <!-- 认识材质 -->
   <!-- <material></material> -->
@@ -150,6 +150,7 @@
 
   <!-- 常用工具 -->
   <!-- gltf压缩工具 gltf-pipeline npm install gltf-pipeline -->
+  <!-- draco压缩后面数不会减少很多 所以想靠它提升性能不太可行 主要是用来减小体积 因为压缩后需要解码才能使用 因此加载模型时需要更多cpu资源 -->
   <!-- 压缩命令 gltf-pipeline -i (须要压缩的文件).glb -o (压缩后输出为文件名).glb -d --draco.compressionLevel=(等级1-10 默认7) -->
   <!-- 下面是压缩效果比较好的一个配置的示范 -->
   <!-- gltf-pipeline -i chang.glb -o yasuochang.glb -d --draco.compressionLevel=10 --draco.quantizePositionBits=14 --draco.quantizeNormalBits=10 --quantizeTexcoordBits=12 -->

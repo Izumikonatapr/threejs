@@ -54,42 +54,36 @@ onMounted(() => {
   // });
 
   // 如果想将场景中所有建筑物变为线框模式  （科技风）
-  // loader.load("/models/geometry/city.glb", (gltf) => {
-  //   let edgesMaterial = new THREE.LineBasicMaterial({
-  //     color: new THREE.Color("#267ae0"),
-  //     linewidth: 1,
-  //   });
-  //   let material = new THREE.MeshBasicMaterial({
-  //     transparent: true,
-  //     color: new THREE.Color("#2f8ee0"),
-  //     // side: THREE.DoubleSide,
-  //     opacity: 0.3,
-  //     // 混合模式 叠加 叠加层会更亮
-  //     blending: THREE.AdditiveBlending,
-  //   });
-  //   gltf.scene.traverse((child) => {
-  //     // 注意 修改材质的代码要放isMesh外面
-  //     const building = child;
-  //     (<THREE.Mesh>building).material = material;
-  //     if ((<THREE.Mesh>child).isMesh) {
-  //       const geometry = (<THREE.Mesh>building).geometry;
-  //       let edgesGeometry = new THREE.EdgesGeometry(geometry);
+  loader.load("/models/geometry/city.glb", (gltf) => {
+    let edgesMaterial = new THREE.LineBasicMaterial({
+      color: new THREE.Color("#267ae0"),
+      linewidth: 1,
+    });
+    let material = new THREE.MeshBasicMaterial({
+      transparent: true,
+      color: new THREE.Color("#2f8ee0"),
+      // side: THREE.DoubleSide,
+      opacity: 0.3,
+      // 混合模式 叠加 叠加层会更亮
+      blending: THREE.AdditiveBlending,
+    });
+    gltf.scene.traverse((child) => {
+      // 注意 修改材质的代码要放isMesh外面
+      const building = child;
+      (<THREE.Mesh>building).material = material;
+      if ((<THREE.Mesh>child).isMesh) {
+        const geometry = (<THREE.Mesh>building).geometry;
+        let edgesGeometry = new THREE.EdgesGeometry(geometry);
 
-  //       const edges = new THREE.LineSegments(edgesGeometry, edgesMaterial);
-  //       building?.updateWorldMatrix(true, true);
-  //       edges.matrix.copy(building!.matrixWorld);
-  //       edges.matrix.decompose(edges.position, edges.quaternion, edges.scale);
-  //       scene.add(edges);
-  //     } else {
-  //       scene.add(child);
-  //     }
-  //   });
-  // });
-  loader.load("/models/yasuochang.glb", (gltf) => {
-    scene.add(gltf.scene);
-    console.log("====================================");
-    console.log(gltf.scene);
-    console.log("====================================");
+        const edges = new THREE.LineSegments(edgesGeometry, edgesMaterial);
+        building?.updateWorldMatrix(true, true);
+        edges.matrix.copy(building!.matrixWorld);
+        edges.matrix.decompose(edges.position, edges.quaternion, edges.scale);
+        scene.add(edges);
+      } else {
+        scene.add(child);
+      }
+    });
   });
 });
 

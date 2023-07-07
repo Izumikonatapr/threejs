@@ -60,7 +60,7 @@ controls.minDistance = 2.5;
 // 设置允许旋转的垂直角度上下限
 controls.minPolarAngle = Math.PI / 4;
 controls.maxPolarAngle = Math.PI / 1.8;
-// 设置允许旋转的水平角度上下限
+// 设置允许旋转的水平角度上下限 有效值范围[-2*Math.PI,2*Math.PI] 旋转角度的上限和下限插值小于2*Math.PI 默认值无穷大
 controls.minAzimuthAngle = Math.PI / 4;
 controls.maxAzimuthAngle = Math.PI / 1.3;
 

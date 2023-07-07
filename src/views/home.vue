@@ -8,8 +8,8 @@
   <!-- 基础 -->
 
   <!-- <base01 /> -->
-  <!-- 控制器 -->
-  <!-- <controls></controls> -->
+  <!-- 控制器  限制相机位置-->
+  <controls></controls>
   <!-- 设置物体位置等属性 平移旋转缩放  简单的动画-->
   <!-- <setMeshPosition></setMeshPosition> -->
   <!-- 时钟 Clock -->
@@ -60,7 +60,10 @@
   <!-- <meshPhysicalMaterial></meshPhysicalMaterial> -->
   <!-- 高级物理材质 清漆效果 -->
   <!-- <MeshPhysicalMateriallAcquer></MeshPhysicalMateriallAcquer> -->
-  <MeshPhysicalMateriallSheen></MeshPhysicalMateriallSheen>
+  <!-- 泛光 布料表面效果 -->
+  <!-- <MeshPhysicalMateriallSheen></MeshPhysicalMateriallSheen> -->
+  <!-- 镜面虹彩效果 (就像眼睛折射光之后发蓝发绿)-->
+  <!-- <iridescence></iridescence> -->
 
   <!-- 雾 -->
   <!-- <fog></fog> -->
@@ -178,6 +181,7 @@ import glass from "./03material/11glass.vue";
 import meshPhysicalMaterial from "./03material/12MeshPhysicalMaterial.vue";
 import MeshPhysicalMateriallAcquer from "./03material/13MeshPhysicalMateriallAcquer.vue";
 import MeshPhysicalMateriallSheen from "./03material/14MeshPhysicalMaterialSheen.vue";
+import iridescence from "./03material/15iridescence.vue";
 import fog from "./04.0fog/fog.vue";
 import light from "./04light/01light.vue";
 import shadowAttr from "./04light/02shadowAttr.vue";

@@ -16,6 +16,7 @@ import * as dat from "dat.gui";
  */
 const gui = new dat.GUI();
 const rgbeLoader = new RGBELoader();
+const loader = new THREE.TextureLoader();
 onMounted(() => {
   const ambientLight = new THREE.AmbientLight(0xffffff, 1);
   scene.add(ambientLight);
@@ -24,11 +25,17 @@ onMounted(() => {
     scene.background = envMap;
     scene.environment = envMap;
   });
+  const brickRoughness = loader.load(
+    "/02material/textures/brick_roughness.jpg"
+  );
+  const brickColor = loader.load("/02material/textures/brick_diffuse.jpg");
   const geometry = new THREE.SphereGeometry(1, 32, 32);
   const material = new THREE.MeshPhysicalMaterial({
     color: new THREE.Color(0.1, 0.1, 0.4),
+    roughness: 1,
     sheen: 1,
     sheenColor: new THREE.Color(1, 1, 1),
+    sheenColorMap: brickRoughness,
     sheenRoughness: 1,
   });
   const cube = new THREE.Mesh(geometry, material);

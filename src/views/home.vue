@@ -36,6 +36,8 @@
 
   <!-- 认识材质 -->
   <!-- <material></material> -->
+  <!-- 着色方式 平直 平滑-->
+  <!-- <flatShading></flatShading> -->
   <!-- 纹理缩放方式 -->
   <!-- <mipmap></mipmap> -->
   <!-- 纹理透明和渲染多面 -->
@@ -173,6 +175,7 @@ import BoundingBox from "./02geometry/boundingBox.vue";
 import BoundingBoxs from "./02geometry/boundingBoxs.vue";
 import EdgesGeometry from "./02geometry/edgesGeometry.vue";
 import material from "./03material/01material.vue";
+import flatShading from "./03material/16flatShading.vue";
 import opacityMaterial from "./03material/03opacity.vue";
 import aomap from "./03material/04aomap.vue";
 import pbr from "./03material/05pbr.vue";

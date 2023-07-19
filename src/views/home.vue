@@ -20,6 +20,8 @@
   <!-- <screenfull></screenfull> -->
   <!-- 浏览器变量调试 gui库 -->
   <!-- <gui></gui> -->
+  <!-- threejs场景的保存导入和导出 -->
+  <load></load>
 
   <!-- 认识几何体  -->
   <!-- <BoxGeometry></BoxGeometry> -->
@@ -168,6 +170,9 @@ import clock from "./01base/04clock.vue";
 import gsap from "./01base/05gsap.vue";
 import screenfull from "./01base/06screenfull.vue";
 import gui from "./01base/07gui.vue";
+import load from "./01base/08load.vue";
+import loaded from "./01base/09load copy.vue";
+
 import BoxGeometry from "./02geometry/boxGeometry.vue";
 import geometryTranslate from "./02geometry/geometryTranslate.vue";
 import VertexGroup from "./02geometry/vertexGroup.vue";

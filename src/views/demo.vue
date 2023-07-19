@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { json } from "stream/consumers";
 import { reactive, ref, onMounted } from "vue";
-import { app as initApp } from "./initScene";
+import { createApp } from "./initScene";
 import Stats from "three/examples/jsm/libs/stats.module";
 import gasp from "gsap";
 
@@ -11,6 +11,7 @@ const { scene, controls, camera, clock } = app;
 camera.position.set(10, 20, 50);
 const stats = new Stats();
 document.body.appendChild(stats.dom);
+
 
 const meshGroup = new THREE.Group();
 scene.add(meshGroup);

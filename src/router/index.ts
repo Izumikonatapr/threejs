@@ -9,6 +9,11 @@ const routes: any = [
     name: 'home',
     component: () => import('@views/home.vue'),
   },
+  {
+    path: '/demo',
+    name: 'demo',
+    component: () => import('@views/demo.vue'),
+  },
   // 3d官网demo
   {
     path: '/officialWebsite3d',

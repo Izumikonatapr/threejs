@@ -14,15 +14,16 @@ onMounted(() => {
    * THREE.NearsetFilter 一个像素的纹理覆盖掉多个像素的纹素  可以理解为点对点缩放
    */
   texture.magFilter = THREE.NearestFilter;
-
   /**
    * 纹理属性
    * @param minFilter 与上个属性相反 纹理贴图分辨率512X512  如果我缩小镜头  他的每个纹素没有一个像素的空间可用了 那么如何计算？
-   * 默认值为 THREE.LinearMipmapLinearFilter 他使用mipmapping(gpu会自动生成一半大小的图再次生成一半 往复多次 自动匹配哪个最接近你需要渲染的图 然后使用这个图渲染)
+   * 默认值为 THREE.LinearMipmapLinearFilter 他使用mipmapping(gpu会自动生成一半大小的图再次生成一半 往复多次 自动匹配哪个最接近你需要渲染的图 然后使用这个图渲染) 详见yvque文档中03 10卫星图
    * 以及三线性过滤(两个像素之间曲最接近的插值的算法)
    * THREEJS文档中 缩小滤镜 Minifiction Filters 中还有几种方式可以查看 比如NearestMipmapLinearFilter 取两个最接近的minimap的平均值
    * https://www.three3d.cn/docs/index.html?q=texture#api/zh/constants/Textures
+   * 如果不使用mipmap 线性插值或者取最近的话就算哪个位置有400x400的像素 最后也会变成只用到了1x1 或者2x2 其余三百多像素点完全无用 浪费显存还不精准 缩小后会出现摩尔纹
    */
+   // https://www.yuque.com/yun41s/bbsl9p/fw3bpcecgcxri70o 密码lzzk   03 材质进阶 10 纹理属性 文档 示例
   const baseMaterial = new THREE.MeshBasicMaterial({
     map: texture,
   });

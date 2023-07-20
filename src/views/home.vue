@@ -71,6 +71,10 @@
   <!-- 自发光贴图 -->
   <!-- <emissiveMap></emissiveMap> -->
 
+  <!-- 贴图 -->
+  <!-- 预乘alpha -->
+  <alphaTexture></alphaTexture>
+
   <!-- 雾 -->
   <!-- <fog></fog> -->
 
@@ -197,6 +201,7 @@ import MeshPhysicalMateriallAcquer from "./03material/13MeshPhysicalMateriallAcq
 import MeshPhysicalMateriallSheen from "./03material/14MeshPhysicalMaterialSheen.vue";
 import iridescence from "./03material/15iridescence.vue";
 import emissiveMap from "./03material/17emissiveMap.vue";
+import alphaTexture from "./03texture/01alpha.vue";
 import fog from "./04.0fog/fog.vue";
 import light from "./04light/01light.vue";
 import shadowAttr from "./04light/02shadowAttr.vue";

@@ -21,7 +21,7 @@
   <!-- 浏览器变量调试 gui库 -->
   <!-- <gui></gui> -->
   <!-- threejs场景的保存导入和导出 -->
-  <load></load>
+  <!-- <load></load> -->
 
   <!-- 认识几何体  -->
   <!-- <BoxGeometry></BoxGeometry> -->
@@ -68,6 +68,8 @@
   <!-- <MeshPhysicalMateriallSheen></MeshPhysicalMateriallSheen> -->
   <!-- 镜面虹彩效果 (就像眼睛折射光之后发蓝发绿)-->
   <!-- <iridescence></iridescence> -->
+  <!-- 自发光贴图 -->
+  <emissiveMap></emissiveMap>
 
   <!-- 雾 -->
   <!-- <fog></fog> -->
@@ -194,6 +196,7 @@ import meshPhysicalMaterial from "./03material/12MeshPhysicalMaterial.vue";
 import MeshPhysicalMateriallAcquer from "./03material/13MeshPhysicalMateriallAcquer.vue";
 import MeshPhysicalMateriallSheen from "./03material/14MeshPhysicalMaterialSheen.vue";
 import iridescence from "./03material/15iridescence.vue";
+import emissiveMap from "./03material/17emissiveMap.vue";
 import fog from "./04.0fog/fog.vue";
 import light from "./04light/01light.vue";
 import shadowAttr from "./04light/02shadowAttr.vue";

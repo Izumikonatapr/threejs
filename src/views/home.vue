@@ -69,7 +69,7 @@
   <!-- 镜面虹彩效果 (就像眼睛折射光之后发蓝发绿)-->
   <!-- <iridescence></iridescence> -->
   <!-- 自发光贴图 -->
-  <emissiveMap></emissiveMap>
+  <!-- <emissiveMap></emissiveMap> -->
 
   <!-- 雾 -->
   <!-- <fog></fog> -->

@@ -168,8 +168,8 @@ void main() {
     // 30 旋转函数 glsl没有内置的旋转函数  可以考虑使用 自定义的旋转函数  或者 在顶点着色器中旋转矩阵
     // 旋转飞镖           原始uv     45度                中心点在0.5  vec2（value） 可以省略一个值
     // 把角度替换为时钟可以看到动画 uTime 再乘以一个speed unifroms传入变量
-    vec2 rotateUv = rotate(vUv, uTime, vec2(0.5));
-    float strength = 0.4 / distance(vec2(rotateUv.x, (rotateUv.y - 0.5) * 5.0 + 0.5), vec2(0.5, 0.5)) - 0.5;
-    strength += 0.4 / distance(vec2(rotateUv.y, (rotateUv.x - 0.5) * 5.0 + 0.5), vec2(0.5, 0.5)) - 0.5;
-    gl_FragColor = vec4(strength, strength, strength, strength);
+    // vec2 rotateUv = rotate(vUv, uTime, vec2(0.5));
+    // float strength = 0.4 / distance(vec2(rotateUv.x, (rotateUv.y - 0.5) * 5.0 + 0.5), vec2(0.5, 0.5)) - 0.5;
+    // strength += 0.4 / distance(vec2(rotateUv.y, (rotateUv.x - 0.5) * 5.0 + 0.5), vec2(0.5, 0.5)) - 0.5;
+    // gl_FragColor = vec4(strength, strength, strength, strength);
 }

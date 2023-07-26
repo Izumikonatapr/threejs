@@ -40,7 +40,7 @@
   <!-- <material></material> -->
   <!-- 着色方式 平直 平滑-->
   <!-- <flatShading></flatShading> -->
-  <!-- 纹理缩放方式 -->
+  <!-- 纹理映射 mipmap 放大缩小时 纹理缩放方式 -->
   <!-- <mipmap></mipmap> -->
   <!-- 纹理透明和渲染多面 -->
   <!-- <opacityMaterial></opacityMaterial> -->
@@ -56,7 +56,7 @@
   <!-- <memory></memory> -->
   <!-- 材质色彩空间 renderer也可以修改色彩空间 -->
   <!-- <srgb></srgb> -->
-  <!-- 烘焙贴图材质 --> 
+  <!-- 烘焙贴图材质 -->
   <!-- <meshMatCapMaterial></meshMatCapMaterial> -->
   <!-- 制作玻璃效果 -->
   <!-- <glass></glass> -->
@@ -70,10 +70,16 @@
   <!-- <iridescence></iridescence> -->
   <!-- 自发光贴图 -->
   <!-- <emissiveMap></emissiveMap> -->
+  <!-- 各向异性anisotropy 视角斜着看 宽高变化时 纹理的缩放方式-->
+  <!-- <anisotropy></anisotropy> -->
 
   <!-- 贴图 -->
   <!-- 预乘alpha -->
-  <alphaTexture></alphaTexture>
+  <!-- <alphaTexture></alphaTexture> -->
+  <!-- 不同文件类型的贴图优缺点 -->
+  <!-- <fileType></fileType> -->
+  <!-- ktx2格式gpu贴图示范 -->
+  <ktx2></ktx2>
 
   <!-- 雾 -->
   <!-- <fog></fog> -->
@@ -201,7 +207,10 @@ import MeshPhysicalMateriallAcquer from "./03material/13MeshPhysicalMateriallAcq
 import MeshPhysicalMateriallSheen from "./03material/14MeshPhysicalMaterialSheen.vue";
 import iridescence from "./03material/15iridescence.vue";
 import emissiveMap from "./03material/17emissiveMap.vue";
+import anisotropy from "./03material/18anisotropy.vue";
 import alphaTexture from "./03texture/01alpha.vue";
+import fileType from "./03texture/02filetype.vue";
+import ktx2 from "./03texture/03ktx2.vue";
 import fog from "./04.0fog/fog.vue";
 import light from "./04light/01light.vue";
 import shadowAttr from "./04light/02shadowAttr.vue";

@@ -56,7 +56,7 @@
   <!-- <memory></memory> -->
   <!-- 材质色彩空间 renderer也可以修改色彩空间 -->
   <!-- <srgb></srgb> -->
-  <!-- 烘焙贴图材质 -->
+  <!-- 烘焙贴图材质 --> 
   <!-- <meshMatCapMaterial></meshMatCapMaterial> -->
   <!-- 制作玻璃效果 -->
   <!-- <glass></glass> -->

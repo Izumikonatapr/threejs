@@ -72,6 +72,12 @@
   <!-- <emissiveMap></emissiveMap> -->
   <!-- 各向异性anisotropy 视角斜着看 宽高变化时 纹理的缩放方式-->
   <!-- <anisotropy></anisotropy> -->
+  <!-- 深度 -->
+  <!-- <depth></depth> -->
+  <!-- 混合方式 -->
+  <!-- <blend></blend> -->
+  <!-- 透明杯子 透明水 冰块 多个透明物体混合渲染bug解决 -->
+  <cup></cup>
 
   <!-- 贴图 -->
   <!-- 预乘alpha -->
@@ -81,7 +87,7 @@
   <!-- ktx2格式gpu贴图示范 -->
   <!-- <ktx2></ktx2> -->
   <!-- exr加载示范 -->
-  <exr></exr>
+  <!-- <exr></exr> -->
 
   <!-- 雾 -->
   <!-- <fog></fog> -->
@@ -210,6 +216,9 @@ import MeshPhysicalMateriallSheen from "./03material/14MeshPhysicalMaterialSheen
 import iridescence from "./03material/15iridescence.vue";
 import emissiveMap from "./03material/17emissiveMap.vue";
 import anisotropy from "./03material/18anisotropy.vue";
+import depth from "./03material/19depth.vue";
+import blend from "./03material/20blend.vue";
+import cup from "./03material/21cup.vue";
 import alphaTexture from "./03texture/01alpha.vue";
 import fileType from "./03texture/02filetype.vue";
 import ktx2 from "./03texture/03ktx2.vue";

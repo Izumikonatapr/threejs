@@ -19,7 +19,7 @@ import dat from "dat.gui";
  * tga 用于久远年代以前的环境下 80年代的显卡
  * tiff 用于存储高质量图像和纹理 
  * hdr 高动态范围图像格式
- * exr 高动态范围 支持无损和有损压缩
+ * exr 高动态范围 支持无损和有损压缩 兼容性好  常用
  * LogLuv 将png的透明通道改为亮度通道来实现高动态范围 更好的兼容性
  */
 const GUI = new dat.GUI();

@@ -1,6 +1,6 @@
 <template>
   <!-- webgl理论 -->
-  <!-- https://www.yuque.com/yun41s/bbsl9p/kgir0b -->
+  <!-- https://www.yuque.com/yun41s/bbsl9p/kgir0b  密码lzzk-->
   <!-- webgl实战 -->
   <!-- <webgl></webgl> -->
   <!-- 绘制一个三角形 -->
@@ -79,7 +79,9 @@
   <!-- 不同文件类型的贴图优缺点 -->
   <!-- <fileType></fileType> -->
   <!-- ktx2格式gpu贴图示范 -->
-  <ktx2></ktx2>
+  <!-- <ktx2></ktx2> -->
+  <!-- exr加载示范 -->
+  <exr></exr>
 
   <!-- 雾 -->
   <!-- <fog></fog> -->
@@ -211,6 +213,7 @@ import anisotropy from "./03material/18anisotropy.vue";
 import alphaTexture from "./03texture/01alpha.vue";
 import fileType from "./03texture/02filetype.vue";
 import ktx2 from "./03texture/03ktx2.vue";
+import exr from "./03texture/04exr.vue";
 import fog from "./04.0fog/fog.vue";
 import light from "./04light/01light.vue";
 import shadowAttr from "./04light/02shadowAttr.vue";

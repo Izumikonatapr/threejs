@@ -44,6 +44,10 @@ class app {
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.renderer.setPixelRatio(window.devicePixelRatio);
         this.renderer.shadowMap.enabled = true
+        // this.renderer.outputColorSpace = THREE.sRGBEncoding;
+        // this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        // this.renderer.toneMappingExposure = 1.0;
+        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
         if (options?.controls) {
             this.controls = new OrbitControls(this.camera, this.renderer.domElement);

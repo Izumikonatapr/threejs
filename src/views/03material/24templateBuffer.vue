@@ -40,9 +40,9 @@ onMounted(() => {
   });
   const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 
-  //  你也可以选择让小球z轴值为负数  不过记得把小球的深度写入关了 让他永远显示
+  //  你也可以选择让小球z轴值为负数  不过记得把小球的深度测试关了 让他永远显示
   sphere.position.z = 1;
-  scene.add(plane, sphere); 
+  scene.add(plane, sphere);
 });
 
 const app = createApp("container");

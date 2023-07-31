@@ -10,6 +10,7 @@ import { onBeforeUnmount, onMounted } from "vue";
  * 因为当前物体红色不透明  红色(1.0,0.0,0.0) + 黄色(1.0,1.0,0.0) * 0 = (1.0,0.0,0.0) 得出红色
  *
  * 你可以设置混合模式  公式是颜色相加 (相减 还是相乘  会忽略透明度)颜色混合后超过1不会更高 三原色都超过1 也只会显示 1，1，1 白色
+ * 设置混合模式一定要将 material.blending设置为 THREE.CustomBlending 自定义混合模式 然后再修改blendDst 否则不会生效
  */
 new RGBELoader().load("/02material/textures/hdr/004.hdr", (envMap) => {
   envMap.mapping = THREE.EquirectangularRefractionMapping;

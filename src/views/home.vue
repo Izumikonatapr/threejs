@@ -77,7 +77,9 @@
   <!-- 混合方式 -->
   <!-- <blend></blend> -->
   <!-- 透明杯子 透明水 冰块 多个透明物体混合渲染bug解决 -->
-  <cup></cup>
+  <!-- <cup></cup> -->
+  <!-- 裁剪平面 -->
+  <clip></clip>
 
   <!-- 贴图 -->
   <!-- 预乘alpha -->
@@ -219,6 +221,7 @@ import anisotropy from "./03material/18anisotropy.vue";
 import depth from "./03material/19depth.vue";
 import blend from "./03material/20blend.vue";
 import cup from "./03material/21cup.vue";
+import clip from "./03material/22clip.vue";
 import alphaTexture from "./03texture/01alpha.vue";
 import fileType from "./03texture/02filetype.vue";
 import ktx2 from "./03texture/03ktx2.vue";

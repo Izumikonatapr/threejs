@@ -28,7 +28,9 @@ class app {
     axes?: THREE.AxesHelper;
     clock: THREE.Clock
     renderVar: any;
+    renderFunList: Array<Function>;
     constructor(domId: domId, options: options) {
+        this.renderFunList = []
         this.scene = new THREE.Scene()
         this.camera = new THREE.PerspectiveCamera(
             75,
@@ -74,9 +76,18 @@ class app {
          * 开始渲染
          * @param {number} dt 两帧之间的间隔时间
          */
+
         if (this.controls) this.controls.update();
+
         this.renderer.render(this.scene, this.camera)
+
+        if (this.renderFunList) {
+            this.renderFunList.forEach(element => {
+                element()
+            });
+        }
         this.renderVar = requestAnimationFrame(this.tick)
+
     }
     tick = (): void => {
         try {

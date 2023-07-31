@@ -81,7 +81,10 @@
   <!-- 裁剪平面 -->
   <!-- <clip></clip> -->
   <!-- 屏幕画面裁剪 -->
-  <sceneClip></sceneClip>
+  <!-- <sceneClip></sceneClip> -->
+  <!-- 模板缓冲区 让小球只在某平面上才会渲染-->
+  <!-- <templateBuffer></templateBuffer> -->
+  <templateClip></templateClip>
 
   <!-- 贴图 -->
   <!-- 预乘alpha -->
@@ -225,6 +228,8 @@ import blend from "./03material/20blend.vue";
 import cup from "./03material/21cup.vue";
 import clip from "./03material/22clip.vue";
 import sceneClip from "./03material/23screenClip.vue";
+import templateBuffer from "./03material/24templateBuffer.vue";
+import templateClip from "./03material/25clip.vue";
 import alphaTexture from "./03texture/01alpha.vue";
 import fileType from "./03texture/02filetype.vue";
 import ktx2 from "./03texture/03ktx2.vue";

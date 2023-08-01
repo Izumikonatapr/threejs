@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import * as THREE from "three";
-import { createApp } from "@/views/initScene";
+import { createApp } from "@/views/createApp";
 import { onMounted, render } from "vue";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 import dat from "dat.gui";

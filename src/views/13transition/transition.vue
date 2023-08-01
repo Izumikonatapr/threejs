@@ -2,7 +2,7 @@
 import { onBeforeUnmount } from "vue";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import * as THREE from "three";
-import { createApp } from "@/views/initScene";
+import { createApp } from "@/views/createApp";
 import gsap from "gsap";
 const { scene, camera, controls, renderer, clock } = createApp("container");
 const aLight = new THREE.AmbientLight();

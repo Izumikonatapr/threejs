@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import * as THREE from "three";
-import { createApp } from "@/views/initScene";
+import { createApp } from "@/views/createApp";
 import { onBeforeUnmount, onMounted } from "vue";
 onMounted(() => {
   // 自定义缓冲区顶点

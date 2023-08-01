@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import * as THREE from "three";
-import { createApp } from "@/views/initScene";
+import { createApp } from "@/views/createApp";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 import { onBeforeUnmount, onMounted } from "vue";

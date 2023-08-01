@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { onBeforeUnmount } from "vue";
 import * as THREE from "three";
-import { createApp } from "@/views/initScene";
+import { createApp } from "@/views/createApp";
 import vertexShader from "./02shaderV.glsl?raw";
 import fragmentShader from "./02shaderF.glsl?raw";
 const app = createApp("container");

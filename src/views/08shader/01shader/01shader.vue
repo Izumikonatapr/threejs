@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import * as THREE from "three";
-import { createApp } from "@/views/initScene";
+import { createApp } from "@/views/createApp";
 // 为了语法高亮和提示 把glsl文件放外面导入 vite导入原始类型文件需要加 ?raw
 import baseVertexShader from "./01shaderV.glsl?raw";
 import baseFragmentShader from "./01shaderF.glsl?raw";

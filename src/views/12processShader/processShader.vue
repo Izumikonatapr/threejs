@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { onBeforeUnmount } from "vue";
 import * as THREE from "three";
-import { createApp } from "@/views/initScene";
+import { createApp } from "@/views/createApp";
 const { scene, camera, controls, renderer, clock } = createApp("container");
 const planeGeometry = new THREE.PlaneGeometry(1, 1, 10, 10);
 const planeMaterial = new THREE.MeshBasicMaterial({

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import * as THREE from "three";
-import { createApp } from "@/views/initScene";
+import { createApp } from "@/views/createApp";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 import { onBeforeUnmount, onMounted } from "vue";
 /**

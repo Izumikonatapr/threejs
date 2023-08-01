@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import * as THREE from "three";
-import { createApp } from "@/views/initScene";
+import { createApp } from "@/views/createApp";
 import { onBeforeUnmount, onMounted } from "vue";
 /**
  * 模拟真实感的太阳光照

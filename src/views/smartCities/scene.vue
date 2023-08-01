@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // 智慧城市实现
-import { createApp } from "@/views/initScene";
+import { createApp } from "@/views/createApp";
 import { gsap } from "gsap";
 import * as THREE from "three";
 

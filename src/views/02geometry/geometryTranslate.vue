@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import * as THREE from "three";
-import { createApp } from "@/views/initScene";
+import { createApp } from "@/views/createApp";
 import { onBeforeUnmount, onMounted } from "vue";
 // 物体的平移旋转缩放等操作  以及顶点操作
 // 这种方式可以用来纠正别人给你的模型之类的数据中心点不居中的问题 如果你没法让他居中的话

@@ -84,7 +84,7 @@
   <!-- <sceneClip></sceneClip> -->
   <!-- 模板缓冲区 让小球只在某平面上才会渲染-->
   <!-- <templateBuffer></templateBuffer> -->
-  <templateClip></templateClip>
+  <!-- <templateClip></templateClip> -->
 
   <!-- 贴图 -->
   <!-- 预乘alpha -->
@@ -170,6 +170,9 @@
 
   <!-- 变形动画 -->
   <!-- <transitionAnimate></transitionAnimate> -->
+
+  <!-- 动画 -->
+  <animation></animation>
 
   <!-- 全景看房 -->
   <!-- <room></room> -->
@@ -259,6 +262,7 @@ import tracks from "./11arc/track.vue";
 import Kongmingdeng from "./demo/kongming/kongmingdeng.vue";
 import processShader from "./12processShader/processShader.vue";
 import transitionAnimate from "./13transition/transition.vue";
+import animation from "./14animation/01animation.vue";
 import room from "./demo/room/room.vue";
 import smartCities from "./smartCities/index.vue";
 </script>

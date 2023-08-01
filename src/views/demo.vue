@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { json } from "stream/consumers";
 import { reactive, ref, onMounted } from "vue";
-import { createApp } from "./initScene";
+import { createApp } from "./createApp";
 import Stats from "three/examples/jsm/libs/stats.module";
 import gasp from "gsap";
 

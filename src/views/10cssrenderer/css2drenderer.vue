@@ -4,7 +4,7 @@ import {
   CSS2DRenderer,
   CSS2DObject,
 } from "three/examples/jsm/renderers/CSS2DRenderer";
-import { createApp } from "@/views/initScene";
+import { createApp } from "@/views/createApp";
 import { onMounted } from "vue";
 
 // 页面挂载前销毁掉之前的标签

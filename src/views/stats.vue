@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import * as THREE from "three";
-import { createApp } from "@/views/initScene";
+import { createApp } from "@/views/createApp";
 import Stats from "three/examples/jsm/libs/stats.module";
 const app = createApp("container");
 const { scene, controls, camera, clock } = app;

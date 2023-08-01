@@ -6,7 +6,7 @@ import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 import { City } from "./City";
 import dat from "dat.gui";
 const app = createApp("container");
-const { scene, controls, camera, clock, renderer } = app;
+const { scene, controls, camera, clock, renderer, renderFunList } = app;
 const gui = new dat.GUI();
 
 onMounted(() => {
@@ -22,6 +22,10 @@ onMounted(() => {
     scene.environment = envMap;
   });
   const city = new City(scene);
+  renderFunList.push(() => {
+    const dt = clock.getDelta();
+    city.update(dt);
+  });
 });
 </script>
 <template>

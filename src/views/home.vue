@@ -172,7 +172,10 @@
   <!-- <transitionAnimate></transitionAnimate> -->
 
   <!-- 模型动画 智慧园区 视角跟随-->
-  <animation></animation>
+  <!-- <animation></animation> -->
+
+  <!-- 骨骼动画 -->
+  <skeletalAnimation></skeletalAnimation>
 
   <!-- 全景看房 -->
   <!-- <room></room> -->
@@ -263,6 +266,7 @@ import Kongmingdeng from "./demo/kongming/kongmingdeng.vue";
 import processShader from "./12processShader/processShader.vue";
 import transitionAnimate from "./13transition/transition.vue";
 import animation from "./14animation/01animation.vue";
+import skeletalAnimation from "./15skeletalAnimation/01skeletal.vue";
 import room from "./demo/room/room.vue";
 import smartCities from "./smartCities/index.vue";
 </script>

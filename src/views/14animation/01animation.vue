@@ -42,6 +42,8 @@ const toggleCamera = (name) => {
   app.camera = cameraClass.activeCamera;
 };
 const toggleControls = (name) => {
+  cameraClass.setActive("default");
+  app.camera = cameraClass.activeCamera;
   ControlsClass[name](cameraClass.activeCamera, renderer);
   app.controls = ControlsClass.controls;
 };

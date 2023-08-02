@@ -2,7 +2,8 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import { FlyControls } from "three/examples/jsm/controls/FlyControls"
 export class Controls {
     controls
-    constructor() {
+    constructor(controls) {
+        this.controls = controls
     }
     setOrbitControls(camera, renderer) {
         this.controls ? this.controls.dispose() : ''

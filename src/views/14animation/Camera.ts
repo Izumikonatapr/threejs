@@ -13,8 +13,5 @@ export class Camera {
     }
     setActive(name) {
         this.activeCamera = this.collection[name]
-        console.log('====================================');
-        console.log(name, this.activeCamera);
-        console.log('====================================');
     }
-} 
+}   

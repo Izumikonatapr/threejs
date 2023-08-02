@@ -172,10 +172,10 @@
   <!-- <transitionAnimate></transitionAnimate> -->
 
   <!-- 模型动画 智慧园区 视角跟随-->
-  <!-- <animation></animation> -->
+  <animation></animation>
 
   <!-- 骨骼动画 -->
-  <skeletalAnimation></skeletalAnimation>
+  <!-- <skeletalAnimation></skeletalAnimation> -->
 
   <!-- 全景看房 -->
   <!-- <room></room> -->

@@ -9,7 +9,8 @@ import dat from "dat.gui";
 import { Camera } from "./Camera";
 // 控制器管理模块
 import { Controls } from "./Controls";
-
+import { gsap } from "gsap";
+import { Raycaster } from "@utils/Raycaster";
 const app = createApp("container");
 const { scene, controls, camera, clock, renderer, renderFunList } = app;
 const gui = new dat.GUI();
@@ -18,8 +19,10 @@ const gui = new dat.GUI();
 const cameraClass = new Camera(camera);
 cameraClass.add("default", camera);
 
-const ControlsClass = new Controls();
+const ControlsClass = new Controls(controls);
 ControlsClass.setOrbitControls(cameraClass.activeCamera, renderer);
+app.controls = ControlsClass.controls;
+let city;
 onMounted(() => {
   camera.position.set(1000, 1000, 1000);
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
@@ -32,7 +35,7 @@ onMounted(() => {
     scene.background = envMap;
     scene.environment = envMap;
   });
-  const city = new City(scene, cameraClass);
+  city = new City(scene, cameraClass);
   renderFunList.push((dt) => {
     city.update(dt);
   });
@@ -47,7 +50,28 @@ const toggleControls = (name) => {
   ControlsClass[name](cameraClass.activeCamera, renderer);
   app.controls = ControlsClass.controls;
 };
-toggleControls("setOrbitControls");
+
+const focus = () => {
+  const Stark = scene.getObjectByName("Stark_Tower")!;
+  const redcarPosition = Stark.position.clone();
+  gsap.to(ControlsClass.controls.target, {
+    x: redcarPosition.x,
+    y: redcarPosition.z,
+    z: redcarPosition.z,
+    duration: 1,
+    ease: "none",
+    onComplete: () => {
+      gsap.to(cameraClass.activeCamera.position, {
+        x: redcarPosition.x + 50,
+        y: redcarPosition.y + 50,
+        z: redcarPosition.z + 50,
+        duration: 2,
+        ease: "none",
+      });
+    },
+  });
+};
+const raycaster = new Raycaster(cameraClass.activeCamera, scene, (res) => {});
 </script>
 <template>
   <div id="container"></div>
@@ -64,6 +88,8 @@ toggleControls("setOrbitControls");
       <br />
       <button @click="toggleControls('setOrbitControls')">轨道控制器</button>
       <button @click="toggleControls('setFlyControls')">飞行漫游模式</button>
+      <br />
+      <button @click="focus()">聚焦</button>
     </div>
   </div>
 </template>

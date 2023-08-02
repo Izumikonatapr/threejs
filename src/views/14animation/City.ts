@@ -15,7 +15,9 @@ export class City {
     curveProgress: number | undefined
     gltf
     redcar
-    constructor(scene) {
+    cameraClass
+    constructor(scene, cameraClass) {
+        this.cameraClass = cameraClass
         this.scene = scene
         this.loader = new GLTFLoader();
         this.loader.setDRACOLoader(dracoLoader);
@@ -34,12 +36,10 @@ export class City {
                 }
                 if (child.name == '汽车园区轨迹') {
                     const line: any = child;
+                    line.visible = false
                     const points: any = []
                     // 得到线几何体的向量数据  注意 attribute 中 position 三个一组  因此count为向量的数量 循环应该用count 而不是length
                     // 获得xyz有THREE自带的getX、Y、Z函数 自动区分3个一组的向量xyz
-                    console.log('====================================');
-                    console.log(line.geometry);
-                    console.log('====================================');
                     for (let i = 0; i < line.geometry.attributes.position.count; i++) {
                         points.push(new THREE.Vector3(
                             line.geometry.attributes.position.getX(i),
@@ -55,6 +55,9 @@ export class City {
                 if (child.name == 'redcar') {
                     this.redcar = child
                 }
+                gltf.cameras.forEach((camera) => {
+                    this.cameraClass.add(camera.name, camera)
+                })
             })
         });
     }
@@ -72,6 +75,10 @@ export class City {
             onUpdate: () => {
                 const point = this.curve!.getPoint(this.curveProgress!);
                 this.redcar.position.set(point?.x, point?.y, point?.z)
+                //  让小汽车一直看向下一个点的方向
+                if (this.curveProgress! + 0.001 < 1) {
+                    this.redcar.lookAt(this.curve?.getPoint(this.curveProgress! + 0.001))
+                }
             }
         })
     }

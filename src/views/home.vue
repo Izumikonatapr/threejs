@@ -171,7 +171,7 @@
   <!-- 变形动画 -->
   <!-- <transitionAnimate></transitionAnimate> -->
 
-  <!-- 动画 -->
+  <!-- 模型动画 智慧园区 视角跟随-->
   <animation></animation>
 
   <!-- 全景看房 -->

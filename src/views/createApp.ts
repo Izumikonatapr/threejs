@@ -24,7 +24,7 @@ class app {
     scene: THREE.Scene;
     camera: THREE.PerspectiveCamera
     renderer: THREE.WebGLRenderer;
-    controls?: OrbitControls;
+    controls?: any;
     axes?: THREE.AxesHelper;
     clock: THREE.Clock
     renderVar: any;
@@ -86,14 +86,13 @@ class app {
      * 开始渲染
      * @param {number} dt 两帧之间的间隔时间
      */
-
-        if (this.controls) this.controls.update();
-
+        const dt = this.clock.getDelta()
+        if (this.controls) this.controls.update(dt);
         this.renderer.render(this.scene, this.camera)
 
         if (this.renderFunList) {
             this.renderFunList.forEach(element => {
-                element()
+                element(dt)
             });
         }
         this.renderVar = requestAnimationFrame(this.tick)

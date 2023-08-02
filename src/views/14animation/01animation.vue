@@ -22,7 +22,6 @@ cameraClass.add("default", camera);
 const ControlsClass = new Controls(controls);
 ControlsClass.setOrbitControls(cameraClass.activeCamera, renderer);
 app.controls = ControlsClass.controls;
-let city;
 onMounted(() => {
   camera.position.set(1000, 1000, 1000);
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
@@ -35,7 +34,7 @@ onMounted(() => {
     scene.background = envMap;
     scene.environment = envMap;
   });
-  city = new City(scene, cameraClass);
+  const city = new City(scene, cameraClass);
   renderFunList.push((dt) => {
     city.update(dt);
   });
@@ -61,6 +60,7 @@ const focus = () => {
     duration: 1,
     ease: "none",
     onComplete: () => {
+      // 贴太近可能最后会镜头抖动
       gsap.to(cameraClass.activeCamera.position, {
         x: redcarPosition.x + 50,
         y: redcarPosition.y + 50,

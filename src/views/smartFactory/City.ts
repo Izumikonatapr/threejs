@@ -16,16 +16,18 @@ export class City {
     curveProgress: number | undefined
     floor1
     floor2
+    tagGroup: Array<any>
+    wall
     redcar
     cameraClass
     constructor(scene, cameraClass) {
         this.cameraClass = cameraClass
         this.scene = scene
+        this.tagGroup = []
         this.loader = new GLTFLoader();
         this.loader.setDRACOLoader(dracoLoader);
         this.loader.load("/smartFactory/model/floor21.glb", (gltf) => {
             this.floor2 = gltf
-            scene.add(gltf.scene)
             gltf.scene.traverse((child: any) => {
                 if (child.type == 'Mesh') {
                     // 发光强度
@@ -34,16 +36,29 @@ export class City {
                 // 如果他是一个空物体 那么表示他是一个广告牌
                 if (child.type == 'Object3D' && child.children.length == 0) {
                     const tag = this.createTag(child)
-                    scene.add(tag)
+                    this.tagGroup.push(tag)
+                    this.floor2.scene.add(tag)
+                    for (let i = 0; i < this.tagGroup.length; i++) {
+                        this.tagGroup[i].visible = false
+                    }
                 }
             })
+            scene.add(gltf.scene)
         });
         this.loader.load("/smartFactory/model/floor1.glb", (gltf) => {
             this.floor1 = gltf
-            scene.add(gltf.scene)
             gltf.scene.traverse((child: any) => {
 
             })
+            scene.add(gltf.scene)
+
+        });
+        this.loader.load("/smartFactory/model/wall.glb", (gltf) => {
+            this.wall = gltf
+            gltf.scene.traverse((child: any) => {
+            })
+            scene.add(gltf.scene)
+
         });
     }
     update(time) {

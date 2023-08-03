@@ -16,25 +16,52 @@ const gui = new dat.GUI();
 // 后面统一使用相机管理模块的当前激活相机
 const cameraClass = new Camera(camera);
 cameraClass.add("default", camera);
-onMounted(() => {
-  camera.position.set(100, 100, 100);
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
-  const dirLight = new THREE.DirectionalLight(0xffffff, 0.6);
-  dirLight.position.set(10, 10, 10);
-  dirLight.castShadow = true;
-  scene.add(ambientLight, dirLight);
-  new RGBELoader().load("/02material/textures/hdr/2k.hdr", (envMap) => {
-    envMap.mapping = THREE.EquirectangularRefractionMapping;
-    scene.background = envMap;
-    scene.environment = envMap;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 0.4;
-  });
-  const city = new City(scene, cameraClass);
-  renderFunList.push((dt) => {
-    city.update(dt);
-  });
+camera.position.set(100, 100, 100);
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+const dirLight = new THREE.DirectionalLight(0xffffff, 0.6);
+dirLight.position.set(10, 10, 10);
+dirLight.castShadow = true;
+
+scene.add(ambientLight, dirLight);
+
+new RGBELoader().load("/02material/textures/hdr/2k.hdr", (envMap) => {
+  envMap.mapping = THREE.EquirectangularRefractionMapping;
+  scene.background = envMap;
+  scene.environment = envMap;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 0.4;
 });
+
+const city = new City(scene, cameraClass);
+renderFunList.push((dt) => {
+  city.update(dt);
+});
+
+const toggleWall = (toggle) => {
+  toggle ? (city.wall.scene.visible = true) : (city.wall.scene.visible = false);
+};
+const toggleFloor1 = (toggle) => {
+  toggle
+    ? (city.floor1.scene.visible = true)
+    : (city.floor1.scene.visible = false);
+};
+const toggleFloor2 = (toggle) => {
+  toggle
+    ? (city.floor2.scene.visible = true)
+    : (city.floor2.scene.visible = false);
+};
+const toggleTag = (toggle) => {
+  if (toggle) {
+    for (let i = 0; i < city.tagGroup.length; i++) {
+      city.tagGroup[i].visible = true;
+    }
+  } else {
+    for (let i = 0; i < city.tagGroup.length; i++) {
+      city.tagGroup[i].visible = false;
+    }
+  }
+};
 const toggleCamera = (name) => {
   cameraClass.setActive(name);
   app.camera = cameraClass.activeCamera;
@@ -48,6 +75,16 @@ const raycaster = new Raycaster(cameraClass.activeCamera, scene, (res) => {});
   <div id="view">
     <div class="menu">
       <button @click="toggleCamera('default')">切换默认相机</button>
+      <br />
+      <button @click="toggleWall(true)">显示外立面</button>
+      <button @click="toggleFloor1(true)">显示一楼</button>
+      <button @click="toggleFloor2(true)">显示二楼</button>
+      <button @click="toggleTag(true)">显示tag</button>
+      <br />
+      <button @click="toggleWall(false)">关闭外立面</button>
+      <button @click="toggleFloor1(false)">隐藏一楼</button>
+      <button @click="toggleFloor2(false)">隐藏二楼</button>
+      <button @click="toggleTag(false)">隐藏tag</button>
     </div>
   </div>
 </template>

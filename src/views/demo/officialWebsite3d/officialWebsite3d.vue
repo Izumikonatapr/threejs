@@ -2,13 +2,13 @@
 import * as THREE from "three";
 import { createApp } from "@/views/createApp";
 import { onBeforeUnmount, onMounted } from "vue";
-import { app as createApp } from "./scene";
+import { app as init } from "./scene";
 const app = createApp("container", {
   controls: false,
 });
 // const app3 = createApp("container");
 // (window as any).window.app2 = app3;
-createApp(app);
+init(app);
 // 相机滚动时向下移动镜头
 </script>
 <template>

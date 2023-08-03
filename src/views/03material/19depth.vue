@@ -42,7 +42,7 @@ onMounted(() => {
     side: THREE.DoubleSide,
   });
 
-  const plane = new THREE.Mesh(geometry, baseMaterial);
+  const plane: any = new THREE.Mesh(geometry, baseMaterial);
   scene.add(plane);
 
   const plane1material = new THREE.MeshBasicMaterial({
@@ -50,7 +50,7 @@ onMounted(() => {
     transparent: true,
   });
   const plane1Geo = new THREE.PlaneGeometry(1, 1, 3, 3);
-  const plane1 = new THREE.Mesh(plane1Geo, plane1material);
+  const plane1: any = new THREE.Mesh(plane1Geo, plane1material);
   plane.position.z = 1;
   scene.add(plane1);
 

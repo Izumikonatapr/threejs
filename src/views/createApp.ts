@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { onBeforeUnmount, onMounted } from 'vue';
+import { CSS3DRenderer } from 'three/examples/jsm/renderers/CSS3DRenderer';
 /**
  * dom元素的id 渲染器将canvas注入这个元素
  */
@@ -24,6 +25,7 @@ class app {
     scene: THREE.Scene;
     camera: THREE.PerspectiveCamera
     renderer: THREE.WebGLRenderer;
+    css3dRenderer: CSS3DRenderer;
     controls?: any;
     axes?: THREE.AxesHelper;
     clock: THREE.Clock
@@ -53,6 +55,11 @@ class app {
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         // this.renderer.useLegacyLights = true
 
+        this.css3dRenderer = new CSS3DRenderer()
+        this.css3dRenderer.setSize(window.innerWidth, window.innerHeight);
+
+
+
         if (options?.controls) {
             this.controls = new OrbitControls(this.camera, this.renderer.domElement);
             this.controls.enableDamping = true;
@@ -65,6 +72,7 @@ class app {
         window.addEventListener("resize", () => {
             this.renderer.setSize(window.innerWidth, window.innerHeight);
             this.renderer.setPixelRatio(window.devicePixelRatio);
+            this.css3dRenderer.setSize(window.innerWidth, window.innerHeight);
             this.camera.aspect = window.innerWidth / window.innerHeight;
             this.camera.updateProjectionMatrix();
         });
@@ -89,7 +97,7 @@ class app {
         const dt = this.clock.getDelta()
         if (this.controls) this.controls.update(dt);
         this.renderer.render(this.scene, this.camera)
-
+        this.css3dRenderer.render(this.scene, this.camera)
         if (this.renderFunList) {
             this.renderFunList.forEach(element => {
                 element(dt)
@@ -114,6 +122,7 @@ class app {
             this.renderer.forceContextLoss();
             this.renderer.dispose();
         }
+
         if (this.scene) this.scene.clear();
     }
     injectDom = (domId: domId): void => {
@@ -127,6 +136,8 @@ class app {
             } else {
                 throw new Error('dom元素不存在!')
             };
+            const css3dRendererDom = document.querySelector('#css3drenderer')
+            if (css3dRendererDom) css3dRendererDom.appendChild(this.css3dRenderer.domElement)
         } catch (err) {
             console.error(err)
         }

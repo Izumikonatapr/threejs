@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import * as THREE from "three";
 import { createApp } from "@/views/createApp";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 import { City } from "./City";
 import dat from "dat.gui";

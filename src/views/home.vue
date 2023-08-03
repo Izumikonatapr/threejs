@@ -172,7 +172,7 @@
   <!-- <transitionAnimate></transitionAnimate> -->
 
   <!-- 模型动画 智慧园区 视角跟随-->
-  <animation></animation>
+  <!-- <animation></animation> -->
 
   <!-- 骨骼动画 -->
   <!-- <skeletalAnimation></skeletalAnimation> -->
@@ -182,6 +182,9 @@
 
   <!-- 智慧城市 地图三维模型图纸生成网站 https://cadmapper.com/ dxf 需要导入3ds转出-->
   <!-- <smartCities></smartCities> -->
+
+  <!-- 智慧工厂 -->
+  <SmartFactory></SmartFactory>
 
   <!-- <demo></demo> -->
 
@@ -269,4 +272,5 @@ import animation from "./14animation/01animation.vue";
 import skeletalAnimation from "./15skeletalAnimation/01skeletal.vue";
 import room from "./demo/room/room.vue";
 import smartCities from "./smartCities/index.vue";
+import SmartFactory from "./smartFactory/smartFactory.vue";
 </script>

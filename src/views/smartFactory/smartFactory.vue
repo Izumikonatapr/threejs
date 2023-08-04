@@ -32,11 +32,10 @@ new RGBELoader().load("/02material/textures/hdr/2k.hdr", (envMap) => {
 });
 
 const city = new City(scene, cameraClass);
-renderFunList.push((dt) => {
-  city.update(dt);
-});
 
 city.fighterOnload = () => {
+  city.hideAll();
+  city.fighter.visible = true;
   const raycaster = new Raycaster(
     cameraClass.activeCamera,
     city.fighter,
@@ -71,9 +70,10 @@ city.fighterOnload = () => {
       <button @click="city.toggleTag(false)">隐藏tag</button>
       <br />
       <button @click="city.expand()">展开</button>
-      <button @click="city.restore()">恢复</button>
+      <button @click="city.recovery()">恢复</button>
       <br />
       <button @click="city.expandFighter()">展开飞机</button>
+      <button @click="city.recoveryFighter()">恢复飞机</button>
     </div>
   </div>
 </template>

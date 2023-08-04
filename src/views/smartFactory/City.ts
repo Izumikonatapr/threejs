@@ -5,15 +5,9 @@ import { gsap } from "gsap";
 import { CSS3DObject } from "three/examples/jsm/renderers/CSS3DRenderer";
 const dracoLoader = new DRACOLoader();
 dracoLoader.setDecoderPath("/static/");
-
 export class City {
     loader: GLTFLoader
     scene: THREE.Scene
-    mixer: THREE.AnimationMixer | undefined
-    clip: THREE.AnimationClip | undefined
-    action: THREE.AnimationAction | undefined
-    curve: THREE.CatmullRomCurve3 | undefined
-    curveProgress: number | undefined
     floor1
     floor2
     tagGroup: Array<any>
@@ -22,6 +16,7 @@ export class City {
     redcar
     cameraClass
     fighterOnload: Function | undefined
+    isExpand
     constructor(scene, cameraClass) {
         this.cameraClass = cameraClass
         this.scene = scene
@@ -74,27 +69,8 @@ export class City {
             scene.add(gltf.scene)
         });
     }
-    update(time) {
-        if (this.mixer) {
-            this.mixer.update(time)
-        }
-    }
-    carAnimation() {
-        gsap.to(this, {
-            curveProgress: 0.99,
-            duration: 10,
-            ease: 'none',
-            repeat: -1,
-            onUpdate: () => {
-                const point = this.curve!.getPoint(this.curveProgress!);
-                this.redcar.position.set(point?.x, point?.y, point?.z)
-                //  让小汽车一直看向下一个点的方向
-                if (this.curveProgress! + 0.001 < 1) {
-                    this.redcar.lookAt(this.curve?.getPoint(this.curveProgress! + 0.001))
-                }
-            }
-        })
-    }
+
+
     createTag(object3d) {
         // 创建各个区域的元素
         const element = document.createElement("div");
@@ -114,36 +90,59 @@ export class City {
     }
     expandFighter() {
         // 将飞机展开
-        const positions: Array<any> = []
-        for (let i = 0; i < 10; i++) {
-            for (let j = 0; j < 10; j++) {
-                for (let k = 0; k < 10; k++) {
-                    positions.push(new THREE.Vector3(i, j, k))
-                }
+        if (this.isExpand == true) {
+            return
+        }
+        this.isExpand = true
+        const positions: any = [];
+        for (var i = 0; i < 5; i++) {
+            for (var j = 0; j < 5; j++) {
+                positions.push(new THREE.Vector3(i * 2 - 2, j * 2 - 2, 0));
             }
         }
         let n = 0;
         this.fighter.traverse((child) => {
             if (child.isMesh) {
-                child.position.copy(positions[n].multiplyScalar(10))
+                // console.log(child);
+                // child.position.copy(positions[n].multiplyScalar(20));
+                positions[n].multiplyScalar(10);
+                child.position2 = child.position.clone()
+                gsap.to(child.position, {
+                    x: "+=" + positions[n].x,
+                    y: "+=" + positions[n].y,
+                    z: "+=" + positions[n].z,
+                    duration: 1,
+                });
                 n++;
-                console.log('====================================');
-                console.log(123);
-                console.log('====================================');
+            }
+        });
+    }
+    recoveryFighter() {
+        // 恢复飞机
+        this.isExpand = false
+        this.fighter.traverse((child) => {
+            if (child.isMesh) {
+                gsap.to(child.position, {
+                    x: child.position2.x,
+                    y: child.position2.y,
+                    z: child.position2.z,
+                    duration: 1
+                })
             }
         })
-
-
     }
     toggleWall(toggle) {
+        // 显示隐藏
         toggle ? (this.wall.visible = true) : (this.wall.visible = false);
     };
     toggleFloor1(toggle) {
+        // 显示隐藏
         toggle
             ? (this.floor1.visible = true)
             : (this.floor1.visible = false);
     };
     toggleFloor2(toggle) {
+        // 显示隐藏
         if (toggle) {
             this.floor2.visible = true
             this.fighter.visible = true
@@ -155,6 +154,7 @@ export class City {
         }
     };
     toggleTag(toggle) {
+        // 显示隐藏
         if (toggle) {
             for (let i = 0; i < this.tagGroup.length; i++) {
                 this.tagGroup[i].visible = true;
@@ -166,18 +166,21 @@ export class City {
         }
     };
     showAll() {
+        // 全部显示
         this.toggleWall(true);
         this.toggleFloor1(true);
         this.toggleFloor2(true);
         this.toggleTag(true);
     };
     hideAll() {
+        // 全部隐藏
         this.toggleWall(false);
         this.toggleFloor1(false);
         this.toggleFloor2(false);
         this.toggleTag(false);
     };
     expand() {
+        // 展开工厂
         gsap.to(this.wall.position, {
             duration: 1,
             y: 200,
@@ -189,11 +192,12 @@ export class City {
         })
         gsap.to(this.fighter.position, {
             duration: 1,
-            y: "+=" + 80,
+            y: 80 + 35,
             delay: 0.5
         })
     }
-    restore() {
+    recovery() {
+        // 恢复工厂
         gsap.to(this.wall.position, {
             duration: 1,
             y: 0,
@@ -204,7 +208,10 @@ export class City {
         })
         gsap.to(this.fighter.position, {
             duration: 1,
-            y: "-=" + 80,
+            y: 80 + 35,
         })
+    }
+    createPoints() {
+
     }
 }

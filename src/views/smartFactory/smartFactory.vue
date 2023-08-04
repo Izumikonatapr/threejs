@@ -1,13 +1,11 @@
 <script lang="ts" setup>
 import * as THREE from "three";
 import { createApp } from "@/views/createApp";
-import { onMounted, ref } from "vue";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 import { City } from "./City";
 import dat from "dat.gui";
 // 相机管理模块
 import { Camera } from "./Camera";
-import { gsap } from "gsap";
 import { Raycaster } from "@utils/Raycaster";
 const app = createApp("container");
 const { scene, controls, camera, clock, renderer, renderFunList } = app;
@@ -38,53 +36,42 @@ renderFunList.push((dt) => {
   city.update(dt);
 });
 
-const toggleWall = (toggle) => {
-  toggle ? (city.wall.scene.visible = true) : (city.wall.scene.visible = false);
-};
-const toggleFloor1 = (toggle) => {
-  toggle
-    ? (city.floor1.scene.visible = true)
-    : (city.floor1.scene.visible = false);
-};
-const toggleFloor2 = (toggle) => {
-  toggle
-    ? (city.floor2.scene.visible = true)
-    : (city.floor2.scene.visible = false);
-};
-const toggleTag = (toggle) => {
-  if (toggle) {
-    for (let i = 0; i < city.tagGroup.length; i++) {
-      city.tagGroup[i].visible = true;
+city.fighterOnload = () => {
+  const raycaster = new Raycaster(
+    cameraClass.activeCamera,
+    city.fighter,
+    (res) => {
+      if (res.length > 0) {
+        city.hideAll();
+        city.fighter.visible = true;
+        console.log("====================================");
+        console.log(res, "点击到了飞机");
+        console.log("====================================");
+      }
     }
-  } else {
-    for (let i = 0; i < city.tagGroup.length; i++) {
-      city.tagGroup[i].visible = false;
-    }
-  }
+  );
 };
-const toggleCamera = (name) => {
-  cameraClass.setActive(name);
-  app.camera = cameraClass.activeCamera;
-};
-
-const raycaster = new Raycaster(cameraClass.activeCamera, scene, (res) => {});
 </script>
 <template>
   <div id="container"></div>
   <div id="css3drenderer"></div>
   <div id="view">
-    <div class="menu">
-      <button @click="toggleCamera('default')">切换默认相机</button>
+    <div class="menu" v-if="city">
+      <button @click="city.showAll()">全部显示</button>
+      <button @click="city.hideAll()">全部隐藏</button>
       <br />
-      <button @click="toggleWall(true)">显示外立面</button>
-      <button @click="toggleFloor1(true)">显示一楼</button>
-      <button @click="toggleFloor2(true)">显示二楼</button>
-      <button @click="toggleTag(true)">显示tag</button>
+      <button @click="city.toggleWall(true)">显示外立面</button>
+      <button @click="city.toggleFloor1(true)">显示一楼</button>
+      <button @click="city.toggleFloor2(true)">显示二楼</button>
+      <button @click="city.toggleTag(true)">显示tag</button>
       <br />
-      <button @click="toggleWall(false)">关闭外立面</button>
-      <button @click="toggleFloor1(false)">隐藏一楼</button>
-      <button @click="toggleFloor2(false)">隐藏二楼</button>
-      <button @click="toggleTag(false)">隐藏tag</button>
+      <button @click="city.toggleWall(false)">关闭外立面</button>
+      <button @click="city.toggleFloor1(false)">隐藏一楼</button>
+      <button @click="city.toggleFloor2(false)">隐藏二楼</button>
+      <button @click="city.toggleTag(false)">隐藏tag</button>
+      <br />
+      <button @click="city.expand()">展开</button>
+      <button @click="city.restore()">恢复</button>
     </div>
   </div>
 </template>

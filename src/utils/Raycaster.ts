@@ -3,7 +3,7 @@ export class Raycaster {
     raycaster: THREE.Raycaster
     mouse: THREE.Vector2
     results
-    constructor(camera, scene, func?) {
+    constructor(camera, object, func?) {
         //   创建投射光线对象
         this.raycaster = new THREE.Raycaster();
         //   鼠标位置向量
@@ -17,7 +17,7 @@ export class Raycaster {
             // 将鼠标位置和相机传递给射线投射对象
             this.raycaster.setFromCamera(this.mouse, camera);
             // 检测碰撞 传入你需要检测的对象数组 或者直接传入scene
-            this.results = this.raycaster.intersectObject(scene);
+            this.results = this.raycaster.intersectObject(object);
             /**
              * 射线检测得到的结果[]
              * @param distance 射线检测经过的距离

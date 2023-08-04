@@ -18,8 +18,10 @@ export class City {
     floor2
     tagGroup: Array<any>
     wall
+    fighter
     redcar
     cameraClass
+    fighterOnload: Function | undefined
     constructor(scene, cameraClass) {
         this.cameraClass = cameraClass
         this.scene = scene
@@ -27,7 +29,7 @@ export class City {
         this.loader = new GLTFLoader();
         this.loader.setDRACOLoader(dracoLoader);
         this.loader.load("/smartFactory/model/floor21.glb", (gltf) => {
-            this.floor2 = gltf
+            this.floor2 = gltf.scene
             gltf.scene.traverse((child: any) => {
                 if (child.type == 'Mesh') {
                     // 发光强度
@@ -37,28 +39,39 @@ export class City {
                 if (child.type == 'Object3D' && child.children.length == 0) {
                     const tag = this.createTag(child)
                     this.tagGroup.push(tag)
-                    this.floor2.scene.add(tag)
+                    this.floor2.add(tag)
                     for (let i = 0; i < this.tagGroup.length; i++) {
                         this.tagGroup[i].visible = false
                     }
                 }
             })
+            this.loader.load("/smartFactory/model/Fighter.glb", (gltf) => {
+                this.fighter = gltf.scene
+                gltf.scene.position.set(3, 35, 68)
+                gltf.scene.traverse((e: any) => {
+                    if (e.type == 'Mesh') {
+                        e.material.emissiveIntensity = 15
+                    }
+                })
+                scene.add(gltf.scene)
+                if (this.fighterOnload) {
+                    this.fighterOnload()
+                }
+            });
             scene.add(gltf.scene)
         });
         this.loader.load("/smartFactory/model/floor1.glb", (gltf) => {
-            this.floor1 = gltf
+            this.floor1 = gltf.scene
             gltf.scene.traverse((child: any) => {
-
             })
             scene.add(gltf.scene)
-
         });
         this.loader.load("/smartFactory/model/wall.glb", (gltf) => {
-            this.wall = gltf
+            this.wall = gltf.scene
+
             gltf.scene.traverse((child: any) => {
             })
             scene.add(gltf.scene)
-
         });
     }
     update(time) {
@@ -82,7 +95,6 @@ export class City {
             }
         })
     }
-
     createTag(object3d) {
         // 创建各个区域的元素
         const element = document.createElement("div");
@@ -94,11 +106,73 @@ export class City {
                 <p>湿度：50%</p>
             </div>
             `;
-
         const objectCSS3D = new CSS3DObject(element);
         objectCSS3D.position.copy(object3d.position);
         objectCSS3D.scale.set(0.2, 0.2, 0.2);
         return objectCSS3D;
         // scene.add(objectCSS3D);
+    }
+    toggleWall(toggle) {
+        toggle ? (this.wall.visible = true) : (this.wall.visible = false);
+    };
+    toggleFloor1(toggle) {
+        toggle
+            ? (this.floor1.visible = true)
+            : (this.floor1.visible = false);
+    };
+    toggleFloor2(toggle) {
+        if (toggle) {
+            this.floor2.visible = true
+            this.fighter.visible = true
+            this.toggleTag(true)
+        } else {
+            this.floor2.visible = false
+            this.fighter.visible = false
+            this.toggleTag(false)
+        }
+    };
+    toggleTag(toggle) {
+        if (toggle) {
+            for (let i = 0; i < this.tagGroup.length; i++) {
+                this.tagGroup[i].visible = true;
+            }
+        } else {
+            for (let i = 0; i < this.tagGroup.length; i++) {
+                this.tagGroup[i].visible = false;
+            }
+        }
+    };
+    showAll() {
+        this.toggleWall(true);
+        this.toggleFloor1(true);
+        this.toggleFloor2(true);
+        this.toggleTag(true);
+    };
+    hideAll() {
+        this.toggleWall(false);
+        this.toggleFloor1(false);
+        this.toggleFloor2(false);
+        this.toggleTag(false);
+    };
+    expand() {
+        gsap.to(this.wall.position, {
+            duration: 1,
+            y: 200,
+        })
+        gsap.to(this.floor2.position, {
+            duration: 1,
+            y: 80,
+            delay: 0.5
+        })
+    }
+    restore() {
+        gsap.to(this.wall.position, {
+            duration: 1,
+            y: 0,
+        })
+        gsap.to(this.floor2.position, {
+            duration: 1,
+            y: 0,
+        })
     }
 }

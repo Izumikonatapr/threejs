@@ -72,6 +72,8 @@ city.fighterOnload = () => {
       <br />
       <button @click="city.expand()">展开</button>
       <button @click="city.restore()">恢复</button>
+      <br />
+      <button @click="city.expandFighter()">展开飞机</button>
     </div>
   </div>
 </template>

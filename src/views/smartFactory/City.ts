@@ -112,6 +112,29 @@ export class City {
         return objectCSS3D;
         // scene.add(objectCSS3D);
     }
+    expandFighter() {
+        // 将飞机展开
+        const positions: Array<any> = []
+        for (let i = 0; i < 10; i++) {
+            for (let j = 0; j < 10; j++) {
+                for (let k = 0; k < 10; k++) {
+                    positions.push(new THREE.Vector3(i, j, k))
+                }
+            }
+        }
+        let n = 0;
+        this.fighter.traverse((child) => {
+            if (child.isMesh) {
+                child.position.copy(positions[n].multiplyScalar(10))
+                n++;
+                console.log('====================================');
+                console.log(123);
+                console.log('====================================');
+            }
+        })
+
+
+    }
     toggleWall(toggle) {
         toggle ? (this.wall.visible = true) : (this.wall.visible = false);
     };

@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path';
-// import viteCompression from 'vite-plugin-compression'
+import viteCompression from 'vite-plugin-compression'
 
 export default defineConfig({
   // 别名 在引用资源时，可以用‘@/资源路径’直接访问
@@ -43,6 +43,7 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    viteCompression()
   ],
   server: {
     host: '0.0.0.0',

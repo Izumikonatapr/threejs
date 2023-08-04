@@ -197,7 +197,7 @@
   <!-- 补间动画 gsap  -->
 </template>
 <script lang="ts" setup>
-import demo from "./demo.vue";
+import demo from "@components/utilPage/demo.vue";
 import webgl from "./webgl/webgl.vue";
 import base01 from "./01base/01-初始场景.vue";
 import controls from "./01base/02-controls.vue";

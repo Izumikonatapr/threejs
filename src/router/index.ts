@@ -12,7 +12,7 @@ const routes: any = [
   {
     path: '/demo',
     name: 'demo',
-    component: () => import('@views/demo.vue'),
+    component: () => import('@components/utilPage/demo.vue'),
   },
   // 3d官网demo
   {

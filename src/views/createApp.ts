@@ -58,8 +58,6 @@ class app {
         this.css3dRenderer = new CSS3DRenderer()
         this.css3dRenderer.setSize(window.innerWidth, window.innerHeight);
 
-
-
         if (options?.controls) {
             this.controls = new OrbitControls(this.camera, this.renderer.domElement);
             this.controls.enableDamping = true;
@@ -104,7 +102,6 @@ class app {
             });
         }
         this.renderVar = requestAnimationFrame(this.tick)
-
     }
     tick = (): void => {
         try {
@@ -122,7 +119,6 @@ class app {
             this.renderer.forceContextLoss();
             this.renderer.dispose();
         }
-
         if (this.scene) this.scene.clear();
     }
     injectDom = (domId: domId): void => {

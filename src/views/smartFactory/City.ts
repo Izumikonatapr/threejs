@@ -187,6 +187,11 @@ export class City {
             y: 80,
             delay: 0.5
         })
+        gsap.to(this.fighter.position, {
+            duration: 1,
+            y: "+=" + 80,
+            delay: 0.5
+        })
     }
     restore() {
         gsap.to(this.wall.position, {
@@ -196,6 +201,10 @@ export class City {
         gsap.to(this.floor2.position, {
             duration: 1,
             y: 0,
+        })
+        gsap.to(this.fighter.position, {
+            duration: 1,
+            y: "-=" + 80,
         })
     }
 }

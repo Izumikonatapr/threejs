@@ -3,6 +3,7 @@ import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import * as THREE from 'three'
 import { gsap } from "gsap";
 import { CSS3DObject } from "three/examples/jsm/renderers/CSS3DRenderer";
+import { createPoints } from './points'
 const dracoLoader = new DRACOLoader();
 dracoLoader.setDecoderPath("/static/");
 export class City {
@@ -17,6 +18,7 @@ export class City {
     cameraClass
     fighterOnload: Function | undefined
     isExpand
+    fighterPointsGroup
     constructor(scene, cameraClass) {
         this.cameraClass = cameraClass
         this.scene = scene
@@ -208,10 +210,13 @@ export class City {
         })
         gsap.to(this.fighter.position, {
             duration: 1,
-            y: 80 + 35,
+            y: 0 + 35,
         })
     }
-    createPoints() {
-
+    createPoints(object3d) {
+        if (!this.fighterPointsGroup) {
+            this.fighterPointsGroup = createPoints(object3d)
+            this.scene.add(this.fighterPointsGroup)
+        }
     }
 }

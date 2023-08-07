@@ -74,6 +74,7 @@ city.fighterOnload = () => {
       <br />
       <button @click="city.expandFighter()">展开飞机</button>
       <button @click="city.recoveryFighter()">恢复飞机</button>
+      <button @click="city.createPoints(city.fighter)">粒子特效</button>
     </div>
   </div>
 </template>

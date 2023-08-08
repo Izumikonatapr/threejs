@@ -154,6 +154,10 @@
   <!-- <xaa></xaa> -->
   <!-- 使用着色器自定义效果  佩戴科技风眼镜视觉效果-->
   <!-- <shaderPass></shaderPass> -->
+  <!-- 高亮 边框线 -->
+  <!-- <outlinePass></outlinePass> -->
+  <!-- 分层渲染实现泛光 开关灯效果 -->
+  <bloomPass></bloomPass>
 
   <!-- css混合渲染器 -->
   <!-- css2d渲染器  可以将div等元素渲染到页面上  不能变换 \ 射线交互判断是否遮盖 -->
@@ -184,7 +188,7 @@
   <!-- <smartCities></smartCities> -->
 
   <!-- 智慧工厂 -->
-  <SmartFactory></SmartFactory>
+  <!-- <SmartFactory></SmartFactory> -->
 
   <!-- <demo></demo> -->
 
@@ -262,6 +266,8 @@ import noise from "./08shader/04noise/04noise.vue";
 import composer from "./09composer/01effectComponser.vue";
 import xaa from "./09composer/02xaa.vue";
 import shaderPass from "./09composer/03shaderPass.vue";
+import outlinePass from "./09composer/04outlinepass.vue";
+import bloomPass from "./09composer/05bloomPass.vue";
 import Css2drenderer from "./10cssrenderer/css2drenderer.vue";
 import Arctrack from "./11arc/arctrack.vue";
 import tracks from "./11arc/track.vue";

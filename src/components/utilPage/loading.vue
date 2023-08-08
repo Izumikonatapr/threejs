@@ -35,7 +35,13 @@ THREE.DefaultLoadingManager.onProgress = function (
 THREE.DefaultLoadingManager.onError = function (url) {
   console.log("There was an error loading " + url);
 };
-onMounted(() => {});
+onMounted(() => {
+  setTimeout(() => {
+    if (total.value == 0) {
+      ok.value = true;
+    }
+  }, 1000);
+});
 </script>
 <template>
   <div class="views" :style="!ok ? '' : 'pointer-events: none;'">

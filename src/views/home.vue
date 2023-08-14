@@ -157,7 +157,7 @@
   <!-- 高亮 边框线 -->
   <!-- <outlinePass></outlinePass> -->
   <!-- 分层渲染实现泛光 开关灯效果 -->
-  <bloomPass></bloomPass>
+  <!-- <bloomPass></bloomPass> -->
 
   <!-- css混合渲染器 -->
   <!-- css2d渲染器  可以将div等元素渲染到页面上  不能变换 \ 射线交互判断是否遮盖 -->

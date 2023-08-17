@@ -279,4 +279,7 @@ import skeletalAnimation from "./15skeletalAnimation/01skeletal.vue";
 import room from "./demo/room/room.vue";
 import smartCities from "./smartCities/index.vue";
 import SmartFactory from "./smartFactory/smartFactory.vue";
+
+// 粒子波浪效果
+import pointWave from "@components/effect/pointWave.vue";
 </script>

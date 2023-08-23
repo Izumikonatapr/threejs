@@ -188,7 +188,7 @@
   <!-- <smartCities></smartCities> -->
 
   <!-- 智慧工厂 -->
-  <!-- <SmartFactory></SmartFactory> -->
+  <SmartFactory></SmartFactory>
 
   <!-- <demo></demo> -->
 

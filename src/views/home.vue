@@ -181,8 +181,10 @@
   <!-- 16 构建工具  物体操作辅助器等-->
   <!-- 网格辅助器 -->
   <!-- <gridHelper></gridHelper> -->
-  <!-- 变换控制器 -->
-  <TransformControls></TransformControls>
+  <!-- 变换控制器 添加物体 设置物体选中 缩放旋转-->
+  <!-- <TransformControls></TransformControls> -->
+  <!-- 旋转物体后 切换移动 移动的轴心还是世界坐标 如何切换本地坐标 让轴心也旋转  设置变换的步长 吸附地面-->
+  <controlsTab></controlsTab>
 
   <!-- 模型动画 智慧园区 视角跟随-->
   <!-- <animation></animation> -->
@@ -284,6 +286,7 @@ import animation from "./14animation/01animation.vue";
 import skeletalAnimation from "./15skeletalAnimation/01skeletal.vue";
 import gridHelper from "./16helper/01gridHelper.vue";
 import TransformControls from "./16helper/02transformControls.vue";
+import controlsTab from "./16helper/03tab.vue";
 import room from "./demo/room/room.vue";
 import smartCities from "./smartCities/index.vue";
 import SmartFactory from "./smartFactory/smartFactory.vue";

@@ -38,6 +38,11 @@ let tControls = new TransformControls(camera, renderer.domElement);
 tControls.addEventListener("dragging-changed", function (e) {
   controls.enabled = !e.value;
 });
+tControls.addEventListener("change", function (e) {
+  if (eventObj.isClampGround) {
+    tControls.object!.position.y = 0;
+  }
+});
 
 scene.add(tControls);
 
@@ -58,15 +63,64 @@ const eventObj = {
   setScale: () => {
     tControls.setMode("scale");
   },
+  // 切换坐标空间
+  toggleSpace: () => {
+    tControls.setSpace(tControls.space === "local" ? "world" : "local");
+  },
+  cancelSelect: () => {
+    tControls.detach();
+  },
+  translateSnapNum: null,
+  rotateSnapNum: 0,
+  scaleSnapNum: 0,
+  // 是否吸附地面 如果为true在change事件中固定高度
+  isClampGround: false,
 };
 
 gui.add(eventObj, "addScene").name("添加户型信息");
 gui.add(eventObj, "setTranslate").name("设置移动模式");
 gui.add(eventObj, "setRotate").name("设置旋转模式");
 gui.add(eventObj, "setScale").name("设置缩放模式");
-// 监听鼠标按键事件
+gui.add(eventObj, "toggleSpace").name("切换坐标空间");
+gui.add(eventObj, "cancelSelect").name("取消选中");
+
+let snapFolder = gui.addFolder("固定设置");
+snapFolder
+  .add(eventObj, "translateSnapNum", {
+    不固定: null,
+    1: 1,
+    0.1: 0.1,
+    10: 10,
+  })
+  .name("固定位移设置")
+  .onChange(() => {
+    tControls.setTranslationSnap(eventObj.translateSnapNum);
+  });
+snapFolder
+  .add(eventObj, "rotateSnapNum", 0, 1)
+  .step(0.01)
+  .name("旋转")
+  .onChange(() => {
+    tControls.setRotationSnap(eventObj.rotateSnapNum * Math.PI * 2);
+  });
+snapFolder
+  .add(eventObj, "scaleSnapNum", 0, 2)
+  .step(0.1)
+  .name("缩放")
+  .onChange(() => {
+    tControls.setScaleSnap(eventObj.scaleSnapNum);
+  });
+
+snapFolder
+  .add(eventObj, "isClampGround")
+  .name("是否吸附到地面上")
+  .onChange(() => {
+    if (eventObj.isClampGround) {
+      tControls.object!.position.y = 0;
+    }
+  });
+
 window.addEventListener("keydown", (event) => {
-  // 判断是否按的是t键
   if (event.key === "t") {
     eventObj.setTranslate();
   }
@@ -77,7 +131,6 @@ window.addEventListener("keydown", (event) => {
     eventObj.setScale();
   }
 });
-
 
 let meshList: any = [
   {

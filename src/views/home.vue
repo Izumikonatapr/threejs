@@ -5,7 +5,7 @@
   <!-- <webgl></webgl> -->
   <!-- 绘制一个三角形 -->
 
-  <!-- 基础 -->
+  <!-- 01基础 -->
 
   <!-- <base01 /> -->
   <!-- 控制器  限制相机位置-->
@@ -23,7 +23,7 @@
   <!-- threejs场景的保存导入和导出 -->
   <!-- <load></load> -->
 
-  <!-- 认识几何体  -->
+  <!-- 02认识几何体  -->
   <!-- <BoxGeometry></BoxGeometry> -->
   <!-- 几何体保持position原位不动 顶点位移 -->
   <!-- <geometryTranslate></geometryTranslate> -->
@@ -36,7 +36,7 @@
   <!-- 边缘几何体 EdgesGeometry -->
   <!-- <EdgesGeometry></EdgesGeometry> -->
 
-  <!-- 认识材质 -->
+  <!-- 03认识材质 -->
   <!-- <material></material> -->
   <!-- 着色方式 平直 平滑-->
   <!-- <flatShading></flatShading> -->
@@ -86,7 +86,7 @@
   <!-- <templateBuffer></templateBuffer> -->
   <!-- <templateClip></templateClip> -->
 
-  <!-- 贴图 -->
+  <!-- 03贴图 -->
   <!-- 预乘alpha -->
   <!-- <alphaTexture></alphaTexture> -->
   <!-- 不同文件类型的贴图优缺点 -->
@@ -96,7 +96,7 @@
   <!-- exr加载示范 -->
   <!-- <exr></exr> -->
 
-  <!-- 雾 -->
+  <!-- 04雾 -->
   <!-- <fog></fog> -->
 
   <!-- 免费的材质素材网址 -->
@@ -106,7 +106,7 @@
     Quixel Bridge
    -->
 
-  <!-- 光照和阴影 -->
+  <!-- 05光照和阴影 -->
 
   <!-- 如何开启光照和阴影 -->
   <!-- <light></light> -->
@@ -172,14 +172,20 @@
   <!-- 着色器加工默认材质 -->
   <!-- <processShader></processShader> -->
 
-  <!-- 变形动画 -->
+  <!-- 14变形动画 -->
   <!-- <transitionAnimate></transitionAnimate> -->
+
+  <!-- 15骨骼动画 -->
+  <!-- <skeletalAnimation></skeletalAnimation> -->
+
+  <!-- 16 构建工具  物体操作辅助器等-->
+  <!-- 网格辅助器 -->
+  <!-- <gridHelper></gridHelper> -->
+  <!-- 变换控制器 -->
+  <TransformControls></TransformControls>
 
   <!-- 模型动画 智慧园区 视角跟随-->
   <!-- <animation></animation> -->
-
-  <!-- 骨骼动画 -->
-  <!-- <skeletalAnimation></skeletalAnimation> -->
 
   <!-- 全景看房 -->
   <!-- <room></room> -->
@@ -188,7 +194,7 @@
   <!-- <smartCities></smartCities> -->
 
   <!-- 智慧工厂 -->
-  <SmartFactory></SmartFactory>
+  <!-- <SmartFactory></SmartFactory> -->
 
   <!-- <demo></demo> -->
 
@@ -276,6 +282,8 @@ import processShader from "./12processShader/processShader.vue";
 import transitionAnimate from "./13transition/transition.vue";
 import animation from "./14animation/01animation.vue";
 import skeletalAnimation from "./15skeletalAnimation/01skeletal.vue";
+import gridHelper from "./16helper/01gridHelper.vue";
+import TransformControls from "./16helper/02transformControls.vue";
 import room from "./demo/room/room.vue";
 import smartCities from "./smartCities/index.vue";
 import SmartFactory from "./smartFactory/smartFactory.vue";

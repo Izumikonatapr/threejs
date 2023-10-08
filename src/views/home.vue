@@ -34,7 +34,7 @@
   <!-- 包围盒包围多个物体 -->
   <!-- <BoundingBoxs></BoundingBoxs> -->
   <!-- 边缘几何体 EdgesGeometry -->
-  <!-- <EdgesGeometry></EdgesGeometry> -->
+  <EdgesGeometry></EdgesGeometry>
 
   <!-- 03认识材质 -->
   <!-- <material></material> -->
@@ -184,7 +184,7 @@
   <!-- 变换控制器 添加物体 设置物体选中 缩放旋转-->
   <!-- <TransformControls></TransformControls> -->
   <!-- 旋转物体后 切换移动 移动的轴心还是世界坐标 如何切换本地坐标 让轴心也旋转  设置变换的步长 吸附地面-->
-  <controlsTab></controlsTab>
+  <!-- <controlsTab></controlsTab> -->
 
   <!-- 模型动画 智慧园区 视角跟随-->
   <!-- <animation></animation> -->
@@ -205,7 +205,7 @@
   <!-- draco压缩后面数不会减少很多 所以想靠它提升性能不太可行 主要是用来减小体积 因为压缩后需要解码才能使用 因此加载模型时需要更多cpu资源 -->
   <!-- 压缩命令 gltf-pipeline -i (须要压缩的文件).glb -o (压缩后输出为文件名).glb -d --draco.compressionLevel=(等级1-10 默认7) -->
   <!-- 下面是压缩效果比较好的一个配置的示范 -->
-  <!-- gltf-pipeline -i chang.glb -o yasuochang.glb -d --draco.compressionLevel=10 --draco.quantizePositionBits=14 --draco.quantizeNormalBits=10 --quantizeTexcoordBits=12 -->
+  <!-- gltf-pipeline -i 原模型名字.glb -o 输出的模型名字.glb -d --draco.compressionLevel=10 --draco.quantizePositionBits=14 --draco.quantizeNormalBits=10 --quantizeTexcoordBits=12 -->
   <!-- 补间动画 gsap  -->
 </template>
 <script lang="ts" setup>

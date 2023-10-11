@@ -28,6 +28,7 @@ const lod = new THREE.LOD();
 for (let i = 0; i < 30; i++) {
   const geometry = new THREE.SphereGeometry(1, 30 - i * 5, 30 - i * 5);
   const mesh = new THREE.Mesh(geometry, material);
+  // 在多少个单位的距离以内可见
   lod.addLevel(mesh, i + 5);
 }
 scene.add(lod);

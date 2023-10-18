@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+// 模型动画控制参考元宇宙案例项目机器人模型控制
+// 参考ts文件 ./demo.ts
+
+
 import * as THREE from "three";
 import { createApp } from "@/views/createApp";
 import { onMounted, ref } from "vue";

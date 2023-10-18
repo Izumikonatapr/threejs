@@ -30,7 +30,7 @@ class app {
     axes?: THREE.AxesHelper;
     clock: THREE.Clock
     renderVar: any;
-    renderFunList: Array<Function>;
+    renderFunList: Array<(dt: number) => void>;
     constructor(domId: domId, options: options) {
         this.renderFunList = []
         this.scene = new THREE.Scene()

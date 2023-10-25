@@ -189,7 +189,13 @@
   <!-- <controlsTab></controlsTab> -->
 
   <!-- 17 LOD多细节层次 -->
-  <LOD></LOD>
+  <!-- <LOD></LOD> -->
+
+  <!-- 18 反射 镜面-->
+  <!-- <Reflect></Reflect> -->
+
+  <!-- 19 立体声 有位置的音源-->
+  <PositionAudio></PositionAudio>
 
   <!-- 全景看房 -->
   <!-- <room></room> -->
@@ -209,6 +215,9 @@
   <!-- 下面是压缩效果比较好的一个配置的示范 -->
   <!-- gltf-pipeline -i 原模型名字.glb -o 输出的模型名字.glb -d --draco.compressionLevel=10 --draco.quantizePositionBits=14 --draco.quantizeNormalBits=10 --quantizeTexcoordBits=12 -->
   <!-- 补间动画 gsap  -->
+
+  <!-- 小知识 -->
+  <!-- 视频纹理 canvas纹理  -->
 </template>
 <script lang="ts" setup>
 import demo from "@components/utilPage/demo.vue";
@@ -290,6 +299,8 @@ import gridHelper from "./16helper/01gridHelper.vue";
 import TransformControls from "./16helper/02transformControls.vue";
 import controlsTab from "./16helper/03tab.vue";
 import LOD from "./17lod/lod.vue";
+import Reflect from "./18reflect/reflect.vue";
+import PositionAudio from "./19positionAudio/positionAudio.vue";
 import room from "./demo/room/room.vue";
 import smartCities from "./smartCities/index.vue";
 import SmartFactory from "./smartFactory/smartFactory.vue";

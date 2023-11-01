@@ -217,7 +217,7 @@
   <!-- 补间动画 gsap  -->
 
   <!-- 小知识 -->
-  <!-- 视频纹理 canvas纹理  -->
+  <!-- 视频纹理 canvas纹理 -->
 </template>
 <script lang="ts" setup>
 import demo from "@components/utilPage/demo.vue";

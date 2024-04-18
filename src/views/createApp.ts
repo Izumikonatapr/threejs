@@ -43,7 +43,7 @@ class app {
         this.camera.position.set(0, 0, 10);
 
         this.renderer = new THREE.WebGLRenderer({
-            logarithmicDepthBuffer: true,
+            // logarithmicDepthBuffer: true,
             antialias: true,
         });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -94,13 +94,14 @@ class app {
      */
         const dt = this.clock.getDelta()
         if (this.controls) this.controls.update(dt);
-        this.renderer.render(this.scene, this.camera)
-        this.css3dRenderer.render(this.scene, this.camera)
-        if (this.renderFunList) {
+           if (this.renderFunList) {
             this.renderFunList.forEach(element => {
                 element(dt)
             });
         }
+        this.renderer.render(this.scene, this.camera)
+        this.css3dRenderer.render(this.scene, this.camera)
+     
         this.renderVar = requestAnimationFrame(this.tick)
     }
     tick = (): void => {

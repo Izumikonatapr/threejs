@@ -195,7 +195,7 @@
   <!-- <Reflect></Reflect> -->
 
   <!-- 19 立体声 有位置的音源-->
-  <PositionAudio></PositionAudio>
+  <!-- <PositionAudio></PositionAudio> -->
 
   <!-- 全景看房 -->
   <!-- <room></room> -->
@@ -207,6 +207,9 @@
   <!-- <SmartFactory></SmartFactory> -->
 
   <!-- <demo></demo> -->
+
+  <!-- 草地shader -->
+  <grassland></grassland>
 
   <!-- 常用工具 -->
   <!-- gltf压缩工具 gltf-pipeline npm install gltf-pipeline -->
@@ -307,4 +310,7 @@ import SmartFactory from "./smartFactory/smartFactory.vue";
 
 // 粒子波浪效果
 import pointWave from "@components/effect/pointWave.vue";
+
+// 草地
+import grassland from './grassland/index.vue'
 </script>

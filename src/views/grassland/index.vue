@@ -24,7 +24,6 @@ sun.position.set(10, 10, 10);
 scene.add(sun);
 let grasses;
 loader.load('/models/untitled.glb', (gltf) => {
-
     if (gltf.scene.getObjectByName('平面')) {
         grasses = new makeGrass(
             scene, // 场景
@@ -33,7 +32,6 @@ loader.load('/models/untitled.glb', (gltf) => {
         )
     }
     scene.add(gltf.scene)
-
 })
 
 // const grass = new makeGrass(scene, mesh, 10000)

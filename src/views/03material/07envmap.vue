@@ -46,7 +46,7 @@ onMounted(() => {
   // 加载hdr球面贴图
   const rgbLoader = new RGBELoader(loadingManager);
   // 加载可以使用loadAsync 异步返回结果
-  rgbLoader.loadAsync("/02material/textures/hdr/002.hdr").then((textures) => {
+  rgbLoader.loadAsync("/three/env.hdr").then((textures) => {
     /**
      * 你会发现  这张图只是简单贴在了背景上 不能转动
      * 你需要告知 这个纹理 他应该以什么样的方式映射

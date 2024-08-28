@@ -8,6 +8,8 @@ import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass";
 import { GammaCorrectionShader } from "three/examples/jsm/shaders/GammaCorrectionShader";
 import { SMAAPass } from "three/examples/jsm/postprocessing/SMAAPass";
 import { SAOPass } from 'three/examples/jsm/postprocessing/SAOPass';
+// SAOPass 屏幕空间环境光遮蔽  后处理效果 屏幕处理
+// SSAOPass 后处理  针对有AO贴图的材质生效 如果场景中没有模型有AO贴图则无效
 /**
  * dom元素的id 渲染器将canvas注入这个元素
  */
@@ -77,7 +79,7 @@ class app {
         });
         this.renderer.setSize(this.width, this.height);
         this.renderer.setPixelRatio(window.devicePixelRatio * 1);
-        
+
         this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
         this.renderer.toneMappingExposure = 0.8;
         this.renderer.shadowMap.enabled = true;
